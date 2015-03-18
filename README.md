@@ -2,4 +2,4 @@
 
 ### Description
 
-A CMS and blogging built using Ruby on Rails.
+A CMS and blogging platform built using Ruby on Rails.
