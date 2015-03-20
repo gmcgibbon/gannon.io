@@ -20,35 +20,32 @@ gem 'rails_admin'
 
 # if on Windows
 if RUBY_PLATFORM =~ /i386-mingw32/
-
   gem 'thin'
   gem 'tzinfo-data'
-
 # else on UNIX-like
 else
-
   gem 'unicorn-rails'
-
 end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
-  gem 'spring'
-  gem 'spring-commands-rspec'
   gem 'rspec-rails'
-  gem 'guard'
-  gem 'guard-rspec'
   gem 'capybara'
   gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'database_cleaner'
   gem 'fuubar'
+  gem 'database_cleaner'
+end
 
+group :development do
+  gem 'byebug'
+  gem 'web-console', '~> 2.0'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
