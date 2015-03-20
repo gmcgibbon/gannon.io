@@ -19,7 +19,10 @@ class ApplicationController < ActionController::Base
         render template: '/errors/404', status: 404
       end
       f.json do
-        render json: { error: 'Not found!' }.to_json, status: 404
+        render json:
+        {
+          error: I18n.t('gannon.error.http.status404')
+        }.to_json, status: 404
       end
     end
   end
@@ -31,7 +34,10 @@ class ApplicationController < ActionController::Base
         render template: '/errors/500', status: 500
       end
       f.json do
-        render json: { error: 'Internal server error!' }.to_json, status: 500
+        render json:
+        {
+          error: I18n.t('gannon.error.http.status500') 
+        }.to_json, status: 500
       end
     end
   end

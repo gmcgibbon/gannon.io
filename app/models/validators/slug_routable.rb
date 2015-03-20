@@ -7,6 +7,6 @@ class Validators::SlugRoutable < ActiveModel::Validator
       r.path.spec.to_s[1..-1].split('/')[0] == path
     end
 
-    record.errors[:slug] << I18n.t('gannon.error.slug.route') unless valid
+    record.errors[:slug] << I18n.t('gannon.slug.validation.route') unless valid
   end
 end

@@ -11,10 +11,10 @@ class ArticlesController < ApplicationController
     @article = Article.new article_params
 
     if @article.save
-      flash[:success] = "Article was successfully created!"
+      flash[:success] = I18n.t('gannon.article.create.success')
       render :root
     else
-      flash[:error] = "Article could not be created!"
+      flash[:fail] = I18n.t('gannon.article.create.fail')
       render :new, status: 422
     end
   end
@@ -25,20 +25,20 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update_attributes article_params
-      flash[:success] = "Article was successfully updated!"
+      flash[:success] = I18n.t('gannon.article.update.success')
       render :root
     else
-      flash[:error] = "Article could not be updated!"
+      flash[:fail] = I18n.t('gannon.article.update.fail')
       render :edit, status: 422
     end
   end
 
   def destroy
     if @article.destroy
-      flash[:success] = "Article was successfully deleted!"
+      flash[:success] = I18n.t('gannon.article.delete.success')
       render :root
     else
-      flash[:error] = "Article could not be deleted!"
+      flash[:fail] = I18n.t('gannon.article.delete.fail')
       render :edit, status: 422
     end
   end

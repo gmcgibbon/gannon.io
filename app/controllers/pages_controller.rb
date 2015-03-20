@@ -11,10 +11,10 @@ class PagesController < ApplicationController
     @page = Page.new page_params
 
     if @page.save
-      flash[:success] = 'Page was successfully created!'
+      flash[:success] = I18n.t('gannon.page.create.success')
       render :root
     else
-      flash[:error] = 'Page could not be created!'
+      flash[:fail] = I18n.t('gannon.page.create.fail')
       render :new, status: 422
     end
   end
@@ -25,20 +25,20 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes page_params
-      flash[:success] = 'Page was successfully updated!'
+      flash[:success] = I18n.t('gannon.page.update.success')
       render :root
     else
-      flash[:error] = 'Page could not be updated!'
+      flash[:fail] = I18n.t('gannon.page.update.fail')
       render :edit, status: 422
     end
   end
 
   def destroy
     if @page.destroy
-      flash[:success] = 'Page was successfully deleted!'
+      flash[:success] = I18n.t('gannon.page.delete.success')
       render :root
     else
-      flash[:error] = 'Page could not be deleted!'
+      flash[:fail] = I18n.t('gannon.page.delete.fail')
       render :edit, status: 422
     end
   end

@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   root 'application#root'
 
   get '/404', via: :all, to: 'application#not_found'
-  get '/422', via: :all, to: 'application#unprocessible_entity'
   get '/500', via: :all, to: 'application#internal_server_error'
 
   resources :articles, param: :slug, path: '/blog/'
