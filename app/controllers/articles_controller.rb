@@ -19,10 +19,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit; end
-
-  def show; end
-
   def update
     if @article.update_attributes article_params
       flash[:success] = I18n.t('gannon.article.update.success')

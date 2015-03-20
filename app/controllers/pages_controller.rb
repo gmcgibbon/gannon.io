@@ -3,10 +3,6 @@ class PagesController < ApplicationController
   load_and_authorize_resource find_by: :slug,
                               id_param: :slug
 
-  def new
-    @page = Page.new
-  end
-
   def create
     @page = Page.new page_params
 
@@ -18,10 +14,6 @@ class PagesController < ApplicationController
       render :new, status: 422
     end
   end
-
-  def edit; end
-
-  def show; end
 
   def update
     if @page.update_attributes page_params
