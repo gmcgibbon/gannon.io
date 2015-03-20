@@ -16,13 +16,10 @@ class ApplicationController < ActionController::Base
   def not_found
     respond_to do |f|
       f.html do
-        render template: '/errors/404', status: 404
+        render '/errors/404', status: 404
       end
       f.json do
-        render json:
-        {
-          error: I18n.t('gannon.error.http.status404')
-        }.to_json, status: 404
+        render '/errors/404.json', layout: false, status: 404
       end
     end
   end
@@ -31,13 +28,10 @@ class ApplicationController < ActionController::Base
   def internal_server_error
     respond_to do |f|
       f.html do
-        render template: '/errors/500', status: 500
+        render '/errors/500', status: 500
       end
       f.json do
-        render json:
-        {
-          error: I18n.t('gannon.error.http.status500') 
-        }.to_json, status: 500
+        render '/errors/500.json', layout: false, status: 500
       end
     end
   end

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ApplicationController, :type => :controller do
 
+  render_views
+
   describe '#root' do
 
     before do
