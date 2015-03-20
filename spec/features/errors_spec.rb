@@ -13,6 +13,6 @@ RSpec.feature 'Errors', type: :feature do
     end
   end
 
-  # TODO Add tests for 422 and 500 when used
+  # TODO Add tests for 500?
 
 end

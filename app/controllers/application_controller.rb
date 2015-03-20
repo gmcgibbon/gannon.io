@@ -15,19 +15,11 @@ class ApplicationController < ActionController::Base
   # 404 not found
   def not_found
     respond_to do |f|
-      f.html { render template: '/errors/404', status: 404 }
-      f.json do
-        render json: { error: 'not found!' }.to_json, status: 404
+      f.html do
+        render template: '/errors/404', status: 404
       end
-    end
-  end
-
-  # 422 unprocessible entity
-  def unprocessible_entity
-    respond_to do |f|
-      f.html { render template: '/errors/422', status: 422 }
       f.json do
-        render json: { error: 'unprocessible entity!' }.to_json, status: 422
+        render json: { error: 'Not found!' }.to_json, status: 404
       end
     end
   end
@@ -35,9 +27,11 @@ class ApplicationController < ActionController::Base
   # 500 internal server error
   def internal_server_error
     respond_to do |f|
-      f.html { render template: '/errors/500', status: 500 }
+      f.html do
+        render template: '/errors/500', status: 500
+      end
       f.json do
-        render json: { error: 'internal server error!' }.to_json, status: 500
+        render json: { error: 'Internal server error!' }.to_json, status: 500
       end
     end
   end

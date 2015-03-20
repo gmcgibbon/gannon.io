@@ -32,34 +32,12 @@ RSpec.describe ApplicationController, :type => :controller do
     end
 
     context 'json' do
-      let(:error_json) { { error: 'not found!' }.to_json }
+      let(:error_json) { { error: 'Not found!' }.to_json }
 
       before { get :not_found, format: :json }
 
       it { should respond_with :missing }
       it 'should match 404 json' do
-        expect(response.body).to eq error_json
-      end
-    end
-  end
-
-  describe '#unprocessible_entity' do
-
-    context 'html' do
-      before { get :unprocessible_entity }
-
-      it { should respond_with 422 }
-      it { should render_template 'errors/422' }
-      it { should route(:get, '/422').to 'application#unprocessible_entity'  }
-    end
-
-    context 'json' do
-      let(:error_json) { { error: 'unprocessible entity!' }.to_json }
-
-      before { get :unprocessible_entity, format: :json }
-
-      it { should respond_with 422 }
-      it 'should match 422 json' do
         expect(response.body).to eq error_json
       end
     end
@@ -76,7 +54,7 @@ RSpec.describe ApplicationController, :type => :controller do
     end
 
     context 'json' do
-      let(:error_json) { { error: 'internal server error!' }.to_json }
+      let(:error_json) { { error: 'Internal server error!' }.to_json }
 
       before { get :internal_server_error, format: :json }
 

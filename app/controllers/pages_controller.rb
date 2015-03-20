@@ -11,10 +11,10 @@ class PagesController < ApplicationController
     @page = Page.new page_params
 
     if @page.save
-      flash[:success] = "Page was successfully created!"
+      flash[:success] = 'Page was successfully created!'
       render :root
     else
-      flash[:error] = "Page could not be created!"
+      flash[:error] = 'Page could not be created!'
       render :new, status: 422
     end
   end
@@ -25,20 +25,20 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes page_params
-      flash[:success] = "Page was successfully updated!"
+      flash[:success] = 'Page was successfully updated!'
       render :root
     else
-      flash[:error] = "Page could not be updated!"
+      flash[:error] = 'Page could not be updated!'
       render :edit, status: 422
     end
   end
 
   def destroy
     if @page.destroy
-      flash[:success] = "Page was successfully deleted!"
+      flash[:success] = 'Page was successfully deleted!'
       render :root
     else
-      flash[:error] = "Page could not be deleted!"
+      flash[:error] = 'Page could not be deleted!'
       render :edit, status: 422
     end
   end
