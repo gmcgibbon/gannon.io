@@ -26,6 +26,8 @@ RSpec.feature 'Logins', type: :feature do
 
         expect(page).to have_content('Invalid email or password.')
         expect(page).to_not have_content('Admin')
+        expect(page).to_not have_content('New Article')
+        expect(page).to_not have_content('New Page')
       end
 
     end
@@ -39,6 +41,22 @@ RSpec.feature 'Logins', type: :feature do
 
         expect(page).to have_content('Signed in successfully.')
         expect(page).to_not have_content('Admin')
+        expect(page).to_not have_content('New Article')
+        expect(page).to_not have_content('New Page')
+      end
+    end
+
+    context 'as writer' do
+      let!(:user) { FactoryGirl.create(:user, :writer) }
+
+      scenario 'authenticate' do
+
+        login_as(user)
+
+        expect(page).to have_content('Signed in successfully.')
+        expect(page).to_not have_content('Admin')
+        expect(page).to have_content('New Article')
+        expect(page).to_not have_content('New Page')
       end
     end
 
@@ -52,6 +70,8 @@ RSpec.feature 'Logins', type: :feature do
 
         expect(page).to have_content('Signed in successfully.')
         expect(page).to have_content('Admin')
+        expect(page).to have_content('New Article')
+        expect(page).to have_content('New Page')
       end
     end
 

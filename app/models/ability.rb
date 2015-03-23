@@ -32,11 +32,9 @@ class Ability
     if user.nil?
       can :read, :all
     elsif user.reader?
-      can :create, :comment
       can :read, :all
     elsif user.writer?
-      can :manage, :article
-      can :create, :comment
+      can :manage, Article
       can :read, :all
     elsif user.admin?
       can :access, :rails_admin
