@@ -1,5 +1,5 @@
 RSpec.configure do |config|
 
-  # Enable as needed
-  # config.include ControllerMacros, :type => :controller
+  config.include ControllerMacros, type: :controller
+  config.include FeatureMacros, type: :feature
 end
