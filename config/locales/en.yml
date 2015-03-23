@@ -43,8 +43,8 @@ en:
         fail:    'Page could not be deleted!'
     slug:
       validation:
-        format: 'Slug must consist of lowercase and hyphens only.'
-        route:  'Slug conflicts with existing route.'
+        format: 'must consist of lowercase and hyphens only'
+        route:  'conflicts with existing route'
     error:
       http:
         status404: 'Not found!'

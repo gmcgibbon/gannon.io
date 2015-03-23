@@ -9,4 +9,8 @@ module FeatureMacros
     click_button('Log in')
   end
 
+  def strip_paras(text)
+    text.gsub('</p><p>', '').gsub('<p>', ' ').gsub('</p>', '')
+  end
+
 end
