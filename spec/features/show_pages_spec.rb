@@ -8,7 +8,7 @@ RSpec.feature 'ShowPages', type: :feature do
 
   context 'as guest' do
 
-    scenario 'view' do
+    scenario 'show' do
 
       click_link(page_obj.title)
 
