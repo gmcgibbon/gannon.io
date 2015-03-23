@@ -18,7 +18,7 @@ RSpec.feature 'CreatePages', type: :feature do
       fill_in('Content', with: 'This is test content!')
       fill_in('Slug', with: 'test-page')
 
-      click_button('Create')
+      click_button('Create Page')
     end
 
   end
