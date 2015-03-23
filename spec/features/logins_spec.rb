@@ -30,6 +30,18 @@ RSpec.feature 'Logins', type: :feature do
 
     end
 
+    context 'as reader' do
+      let!(:user) { FactoryGirl.create(:user, :reader) }
+
+      scenario 'authenticate' do
+
+        login_as(user)
+
+        expect(page).to have_content('Signed in successfully.')
+        expect(page).to_not have_content('Admin')
+      end
+    end
+
     context 'as admin' do
 
       let!(:user) { FactoryGirl.create(:user, :admin) }
