@@ -21,26 +21,16 @@
 
 en:
   gannon:
-    article:
+    record:
       create:
-        success: 'Article was successfully created!'
-        fail:    'Article could not be created!'
+        success: '%{record} was successfully created!'
+        fail:    '%{record} could not be created!'
       update:
-        success: 'Article was successfully updated!'
-        fail:    'Article could not be updated!'
+        success: '%{record} was successfully updated!'
+        fail:    '%{record} could not be updated!'
       destroy:
-        success: 'Article was successfully deleted!'
-        fail:    'Article could not be deleted!'
-    page:
-      create:
-        success: 'Page was successfully created!'
-        fail:    'Page could not be created!'
-      update:
-        success: 'Page was successfully updated!'
-        fail:    'Page could not be updated!'
-      destroy:
-        success: 'Page was successfully deleted!'
-        fail:    'Page could not be deleted!'
+        success: '%{record} was successfully deleted!'
+        fail:    '%{record} could not be deleted!'
     slug:
       validation:
         format: 'must consist of lowercase and hyphens only'

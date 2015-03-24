@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'CreatePages', type: :feature do
+RSpec.feature 'CreateArticles', type: :feature do
 
   before { visit '/' }
 
@@ -10,32 +10,32 @@ RSpec.feature 'CreatePages', type: :feature do
 
     before { login_as(user) }
 
-    scenario 'create valid page' do
+    scenario 'create valid article' do
 
       click_link('New Page')
 
-      fill_in('Title', with: 'Test Page!')
+      fill_in('Title', with: 'Test Article!')
       fill_in('Content', with: 'This is test content!')
-      fill_in('Slug', with: 'test-page')
+      fill_in('Slug', with: 'test-article')
 
-      click_button('Create Page')
+      click_button('Create Article')
 
       expect(page.status_code).to eq 200
-      expect(page).to have_content 'Page was successfully created!'
+      expect(page).to have_content 'Article was successfully created!'
     end
 
-    scenario 'create invalid page' do
+    scenario 'create invalid article' do
 
       click_link('New Page')
 
-      fill_in('Title', with: 'Test Page!')
+      fill_in('Title', with: 'Test Article!')
       fill_in('Content', with: '')
-      fill_in('Slug', with: 'test!page')
+      fill_in('Slug', with: 'test!article')
 
-      click_button('Create Page')
+      click_button('Create Article')
 
       expect(page.status_code).to eq 422
-      expect(page).to have_content 'Page could not be created!'
+      expect(page).to have_content 'Article could not be created!'
       expect(page).to have_content 'can\'t be blank'
       expect(page).to have_content 'must consist of lowercase and hyphens only'
     end
