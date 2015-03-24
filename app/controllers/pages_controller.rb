@@ -18,8 +18,10 @@ class PagesController < ApplicationController
   def update
     if @page.update_attributes page_params
       flash.now[:success] = I18n.t('gannon.page.update.success')
-      render :root
+      render :show
     else
+      @page.slug = Page.find(@page.id).slug
+
       flash.now[:fail] = I18n.t('gannon.page.update.fail')
       render :edit, status: 422
     end
@@ -27,10 +29,10 @@ class PagesController < ApplicationController
 
   def destroy
     if @page.destroy
-      flash.now[:success] = I18n.t('gannon.page.delete.success')
+      flash.now[:success] = I18n.t('gannon.page.destroy.success')
       render :root
     else
-      flash.now[:fail] = I18n.t('gannon.page.delete.fail')
+      flash.now[:fail] = I18n.t('gannon.page.destroy.fail')
       render :edit, status: 422
     end
   end

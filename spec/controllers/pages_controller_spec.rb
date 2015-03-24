@@ -166,7 +166,7 @@ RSpec.describe PagesController, :type => :controller do
         before { put :update, { slug: @page.slug, page: params } }
 
         it { should respond_with :success }
-        it { should render_template :root }
+        it { should render_template :show }
 
         it 'should change the page' do
           expect(Page.find(@page.id).attributes.with_indifferent_access)

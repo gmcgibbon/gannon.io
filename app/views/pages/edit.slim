@@ -1,1 +1,7 @@
-= @page.inspect
+
+= simple_form_for @page do |f|
+  = f.input :title
+  = f.input :content
+  = f.input :slug
+  = f.button :submit
+= button_to 'Delete Page', page_path(@page), method: :delete, data: { confirm: t('gannon.confirm.delete') }

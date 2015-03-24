@@ -12,6 +12,8 @@ RSpec.feature 'ShowPages', type: :feature do
 
       click_link(page_obj.title)
 
+      expect(page.current_url).to have_content(page_obj.slug)
+      expect(page).to have_content(page_obj.title)
       expect(page).to have_content(strip_paras(page_obj.content))
     end
 

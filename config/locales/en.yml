@@ -45,6 +45,8 @@ en:
       validation:
         format: 'must consist of lowercase and hyphens only'
         route:  'conflicts with existing route'
+    confirm:
+      delete: 'Are you sure?'
     error:
       http:
         status404: 'Not found!'

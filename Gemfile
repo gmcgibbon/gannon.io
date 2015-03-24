@@ -33,11 +33,14 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'fuubar'
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 group :development do

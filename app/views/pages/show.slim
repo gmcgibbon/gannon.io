@@ -1,3 +1,8 @@
 h2= @page.title
 
+- if can? :edit, @page
+  = link_to 'Edit', edit_page_path(@page)
+- if can? :destroy, @page
+  = link_to 'Delete', page_path(@page), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+
 div.content = raw @page.content
