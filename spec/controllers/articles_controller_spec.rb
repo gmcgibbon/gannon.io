@@ -175,7 +175,7 @@ RSpec.describe ArticlesController, :type => :controller do
         before { put :update, { slug: @article.slug, article: params } }
 
         it { should respond_with :success }
-        it { should render_template :root }
+        it { should render_template :show }
 
         it 'should change the article' do
           expect(Article.find(@article.id).attributes.with_indifferent_access)

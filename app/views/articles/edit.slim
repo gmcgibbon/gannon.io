@@ -1,0 +1,7 @@
+
+= simple_form_for @article do |f|
+  = f.input :title
+  = f.input :content
+  = f.input :slug
+  = f.button :submit
+= button_to 'Delete Article', @article, method: :delete, data: { confirm: t('gannon.confirm.delete') }

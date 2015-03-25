@@ -4,4 +4,4 @@
   = f.input :content
   = f.input :slug
   = f.button :submit
-= button_to 'Delete Page', page_path(@page), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+= button_to 'Delete Page', @page, method: :delete, data: { confirm: t('gannon.confirm.delete') }

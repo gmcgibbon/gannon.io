@@ -23,8 +23,10 @@ class ArticlesController < ApplicationController
   def update
     if @article.update_attributes article_params
       flash.now[:success] = I18n.t('gannon.record.update.success', record: Article.name)
-      render :root
+      render :show
     else
+      @article.slug = Article.find(@article.id).slug
+
       flash.now[:fail] = I18n.t('gannon.record.update.fail', record: Article.name)
       render :edit, status: 422
     end
