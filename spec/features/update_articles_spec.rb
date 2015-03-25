@@ -15,6 +15,7 @@ RSpec.feature 'UpdateArticles', type: :feature do
     scenario 'valid article update' do
 
       click_link('Blog')
+      click_link(article.title)
       click_link('Edit')
 
       fill_in('Title', with: 'Edited Article!')
@@ -28,9 +29,10 @@ RSpec.feature 'UpdateArticles', type: :feature do
       expect(page.current_url).to have_content article.slug
     end
 
-    scenario 'invalid page update' do
+    scenario 'invalid article update' do
 
       click_link('Blog')
+      click_link(article.title)
       click_link('Edit')
 
       fill_in('Title', with: 'Edited Article!')
