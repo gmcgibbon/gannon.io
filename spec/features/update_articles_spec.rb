@@ -14,7 +14,6 @@ RSpec.feature 'UpdateArticles', type: :feature do
 
     scenario 'valid article update' do
 
-      click_link('Blog')
       click_link(article.title)
       click_link('Edit')
 
@@ -30,8 +29,7 @@ RSpec.feature 'UpdateArticles', type: :feature do
     end
 
     scenario 'invalid article update' do
-
-      click_link('Blog')
+      
       click_link(article.title)
       click_link('Edit')
 

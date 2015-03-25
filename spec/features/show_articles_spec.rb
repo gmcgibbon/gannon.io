@@ -12,7 +12,6 @@ RSpec.feature 'ShowArticles', type: :feature do
 
     scenario 'show' do
 
-      click_link('Blog')
       click_link(article.title)
 
       expect(page.current_url).to have_content(article.slug)
@@ -22,8 +21,6 @@ RSpec.feature 'ShowArticles', type: :feature do
     end
 
     scenario 'show all' do
-
-      click_link('Blog')
 
       within ('div.article') do
         expect(page).to have_content(article.title)

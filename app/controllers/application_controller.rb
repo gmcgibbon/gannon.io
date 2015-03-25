@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # Application root
   def root
-    @articles = Article.limit(3)
+    redirect_to controller: :articles, action: :index
   end
 
   # 404 not found

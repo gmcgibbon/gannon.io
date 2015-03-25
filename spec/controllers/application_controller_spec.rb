@@ -5,22 +5,10 @@ RSpec.describe ApplicationController, :type => :controller do
   render_views
 
   describe '#root' do
+    before { get :root }
 
-    before do
-      @articles = FactoryGirl.create_list :article, 3
-      get :root
-    end
-
-    it { should respond_with :success }
-    it { should render_template :root }
+    it { should respond_with :redirect }
     it { should route(:get, '/').to 'application#root'  }
-
-    context '@articles' do
-
-      subject { assigns(:articles) }
-
-      it { should match_array @articles }
-    end
   end
 
   describe '#not_found' do

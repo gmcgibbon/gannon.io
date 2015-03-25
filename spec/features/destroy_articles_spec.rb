@@ -14,7 +14,6 @@ RSpec.feature 'DestroyArticles', type: :feature, js: true do
 
     scenario 'article delete on show' do
 
-      click_link('Blog')
       click_link(article.title)
       click_link('Delete')
 
@@ -24,8 +23,7 @@ RSpec.feature 'DestroyArticles', type: :feature, js: true do
     end
 
     scenario 'article delete on edit' do
-
-      click_link('Blog')
+      
       click_link(article.title)
       click_link('Edit')
 
