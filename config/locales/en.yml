@@ -41,3 +41,8 @@ en:
       http:
         status404: 'Not found!'
         status500: 'Internal server error!'
+  time:
+    formats:
+      date_only: '%B %d, %Y'
+      time_only: '%I:%M%p'
+      default: '%B %d, %Y at %I:%M%p'

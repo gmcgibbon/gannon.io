@@ -1,1 +1,16 @@
+- title      = article.title
+- content    = truncate(strip_tags(article.content), length: 150)
+- updated_at = l article.updated_at, format: :date_only
 
+.article
+  h3= link_to title, article
+
+  - if can? :edit, article
+    = link_to 'Edit', edit_article_path(article)
+  - if can? :destroy, article
+    = link_to 'Delete', article_path(article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+
+  p= updated_at
+  p
+    = content << ' '
+    = link_to '→', article

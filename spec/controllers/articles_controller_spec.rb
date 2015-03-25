@@ -125,6 +125,10 @@ RSpec.describe ArticlesController, :type => :controller do
         it { should respond_with :success }
         it { should render_template :root }
 
+        it 'should associate current user' do
+          expect(Article.first.user).to eq @admin
+        end
+
         it 'should create the article' do
           expect(Article.count).to eq 1
         end
