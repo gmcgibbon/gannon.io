@@ -20,4 +20,11 @@ describe Article, type: :model do
   context 'associations' do
     it { should have_and_belong_to_many :categories }
   end
+
+  describe '#to_param' do
+
+    it 'should equal slug' do
+      expect(subject.to_param).to eq subject.slug
+    end
+  end
 end
