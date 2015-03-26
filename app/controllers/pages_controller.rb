@@ -7,8 +7,8 @@ class PagesController < ApplicationController
     @page = Page.new page_params
 
     if @page.save
-      flash.now[:success] = I18n.t('gannon.record.create.success', record: Page.name)
-      render :root
+      flash[:success] = I18n.t('gannon.record.create.success', record: Page.name)
+      redirect_to @page
     else
       flash.now[:fail] = I18n.t('gannon.record.create.fail', record: Page.name)
       render :new, status: 422
@@ -17,8 +17,8 @@ class PagesController < ApplicationController
 
   def update
     if @page.update_attributes page_params
-      flash.now[:success] = I18n.t('gannon.record.update.success', record: Page.name)
-      render :show
+      flash[:success] = I18n.t('gannon.record.update.success', record: Page.name)
+      redirect_to @page
     else
       @page.slug = Page.find(@page.id).slug
 
@@ -29,8 +29,8 @@ class PagesController < ApplicationController
 
   def destroy
     if @page.destroy
-      flash.now[:success] = I18n.t('gannon.record.destroy.success', record: Page.name)
-      render :root
+      flash[:success] = I18n.t('gannon.record.destroy.success', record: Page.name)
+      redirect_to :root
     else
       flash.now[:fail] = I18n.t('gannon.record.destroy.fail', record: Page.name)
       render :edit, status: 422

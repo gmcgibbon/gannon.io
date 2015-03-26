@@ -2,18 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ArticlesController, :type => :controller do
 
-  describe '#index' do
-
-    before do
-      @articles = FactoryGirl.create_list :article, 10
-      get :index
-    end
-
-    it { should respond_with :success }
-    it { should render_template :index }
-    it { should route(:get, '/blog').to 'articles#index' }
-  end
-
   describe '#show' do
 
     before do
@@ -122,8 +110,8 @@ RSpec.describe ArticlesController, :type => :controller do
 
         before { post :create, { article: params } }
 
-        it { should respond_with :success }
-        it { should render_template :root }
+        it { should respond_with :redirect }
+        it { should redirect_to "/blog/#{params[:slug]}" }
 
         it 'should associate current user' do
           expect(Article.first.user).to eq @admin
@@ -174,8 +162,8 @@ RSpec.describe ArticlesController, :type => :controller do
 
         before { put :update, { slug: @article.slug, article: params } }
 
-        it { should respond_with :success }
-        it { should render_template :show }
+        it { should respond_with :redirect }
+        it { should redirect_to "/blog/#{params[:slug]}" }
 
         it 'should change the article' do
           expect(Article.find(@article.id).attributes.with_indifferent_access)
@@ -208,8 +196,8 @@ RSpec.describe ArticlesController, :type => :controller do
         delete :destroy, slug: @article.slug
       end
 
-      it { should respond_with :success }
-      it { should render_template :root }
+      it { should respond_with :redirect }
+      it { should redirect_to "/" }
 
       it 'should destroy the article' do
         expect(Article.count).to eq 0

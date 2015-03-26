@@ -19,7 +19,7 @@ RSpec.feature 'DestroyPages', type: :feature, js: true do
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Page was successfully deleted!'
-      expect(page.current_url).to have_content page_obj.slug
+      expect(page.current_url).to_not have_content page_obj.slug
     end
 
     scenario 'page delete on edit' do
@@ -31,7 +31,7 @@ RSpec.feature 'DestroyPages', type: :feature, js: true do
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Page was successfully deleted!'
-      expect(page.current_url).to have_content page_obj.slug
+      expect(page.current_url).to_not have_content page_obj.slug
     end
 
   end

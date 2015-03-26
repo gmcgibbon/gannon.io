@@ -19,11 +19,11 @@ RSpec.feature 'DestroyArticles', type: :feature, js: true do
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Article was successfully deleted!'
-      expect(page.current_url).to have_content article.slug
+      expect(page.current_url).to_not have_content article.slug
     end
 
     scenario 'article delete on edit' do
-      
+
       click_link(article.title)
       click_link('Edit')
 
@@ -31,7 +31,7 @@ RSpec.feature 'DestroyArticles', type: :feature, js: true do
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Article was successfully deleted!'
-      expect(page.current_url).to have_content article.slug
+      expect(page.current_url).to_not have_content article.slug
     end
 
   end

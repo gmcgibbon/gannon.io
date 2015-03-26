@@ -117,8 +117,8 @@ RSpec.describe PagesController, :type => :controller do
 
         before { post :create, { page: params } }
 
-        it { should respond_with :success }
-        it { should render_template :root }
+        it { should respond_with :redirect }
+        it { should redirect_to "/#{params[:slug]}" }
 
         it 'should create the page' do
           expect(Page.count).to eq 1
@@ -165,8 +165,8 @@ RSpec.describe PagesController, :type => :controller do
 
         before { put :update, { slug: @page.slug, page: params } }
 
-        it { should respond_with :success }
-        it { should render_template :show }
+        it { should respond_with :redirect }
+        it { should redirect_to "/#{params[:slug]}" }
 
         it 'should change the page' do
           expect(Page.find(@page.id).attributes.with_indifferent_access)
@@ -199,8 +199,8 @@ RSpec.describe PagesController, :type => :controller do
         delete :destroy, slug: @page.slug
       end
 
-      it { should respond_with :success }
-      it { should render_template :root }
+      it { should respond_with :redirect }
+      it { should redirect_to "/" }
 
       it 'should destroy the page' do
         expect(Page.count).to eq 0

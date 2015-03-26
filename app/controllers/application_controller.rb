@@ -9,30 +9,22 @@ class ApplicationController < ActionController::Base
 
   # Application root
   def root
-    redirect_to controller: :articles, action: :index
+    @articles = Article.limit(10)
   end
 
   # 404 not found
   def not_found
     respond_to do |f|
-      f.html do
-        render '/errors/404', status: 404
-      end
-      f.json do
-        render '/errors/404.json', layout: false, status: 404
-      end
+      f.html { render '/errors/404', status: 404 }
+      f.json { render '/errors/404.json', layout: false, status: 404 }
     end
   end
 
   # 500 internal server error
   def internal_server_error
     respond_to do |f|
-      f.html do
-        render '/errors/500', status: 500
-      end
-      f.json do
-        render '/errors/500.json', layout: false, status: 500
-      end
+      f.html { render '/errors/500', status: 500 }
+      f.json { render '/errors/500.json', layout: false, status: 500 }
     end
   end
 

@@ -26,7 +26,7 @@ RSpec.feature 'UpdatePages', type: :feature do
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Page was successfully updated!'
-      expect(page.current_url).to have_content page_obj.slug
+      expect(page.current_url).to have_content 'updated-test-page'
     end
 
     scenario 'invalid page update' do
