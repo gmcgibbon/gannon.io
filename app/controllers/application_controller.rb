@@ -9,7 +9,13 @@ class ApplicationController < ActionController::Base
 
   # Application root
   def root
-    @articles = Article.limit(10)
+    @articles = Article
+      .paginate(page: params[:page], per_page: 10)
+      .order('updated_at DESC')
+
+    if request.xhr?
+      render partial: 'articles/paginated'
+    end
   end
 
   # 404 not found

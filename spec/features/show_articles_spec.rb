@@ -20,15 +20,6 @@ RSpec.feature 'ShowArticles', type: :feature do
       expect(page).to have_content(article.created_at.strftime('%B %d, %Y at %I:%M%p'))
     end
 
-    scenario 'show all' do
-
-      within ('div.article') do
-        expect(page).to have_content(article.title)
-        expect(page).to have_content(stripped_content)
-        expect(page).to have_content(article.created_at.strftime('%B %d, %Y'))
-      end
-    end
-
   end
 
 end

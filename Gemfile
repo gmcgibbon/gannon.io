@@ -17,6 +17,7 @@ gem 'js-routes'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'rails_admin'
+gem 'will_paginate'
 
 # if on Windows
 if RUBY_PLATFORM =~ /i386-mingw32/
