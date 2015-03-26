@@ -13,6 +13,7 @@ RSpec.feature 'CreatePages', type: :feature do
     scenario 'create valid page' do
 
       click_link('New Page')
+      expect(page.title).to have_content 'New Page'
 
       fill_in('Title', with: 'Test Page!')
       fill_in('Content', with: 'This is test content!')
@@ -27,6 +28,7 @@ RSpec.feature 'CreatePages', type: :feature do
     scenario 'create invalid page' do
 
       click_link('New Page')
+      expect(page.title).to have_content 'New Page'
 
       fill_in('Title', with: 'Test Page!')
       fill_in('Content', with: '')

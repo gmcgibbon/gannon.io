@@ -13,6 +13,7 @@ RSpec.feature 'CreateArticles', type: :feature do
     scenario 'create valid article' do
 
       click_link('New Article')
+      expect(page.title).to have_content 'New Article'
 
       fill_in('Title', with: 'Test Article!')
       fill_in('Content', with: 'This is test content!')
@@ -27,6 +28,7 @@ RSpec.feature 'CreateArticles', type: :feature do
     scenario 'create invalid article' do
 
       click_link('New Article')
+      expect(page.title).to have_content 'New Article'
 
       fill_in('Title', with: 'Test Article!')
       fill_in('Content', with: '')

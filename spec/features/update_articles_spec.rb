@@ -16,6 +16,7 @@ RSpec.feature 'UpdateArticles', type: :feature do
 
       click_link(article.title)
       click_link('Edit')
+      expect(page.title).to have_content 'Edit Article'
 
       fill_in('Title', with: 'Edited Article!')
       fill_in('Content', with: 'This is updated test content!')
@@ -32,6 +33,7 @@ RSpec.feature 'UpdateArticles', type: :feature do
 
       click_link(article.title)
       click_link('Edit')
+      expect(page.title).to have_content 'Edit Article'
 
       fill_in('Title', with: 'Edited Article!')
       fill_in('Content', with: '')

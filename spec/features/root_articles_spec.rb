@@ -13,6 +13,8 @@ RSpec.feature 'RootArticles', type: :feature, js: true do
 
     scenario 'show all' do
 
+      expect(page.title).to have_content 'Home'
+
       article_chunks.each do |chunk|
 
         chunk.each do |article|
