@@ -14,11 +14,11 @@ module FeatureMacros
   end
 
   def scroll_to_bottom
-    page.execute_script 'window.scrollBy(0 ,10000);'
+    page.driver.scroll_to(0, 100000)
   end
 
   def scroll_to_top
-    page.execute_script 'window.scrollBy(0, -10000);'
+    page.driver_scroll_to(0, -100000)
   end
 
   def wait_for_ajax
