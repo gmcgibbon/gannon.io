@@ -1,7 +1,7 @@
 nav
   ul
     - for page in Page.all
-      li= link_to page.title, page_path(page)
+      li= link_to page.title, page
 
     - if can? :manage, :all
       li= link_to 'Admin', admin_path
