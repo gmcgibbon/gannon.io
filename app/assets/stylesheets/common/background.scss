@@ -1,11 +1,18 @@
+*
+{
+  margin:0px;
+  padding:0px;
+  text-decoration: none;
+}
+
 html
 {
   /* Thanks, http://subtlepatterns.com/ */
   background-image: url('/images/background/shattered.png');
   background-color: #FBFBFB;
-}
 
-body
-{
-  margin: 0px auto;
+  #notifications
+  {
+    padding-top: 100px;
+  }
 }
