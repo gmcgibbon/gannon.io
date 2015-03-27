@@ -1,5 +1,5 @@
-nav
-  ul
+nav#nav
+  ul#pages
     - for page in Page.all
       li= link_to page.title, page
 
@@ -9,7 +9,7 @@ nav
     - if can?(:create, Article) || can?(:create, Page)
       li
         | Create
-        ul
+        ul#create
           - if can? :create, Page
             li=link_to 'New Page', new_page_path
           - if can? :create, Article
