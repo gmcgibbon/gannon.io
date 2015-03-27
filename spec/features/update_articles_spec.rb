@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'UpdateArticles', type: :feature do
 
-  let!(:article) { FactoryGirl.create(:article) }
+  let!(:article) { FactoryGirl.create(:article, :with_user) }
 
   before { visit '/' }
 

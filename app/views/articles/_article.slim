@@ -6,9 +6,9 @@
   h3= link_to title, article
 
   - if can? :edit, article
-    = link_to 'Edit', edit_article_path(article)
+    span.edit= link_to 'Edit', edit_article_path(article)
   - if can? :destroy, article
-    = link_to 'Delete', article_path(article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+    span.delete= link_to 'Delete', article_path(article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
 
   p= updated_at
   p

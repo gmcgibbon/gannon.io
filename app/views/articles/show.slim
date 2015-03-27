@@ -6,16 +6,20 @@
 - updated_at = @article.updated_at
 - formatted_created_at = l created_at
 - formatted_updated_at = l updated_at
+- author = @article.user.name
 
 h2= title
 
 - if can? :edit, @article
-  = link_to 'Edit', edit_article_path(@article)
+  span.edit= link_to 'Edit', edit_article_path(@article)
 - if can? :destroy, @article
-  = link_to 'Delete', article_path(@article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
-p Published #{formatted_created_at}
+  span.delete= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+p By #{author} on #{formatted_created_at}
 
-div.content = content
+div.content
+  = content
 
 - if updated_at > created_at
-  p Last updated #{formatted_updated_at}
+  p
+    | Last updated
+    span.date #{formatted_updated_at}
