@@ -6,6 +6,11 @@
   font-family: 'Roboto', 'Arial', 'Helvetica', 'sans-serif';
 }
 
+#{ headings(1,6) }
+{
+  font-weight: bolder;
+}
+
 html
 {
   /* Thanks, http://subtlepatterns.com/ */
@@ -15,5 +20,10 @@ html
   #notifications
   {
     padding-top: 100px;
+  }
+
+  body
+  {
+    width: 100%;
   }
 }

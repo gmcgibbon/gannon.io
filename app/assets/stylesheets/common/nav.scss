@@ -1,20 +1,26 @@
 nav.main
 {
   float:left;
+  display:block;
+  padding-top: 3%;
+  font-size: 1.4vw;
+
+  *
+  {
+    color: #FFF;
+  }
 
   ul
   {
-    list-style-type: none;
+    display:inline;
+    list-style: none;
+    position:relative;
+    height: 100%;
 
     li
     {
       display:inline;
-      padding-left: 10px;
-
-      a
-      {
-        color: #FFF;
-      }
+      padding-left: 15px;
     }
   }
 }
