@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   # RailsAdmin authorization failure rescue
   rescue_from CanCan::AccessDenied, with: :rescue_access_denied
 
+  before_filter :init_view_defaults
+
   # Application root
   def root
     @articles = Article
@@ -32,6 +34,17 @@ class ApplicationController < ActionController::Base
       f.html { render '/errors/500', status: 500 }
       f.json { render '/errors/500.json', layout: false, status: 500 }
     end
+  end
+
+  protected
+
+  # Initializes default view strings
+  def init_view_defaults
+    action     = action_name.capitalize
+    controller = controller_name.capitalize.singularize
+
+    @app_title  ||= Rails.application.class.parent_name
+    @page_title ||= "#{action} #{controller}"
   end
 
   private
