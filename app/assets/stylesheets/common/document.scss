@@ -6,24 +6,19 @@
   font-family: 'Roboto', 'Arial', 'Helvetica', 'sans-serif';
 }
 
-#{ headings(1,6) }
-{
-  font-weight: bolder;
-}
-
 html
 {
   /* Thanks, http://subtlepatterns.com/ */
   background-image: image-url('background/shattered.png');
   background-color: #FBFBFB;
 
-  #notifications
+  #{ headings(1,6) }
   {
-    padding-top: 100px;
+    font-weight: bolder;
   }
 
-  body
+  #notifications
   {
-    width: 100%;
+    padding-top: 12%;
   }
 }

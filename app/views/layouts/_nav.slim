@@ -1,6 +1,6 @@
 nav.main
   ul#pages
-    - for page in Page.all
+    - for page in Page.all.order(:title)
       li= link_to page.title, page
 
     - if can? :manage, :all
@@ -8,7 +8,7 @@ nav.main
 
     - if can?(:create, Article) || can?(:create, Page)
       li
-        | Create
+        = link_to 'Create', '#'
         ul#create
           - if can? :create, Page
             li=link_to 'New Page', new_page_path

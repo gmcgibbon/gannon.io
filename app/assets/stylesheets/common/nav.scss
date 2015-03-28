@@ -3,7 +3,7 @@ nav.main
   float:left;
   display:block;
   padding-top: 3%;
-  font-size: 1.4vw;
+  font-size: 1.6vw;
 
   *
   {
@@ -12,15 +12,49 @@ nav.main
 
   ul
   {
-    display:inline;
     list-style: none;
     position:relative;
     height: 100%;
 
     li
     {
+      position:relative;
+      width:250px;
       display:inline;
       padding-left: 15px;
+
+      #current
+      {
+        color: #800080;
+      }
+
+      :hover
+      {
+        color: #00FFFF;
+      }
+
+      ul
+      {
+        display:none;
+        position:absolute;
+        top:100%;
+	      left:0px;
+
+        li
+        {
+          background-color: rgba(30, 30, 30, 0.8);
+        }
+      }
+
+      &:hover > ul
+      {
+        display:block;
+
+        & li
+        {
+          display:block;
+        }
+      }
     }
   }
 }
