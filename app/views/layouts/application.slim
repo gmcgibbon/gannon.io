@@ -11,7 +11,7 @@ html
   body
     #wrapper
       = render partial: 'layouts/header'
-      .fixed-padding
+      #document
         = render partial: 'layouts/notifications'
         = render partial: 'layouts/content'
-        = render partial: 'layouts/footer'
+      = render partial: 'layouts/footer'

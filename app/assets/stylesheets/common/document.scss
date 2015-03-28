@@ -12,15 +12,18 @@ html
   background-image: image-url('background/shattered.png');
   background-color: #FBFBFB;
 
-  #{ headings(1,6) }
-  {
-    font-weight: bolder;
-  }
+  width:100%;
 
-  
-
-  .fixed-padding
+  #document
   {
-    padding-top: 12%;
+    padding: 0px 10px;
+    padding-top: 10%;
+    padding-bottom: 20px;
+
+    h2
+    {
+      padding-bottom:20px;
+    }
+
   }
 }

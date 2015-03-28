@@ -5,6 +5,11 @@ header.main
   position: fixed;
   background-color: rgba(30, 30, 30, 0.8);
   
+  *
+  {
+    color: #FFF;
+  }
+
   img.logo
   {
     width:  5%;
