@@ -3,7 +3,7 @@ nav.main
   float:left;
   display:block;
   padding-top: 3%;
-  font-size: 1.6vw;
+  font-size: 1.8vw;
 
   ul
   {
@@ -23,7 +23,7 @@ nav.main
         color: #800080;
       }
 
-      :hover
+      a:hover, a:focus
       {
         color: #00FFFF;
       }
@@ -41,7 +41,7 @@ nav.main
         }
       }
 
-      &:hover > ul
+      &:hover > ul, &:focus > ul
       {
         display:block;
 

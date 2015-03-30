@@ -12,9 +12,9 @@ div#articles
     padding: 20px;
     width: 70%;
     height: 10%;
-    background-color: rgba(0, 30, 30, 0.2);
+    background-color: rgba(30, 30, 30, 0.2);
 
-    a:hover
+    a:hover, a:focus
     {
       color: #00FFFF;
     }
@@ -22,6 +22,11 @@ div#articles
     span, .date
     {
       color: #FFF;
+    }
+
+    .date
+    {
+      font-style: italic;
     }
 
     span

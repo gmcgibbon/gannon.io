@@ -2,10 +2,10 @@ doctype html
 html
   head
     title #{ @app_title } | #{ @page_title }
-    = render partial: 'layouts/icon'
+    = render partial: 'layouts/icons'
     = render partial: 'layouts/meta'
-    = stylesheet_link_tag    controller_name, 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag controller_name, 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', controller_name, media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', controller_name, 'data-turbolinks-track' => true
     = yield(:head)
     = csrf_meta_tags
   body
