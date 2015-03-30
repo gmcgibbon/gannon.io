@@ -1,10 +1,15 @@
 - @page_title = @page.title
 
-h2= @page.title
+- title   = @page.title
+- content = raw @page.content
 
-- if can? :edit, @page
-  span.edit= link_to 'Edit', edit_page_path(@page)
-- if can? :destroy, @page
-  span.delete= link_to 'Delete', page_path(@page), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+div#page
+  h2= title
 
-div.content = raw @page.content
+  .subject
+    - if can? :edit, @page
+      span.edit= link_to 'Edit', edit_page_path(@page)
+    - if can? :destroy, @page
+      span.delete= link_to 'Delete', @page, method: :delete, data: { confirm: t('gannon.confirm.delete') }
+
+    div.content = content

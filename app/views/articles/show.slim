@@ -15,7 +15,7 @@ article#article
     - if can? :edit, @article
       span.edit= link_to 'Edit', edit_article_path(@article)
     - if can? :destroy, @article
-      span.delete= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
+      span.delete= link_to 'Delete', @article, method: :delete, data: { confirm: t('gannon.confirm.delete') }
     p.created
       | By #{author} on #{}
       span.date #{formatted_created_at}

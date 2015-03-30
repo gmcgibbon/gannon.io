@@ -19,6 +19,11 @@ div#articles
       color: #00FFFF;
     }
 
+    h3 a:hover, h3 a:focus
+    {
+      color: #800080;
+    }
+
     span, .date
     {
       color: #FFF;

@@ -22,11 +22,55 @@ html
     h2
     {
       padding-bottom:2%;
+      text-align: center;
     }
 
     a, a:link, a:visited, a:hover, a:focus, a:active
     {
       color: inherit;
+    }
+
+    div.subject
+    {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: rgba(30, 30, 30, 0.2);
+
+      > *
+      {
+        margin: 5px;
+      }
+
+      h3, h4, h5, h6
+      {
+        color: #800080;
+      }
+
+      a:hover, a:focus
+      {
+        color: #00FFFF;
+      }
+
+      span, .created, .updated
+      {
+        color: #FFF;
+      }
+
+      span
+      {
+        margin-right: 10px;
+      }
+
+      div.content
+      {
+        padding: 10px;
+        background-color: #FFF;
+
+        a
+        {
+          border-bottom: 1px #000 dotted;
+        }
+      }
     }
 
   }
