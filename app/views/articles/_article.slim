@@ -10,7 +10,7 @@
   - if can? :destroy, article
     span.delete= link_to 'Delete', article_path(article), method: :delete, data: { confirm: t('gannon.confirm.delete') }
 
-  p= updated_at
-  p
+  p.date= updated_at
+  p.preview
     = content << ' '
     = link_to '→', article

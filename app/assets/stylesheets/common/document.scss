@@ -16,13 +16,19 @@ html
 
   #document
   {
-    padding: 0px 10px;
+    padding: 0px 15px;
     padding-top: 10%;
     padding-bottom: 20px;
+    margin: 0px auto;
 
     h2
     {
       padding-bottom:20px;
+    }
+
+    a, a:link, a:visited, a:hover, a:focus, a:active
+    {
+      color: inherit;
     }
 
   }

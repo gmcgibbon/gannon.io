@@ -1,0 +1,42 @@
+div#articles
+{
+
+  > *
+  {
+    margin: 5px;
+  }
+
+  div.article
+  {
+    padding: 20px;
+    width: 70%;
+    height: 10%;
+    background-color: rgba(30, 30, 30, 0.2);
+
+    h3
+    {
+      padding-bottom:5px;
+    }
+
+    a:hover
+    {
+      color: #00FFFF;
+    }
+
+    span, .date
+    {
+      color: #FFF;
+    }
+
+    span
+    {
+      margin-right: 10px;
+    }
+
+    p.preview
+    {
+      padding: 10px;
+      background-color: #FFF;
+    }
+  }
+}
