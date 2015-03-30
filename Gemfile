@@ -20,7 +20,6 @@ gem 'rails_admin'
 gem 'will_paginate'
 gem 'normalize-rails'
 gem 'bourbon'
-gem 'compass-rails'
 
 # if on Windows
 if RUBY_PLATFORM =~ /i386-mingw32/
