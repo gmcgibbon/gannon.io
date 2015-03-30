@@ -1,0 +1,15 @@
+form
+{
+
+  &.simple_form label
+  {
+    display:block;
+  }
+
+  input, textarea, button
+  {
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+}
