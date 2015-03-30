@@ -1,0 +1,22 @@
+div#notifications
+{
+  div.flash
+  {
+    margin: 0px auto;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    color: #FFF;
+
+    &.success, &.notice
+    {
+      background-color: #006400;
+    }
+
+    &.fail, &.alert
+    {
+      background-color: #640000;
+    }
+  }
+
+}

@@ -8,15 +8,11 @@ div#articles
 
   div.article
   {
+    margin-bottom: 30px;
     padding: 20px;
     width: 70%;
     height: 10%;
-    background-color: rgba(30, 30, 30, 0.2);
-
-    h3
-    {
-      padding-bottom:5px;
-    }
+    background-color: rgba(0, 30, 30, 0.2);
 
     a:hover
     {
