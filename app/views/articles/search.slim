@@ -1,0 +1,9 @@
+- @page_title = "Search \"#{@search_term}\""
+
+- content_for(:head)
+  = javascript_include_tag 'article_paginate'
+
+h2 #{@articles.count} Results for "#{@search_term}"
+
+#articles
+  = render 'articles/paginated'

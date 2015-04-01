@@ -41,10 +41,10 @@ class ApplicationController < ActionController::Base
   # Access denied error handler
   def rescue_access_denied(error)
     if main_app.nil?
-      flash[:error] = error.message
+      flash[:fail] = error.message
       redirect_to root_path
     else
-      flash[:error] = error.message
+      flash[:fail] = error.message
       redirect_to main_app.root_path
     end
   end

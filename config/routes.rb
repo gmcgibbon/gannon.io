@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/404', via: :all, to: 'application#not_found'
   get '/500', via: :all, to: 'application#internal_server_error'
 
+  get '/blog/search/:search', to: 'articles#search'
+
   resources :articles, param: :slug, path: '/blog/', except: :index
   resources :pages,    param: :slug, path: '/',      except: :index
 end

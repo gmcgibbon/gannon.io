@@ -4,28 +4,46 @@ RSpec.describe ArticlesController, :type => :controller do
 
   describe '#index' do
 
-    before do
-      @articles = FactoryGirl.create_list :article, 10
-      get :index
+    before { @articles = FactoryGirl.create_list :article, 20 }
+
+    context 'xhr' do
+      before { xhr :get, :index }
+
+      it { should respond_with :success }
+      it { should render_template :_paginated }
     end
 
-    it { should respond_with :success }
-    it { should render_template :index }
+    context 'html' do
+      before { get :index }
+
+      it { should respond_with :success }
+      it { should render_template :index }
+    end
+
     it { should route(:get, '/').to 'articles#index' }
   end
 
   describe '#search' do
 
-    let(:term) { @articles.first.title }
+    let(:term) { @articles.first.title.split(' ').first }
 
-    before do
-      @articles = FactoryGirl.create_list :article, 10
-      post :search, search: term
+    before { @articles = FactoryGirl.create_list :article, 20 }
+
+    context 'xhr' do
+      before { xhr :get, :search, search: term }
+
+      it { should respond_with :success }
+      it { should render_template :_paginated }
     end
 
-    it { should respond_with :success }
-    it { should render_template :index }
-    it { should route(:get, "/blog/search/#{term}").to 'articles#search' }
+    context 'html' do
+      before { get :search, search: term }
+
+      it { should respond_with :success }
+      it { should render_template :search }
+    end
+
+    it { should route(:get, "/blog/search/#{term}").to 'articles#search', search: term }
   end
 
   describe '#show' do

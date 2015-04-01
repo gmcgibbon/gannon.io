@@ -1,7 +1,9 @@
 class ArticlesController < ApplicationController
 
   load_and_authorize_resource find_by: :slug,
-                              id_param: :slug
+                              id_param: :slug,
+                              except: [:index, :search]
+
 
   def index
     @articles = Article
@@ -14,10 +16,9 @@ class ArticlesController < ApplicationController
   end
 
   def search
-
-    @articles = Article
-      .where('title', 'LIKE ? ', "")
-      .where('content', 'LIKE ?', params[:term])
+    @search_term = params[:search]
+    @articles    = Article
+      .where('title =? OR content =?', 'LIKE ?', "%#{@search_term}%")
       .paginate(page: params[:page], per_page: 10)
       .order('updated_at DESC')
 
