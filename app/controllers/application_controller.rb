@@ -9,17 +9,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :init_view_defaults
 
-  # Application root
-  def root
-    @articles = Article
-      .paginate(page: params[:page], per_page: 10)
-      .order('updated_at DESC')
-
-    if request.xhr?
-      render partial: 'articles/paginated'
-    end
-  end
-
   # 404 not found
   def not_found
     respond_to do |f|

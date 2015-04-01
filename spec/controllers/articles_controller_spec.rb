@@ -2,6 +2,32 @@ require 'rails_helper'
 
 RSpec.describe ArticlesController, :type => :controller do
 
+  describe '#index' do
+
+    before do
+      @articles = FactoryGirl.create_list :article, 10
+      get :index
+    end
+
+    it { should respond_with :success }
+    it { should render_template :index }
+    it { should route(:get, '/').to 'articles#index' }
+  end
+
+  describe '#search' do
+
+    let(:term) { @articles.first.title }
+
+    before do
+      @articles = FactoryGirl.create_list :article, 10
+      post :search, search: term
+    end
+
+    it { should respond_with :success }
+    it { should render_template :index }
+    it { should route(:get, "/blog/search/#{term}").to 'articles#search' }
+  end
+
   describe '#show' do
 
     before do

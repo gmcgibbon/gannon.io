@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     registrations: 'devise/registrations_override'
   }
 
-  root 'application#root'
+  root 'articles#index'
 
   get '/404', via: :all, to: 'application#not_found'
   get '/500', via: :all, to: 'application#internal_server_error'

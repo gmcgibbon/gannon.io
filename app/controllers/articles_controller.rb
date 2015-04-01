@@ -3,6 +3,29 @@ class ArticlesController < ApplicationController
   load_and_authorize_resource find_by: :slug,
                               id_param: :slug
 
+  def index
+    @articles = Article
+      .paginate(page: params[:page], per_page: 10)
+      .order('updated_at DESC')
+
+    if request.xhr?
+      render partial: 'articles/paginated'
+    end
+  end
+
+  def search
+
+    @articles = Article
+      .where('title', 'LIKE ? ', "")
+      .where('content', 'LIKE ?', params[:term])
+      .paginate(page: params[:page], per_page: 10)
+      .order('updated_at DESC')
+
+    if request.xhr?
+      render partial: 'articles/paginated'
+    end
+  end
+
   def create
     @article      = Article.new article_params
     @article.user = current_user
