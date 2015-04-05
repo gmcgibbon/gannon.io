@@ -1,6 +1,5 @@
 header.main
 {
-  width: 100%;
   padding: 10px;
   position: fixed;
   background-color: rgba(30, 30, 30, 0.8);
@@ -8,6 +7,21 @@ header.main
   *
   {
     color: #FFF;
+  }
+
+  > *
+  {
+    margin-top: 20px;
+  }
+
+  #article_search
+  {
+    float:right;
+
+    input
+    {
+      color: #000;
+    }
   }
 
   img.logo

@@ -1,5 +1,5 @@
 nav.main
-  ul#pages
+  ul
     - for page in Page.all.order(:title)
       li= link_to page.title, page
 

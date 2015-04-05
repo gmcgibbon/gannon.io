@@ -11,8 +11,10 @@
  * file per style scope.
  *
  *= require normalize-rails
+ *= require font-awesome
  *= require base
  *= require_tree ./common
  */
 
 @import 'bourbon';
+@import 'font-awesome'

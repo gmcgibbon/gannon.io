@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'SearchArticles', type: :feature do
+RSpec.feature 'SearchArticles', type: :feature, js: true do
 
   let!(:articles) { FactoryGirl.create_list :article, 10 }
 
@@ -8,34 +8,54 @@ RSpec.feature 'SearchArticles', type: :feature do
 
   context 'as guest' do
 
-    scenario 'search valid article title' do
+    context 'with title' do
 
-      fill_in('#search', with: articles.first.title)
+      before do
+        articles.first.title = 'Unique article title!'
+        articles.first.save
+      end
 
-      click_button('Search')
+      let(:term) { articles.first.title }
 
-      expect(page.status_code).to eq 200
-      expect(page).to have_content ''
+      scenario 'search' do
+
+        search_for_article term
+
+        expect(page.status_code).to eq 200
+        expect(page.current_url).to have_content URI.escape term
+        expect(page).to have_content '1 Result for ' << "\"#{term}\""
+      end
+
     end
 
-    scenario 'search valid article content' do
+    context 'with content' do
 
-      fill_in('#search', with: articles.first.content[0..20])
+      let(:term) { strip_paras(articles.first.content[0..25]).strip }
 
-      click_button('Search')
+      scenario 'search' do
 
-      expect(page.status_code).to eq 200
-      expect(page).to have_content ''
+        search_for_article term
+
+        expect(page.status_code).to eq 200
+        expect(page.current_url).to have_content URI.escape term
+        expect(page).to have_content '1 Result for ' << "\"#{term}\""
+      end
+
     end
 
-    scenario 'search invalid article' do
+    context 'with invalid data' do
 
-      fill_in('#search', with: 'this content does not exist')
+      let(:term) { 'Invalid article title!' }
 
-      click_button('Search')
+      scenario 'search' do
 
-      expect(page.status_code).to eq 200
-      expect(page).to have_content ''
+        search_for_article term
+
+        expect(page.status_code).to eq 200
+        expect(page.current_url).to have_content URI.escape term
+        expect(page).to have_content '0 Results for ' << "\"#{term}\""
+      end
+
     end
 
   end

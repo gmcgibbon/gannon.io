@@ -9,6 +9,13 @@ module FeatureMacros
     click_button('Log in')
   end
 
+  def search_for_article(text)
+    within(:css, '#article_search') do
+      fill_in('search', with: text)
+      find(:css, '.btn').click
+    end
+  end
+
   def strip_paras(text)
     text.gsub('</p><p>', '').gsub('<p>', ' ').gsub('</p>', '')
   end
