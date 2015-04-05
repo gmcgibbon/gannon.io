@@ -22,7 +22,7 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
         search_for_article term
 
         expect(page.status_code).to eq 200
-        expect(page.current_url).to have_content URI.escape term
+        expect(page.current_url).to have_content URI.escape term.gsub ' ', '+'
         expect(page).to have_content '1 Result for ' << "\"#{term}\""
       end
 
@@ -30,14 +30,19 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
 
     context 'with content' do
 
-      let(:term) { strip_paras(articles.first.content[0..25]).strip }
+      before do
+        articles.first.content = '<p>Unique article content!</p>'
+        articles.first.save
+      end
+
+      let(:term) { strip_paras(articles.first.content).strip }
 
       scenario 'search' do
 
         search_for_article term
 
         expect(page.status_code).to eq 200
-        expect(page.current_url).to have_content URI.escape term
+        expect(page.current_url).to have_content URI.escape term.gsub ' ', '+'
         expect(page).to have_content '1 Result for ' << "\"#{term}\""
       end
 
@@ -52,8 +57,23 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
         search_for_article term
 
         expect(page.status_code).to eq 200
-        expect(page.current_url).to have_content URI.escape term
+        expect(page.current_url).to have_content URI.escape term.gsub ' ', '+'
         expect(page).to have_content '0 Results for ' << "\"#{term}\""
+      end
+
+    end
+
+    context 'with no data' do
+
+      let(:term) { '' }
+
+      scenario 'search' do
+
+        search_for_article term
+
+        expect(page.status_code).to eq 200
+        expect(find_field('search')[:required]).to be_present
+        expect(page).to_not have_content '0 Results for ' << "\"#{term}\""
       end
 
     end

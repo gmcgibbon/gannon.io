@@ -43,7 +43,7 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should render_template :search }
     end
 
-    it { should route(:get, "/blog/search/#{term}").to 'articles#search', search: term }
+    it { should route(:get, '/blog/search').to 'articles#search' }
   end
 
   describe '#show' do

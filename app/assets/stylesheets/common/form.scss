@@ -12,6 +12,21 @@ form
   {
     padding: 5px;
     margin-bottom: 10px;
+    background: none;
+    border: none;
+    margin-right: 5px;
+  }
+
+  input, textarea
+  {
+    color: #000;
+    background-color: #FFF;
+  }
+
+  button, input[type="submit"]
+  {
+    color: #FFF;
+    background-color: #000;
   }
 
 }

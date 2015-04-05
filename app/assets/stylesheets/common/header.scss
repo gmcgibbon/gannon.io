@@ -18,9 +18,11 @@ header.main
   {
     float:right;
 
-    input
+    input, button
     {
-      color: #000;
+      border-bottom: solid #000;
+      background: none;
+      margin-right: 0px;
     }
   }
 

@@ -62,7 +62,10 @@ p, div
 
 nav.main
 {
-  font-size: 2.0vw;
+  *
+  {
+    font-size: 2.0vw;
+  }
 }
 
 h6
