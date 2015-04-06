@@ -19,7 +19,7 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
 
       scenario 'search' do
 
-        search_for_article term
+        search_for_article with: term
 
         expect(page.status_code).to eq 200
         expect(page.current_url).to have_content URI.escape term.gsub ' ', '+'
@@ -39,7 +39,7 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
 
       scenario 'search' do
 
-        search_for_article term
+        search_for_article with: term
 
         expect(page.status_code).to eq 200
         expect(page.current_url).to have_content URI.escape term.gsub ' ', '+'
@@ -54,7 +54,7 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
 
       scenario 'search' do
 
-        search_for_article term
+        search_for_article with: term
 
         expect(page.status_code).to eq 200
         expect(page.current_url).to have_content URI.escape term.gsub ' ', '+'
@@ -69,7 +69,7 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
 
       scenario 'search' do
 
-        search_for_article term
+        search_for_article with: term
 
         expect(page.status_code).to eq 200
         expect(find_field('search')[:required]).to be_present

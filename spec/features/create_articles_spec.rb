@@ -10,16 +10,23 @@ RSpec.feature 'CreateArticles', type: :feature do
 
     before { login_as(user) }
 
-    scenario 'create valid article' do
+    scenario 'create article form' do
 
       click_link('New Article')
-      expect(page.title).to have_content 'New Article'
 
-      fill_in('Title', with: 'Test Article!')
-      fill_in('Content', with: 'This is test content!')
-      fill_in('Slug', with: 'test-article')
+      within(:css, '#document') do
+        expect(page.title).to have_content 'New Article'
+      end
 
-      click_button('Create Article')
+    end
+
+    scenario 'create valid article' do
+
+      create_article(
+        title:   'Test Article!',
+        content: 'This is test content!',
+        slug:    'test-article'
+      )
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Article was successfully created!'
@@ -27,14 +34,11 @@ RSpec.feature 'CreateArticles', type: :feature do
 
     scenario 'create invalid article' do
 
-      click_link('New Article')
-      expect(page.title).to have_content 'New Article'
-
-      fill_in('Title', with: 'Test Article!')
-      fill_in('Content', with: '')
-      fill_in('Slug', with: 'test!article')
-
-      click_button('Create Article')
+      create_article(
+        title:   'Test Article!',
+        content: '',
+        slug:    'test!article'
+      )
 
       expect(page.status_code).to eq 422
       expect(page).to have_content 'Article could not be created!'

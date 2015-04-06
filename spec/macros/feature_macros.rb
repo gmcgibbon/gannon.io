@@ -9,33 +9,37 @@ module FeatureMacros
     click_button('Log in')
   end
 
-  def search_for_article(text)
+  def search_for_article(with:)
     within(:css, '#article_search') do
-      fill_in('search', with: text)
+      fill_in('search', with: with)
       find(:css, '.btn').click
+    end
+  end
+
+  def create_article(title:, content:, slug:)
+    click_link('New Article')
+
+    within(:css, '#new_article') do
+      fill_in('Title', with: title)
+      fill_in('Content', with: content)
+      fill_in('Slug', with: slug)
+      click_button('Create Article')
+    end
+  end
+
+  def create_page(title:, content:, slug:)
+    click_link('New Page')
+
+    within(:css, '#new_page') do
+      fill_in('Title', with: title)
+      fill_in('Content', with: content)
+      fill_in('Slug', with: slug)
+      click_button('Create Page')
     end
   end
 
   def strip_paras(text)
     text.gsub('</p><p>', '').gsub('<p>', ' ').gsub('</p>', '')
-  end
-
-  def scroll_to_bottom
-    page.driver.scroll_to(0, 100000)
-  end
-
-  def scroll_to_top
-    page.driver_scroll_to(0, -100000)
-  end
-
-  def wait_for_ajax
-    Timeout.timeout(Capybara.default_wait_time) do
-      loop until finished_all_ajax_requests?
-    end
-  end
-
-  def finished_all_ajax_requests?
-    page.evaluate_script('jQuery.active').zero?
   end
 
 end

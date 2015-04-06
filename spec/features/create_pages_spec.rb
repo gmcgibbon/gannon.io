@@ -10,16 +10,23 @@ RSpec.feature 'CreatePages', type: :feature do
 
     before { login_as(user) }
 
-    scenario 'create valid page' do
+    scenario 'create page form' do
 
       click_link('New Page')
-      expect(page.title).to have_content 'New Page'
 
-      fill_in('Title', with: 'Test Page!')
-      fill_in('Content', with: 'This is test content!')
-      fill_in('Slug', with: 'test-page')
+      within(:css, '#document') do
+        expect(page.title).to have_content 'New Page'
+      end
 
-      click_button('Create Page')
+    end
+
+    scenario 'create valid page' do
+
+      create_page(
+        title:   'Test Page!',
+        content: 'This is test content!',
+        slug:    'test-page'
+      )
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'Page was successfully created!'
@@ -27,14 +34,11 @@ RSpec.feature 'CreatePages', type: :feature do
 
     scenario 'create invalid page' do
 
-      click_link('New Page')
-      expect(page.title).to have_content 'New Page'
-
-      fill_in('Title', with: 'Test Page!')
-      fill_in('Content', with: '')
-      fill_in('Slug', with: 'test!page')
-
-      click_button('Create Page')
+      create_page(
+        title:   'Test Page!',
+        content: '',
+        slug:    'test!page'
+      )
 
       expect(page.status_code).to eq 422
       expect(page).to have_content 'Page could not be created!'
