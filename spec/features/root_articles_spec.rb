@@ -21,6 +21,7 @@ RSpec.feature 'RootArticles', type: :feature, js: true do
 
           expect(page).to have_content(article.title)
           expect(page).to have_content(article.created_at.strftime('%B %d, %Y'))
+          expect(page).to have_content(article.content_as_plain[0, 297])
         end
 
         scroll_to_bottom()
