@@ -5,9 +5,7 @@ FactoryGirl.define do
     title { Faker::Lorem.words(rand(1..8)).map(&:capitalize).join(' ') }
     slug  { generate :article_slug }
     content do
-      paras = Faker::Lorem::paragraphs rand(3..15)
-
-      '<p>' + paras.join('</p><p>') + '</p>'
+      Faker::Lorem::paragraphs(rand(3..20)).join '\n'
     end
 
     trait :with_category do

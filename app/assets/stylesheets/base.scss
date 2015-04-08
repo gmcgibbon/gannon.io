@@ -3,7 +3,7 @@
   margin:0px;
   padding:0px;
   text-decoration: none;
-  font-family: 'Roboto', 'Arial', 'Helvetica', 'sans-serif';
+  //font-family: 'Roboto', 'Arial', 'Helvetica', 'sans-serif';
 }
 
 html
@@ -41,22 +41,17 @@ html
         margin: 5px;
       }
 
-      h3, h4, h5, h6
-      {
-        color: #800080;
-      }
-
       a:hover, a:focus
       {
         color: #00FFFF;
       }
 
-      span, .created, .updated
+      .created, .updated, .edit, .delete
       {
         color: #FFF;
       }
 
-      span
+       > span
       {
         margin-right: 10px;
       }
@@ -65,6 +60,11 @@ html
       {
         padding: 10px;
         background-color: #FFF;
+
+        h1, h2, h3, h4, h5, h6
+        {
+          color: #800080;
+        }
 
         a
         {

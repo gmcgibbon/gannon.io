@@ -17,7 +17,7 @@ RSpec.feature 'ShowArticles', type: :feature do
       expect(page.current_url).to have_content(article.slug)
       expect(page.title).to have_content(article.title)
       expect(page).to have_content(article.title)
-      expect(page).to have_content(strip_paras(article.content))
+      expect(page).to have_content(article.content)
       expect(page).to have_content(article.created_at.strftime('%B %d, %Y at %I:%M%p'))
       expect(page).to have_content(article.updated_at.strftime('%B %d, %Y at %I:%M%p'))
       expect(page).to have_content(article.user.name)

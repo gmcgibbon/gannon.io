@@ -26,8 +26,8 @@ require 'shoulda/matchers'
 
 # Require validation macros/helpers first
 Dir[Rails.root.join("spec/macros/**/*.rb")].each { |f| require f }
-Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/shared/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.

@@ -12,14 +12,9 @@ module Document
 
   class_methods { }
 
-  # get html content as markdown
-  def content_markdown
-    html_to_markdown(self.content)
-  end
-
   # set html content as markdown
-  def content_markdown=(markdown)
-    self.content = markdown_to_html(markdown)
+  def content_as_html
+    markdown_to_html(self.content)
   end
 
   # use slug for parameter/url generation

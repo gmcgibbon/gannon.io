@@ -17,25 +17,15 @@ shared_examples 'document' do
     it { should_not allow_value('!nvalid/slug').for(:slug) }
   end
 
-  describe '#content_markdown' do
-
-    let(:html) { subject.content }
-    let(:markdown) { html_to_markdown(html) }
-
-    it 'should equal content as markdown' do
-      expect(subject.content_markdown).to eq markdown
-    end
-  end
-
-  describe '#content_markdown=' do
+  describe '#content_as_html' do
 
     let(:markdown) { '# _Hello_ `Markdown`' }
     let(:html) { markdown_to_html(markdown) }
 
-    before { subject.content_markdown = markdown }
+    before { subject.content = markdown }
 
     it 'should change content to markdown content as html' do
-      expect(subject.content).to eq html
+      expect(subject.content_as_html).to eq html
     end
   end
 

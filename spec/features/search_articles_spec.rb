@@ -31,11 +31,11 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
     context 'with content' do
 
       before do
-        articles.first.content = '<p>Unique article content!</p>'
+        articles.first.content = 'Unique article content!'
         articles.first.save
       end
 
-      let(:term) { strip_paras(articles.first.content).strip }
+      let(:term) { articles.first.content }
 
       scenario 'search' do
 

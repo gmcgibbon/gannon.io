@@ -37,9 +37,4 @@ module FeatureMacros
       click_button('Create Page')
     end
   end
-
-  def strip_paras(text)
-    text.gsub('</p><p>', '').gsub('<p>', ' ').gsub('</p>', '')
-  end
-
 end
