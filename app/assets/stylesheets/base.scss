@@ -3,7 +3,6 @@
   margin:0px;
   padding:0px;
   text-decoration: none;
-  //font-family: 'Roboto', 'Arial', 'Helvetica', 'sans-serif';
 }
 
 html
@@ -12,6 +11,11 @@ html
   background-image: image-url('background/shattered.png');
   background-color: #DBDBDB;
   width:100%;
+
+  p, a, h1, h2, h3, h4, h5, h6
+  {
+    font-family: 'Roboto', 'Arial', 'Helvetica', 'sans-serif';
+  }
 
   #document
   {
