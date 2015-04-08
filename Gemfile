@@ -22,6 +22,7 @@ gem 'normalize-rails'
 gem 'bourbon'
 gem 'font-awesome-rails'
 gem 'redcarpet'
+gem 'reverse_markdown'
 
 # if on Windows
 if RUBY_PLATFORM =~ /i386-mingw32/

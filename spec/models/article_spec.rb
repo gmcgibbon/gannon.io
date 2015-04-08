@@ -4,27 +4,9 @@ describe Article, type: :model do
 
   subject { FactoryGirl.build :article }
 
-  context 'validations' do
-    it { should validate_presence_of :slug }
-    it { should validate_presence_of :title }
-    it { should validate_presence_of :content }
-
-    it { should validate_uniqueness_of :slug }
-
-    it { should allow_value('is-valid-slug').for(:slug) }
-    it { should allow_value('33-valid-slug').for(:slug) }
-    it { should_not allow_value('Invalid-slug').for(:slug) }
-    it { should_not allow_value('!nvalid/slug').for(:slug) }
-  end
+  it_should_behave_like 'document'
 
   context 'associations' do
     it { should have_and_belong_to_many :categories }
-  end
-
-  describe '#to_param' do
-
-    it 'should equal slug' do
-      expect(subject.to_param).to eq subject.slug
-    end
   end
 end

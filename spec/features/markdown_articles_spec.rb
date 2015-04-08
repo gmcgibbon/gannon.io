@@ -10,7 +10,7 @@ RSpec.feature 'MarkdownArticles', type: :feature do
 
     before { login_as(user) }
 
-    scenario 'create valid article' do
+    scenario 'create valid markdown article' do
 
       create_article(
         title:   'Test Article!',
@@ -20,7 +20,6 @@ RSpec.feature 'MarkdownArticles', type: :feature do
 
       expect(page.status_code).to eq 200
       expect(page).to have_content 'This is test content!'
-
     end
 
   end
