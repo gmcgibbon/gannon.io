@@ -7,6 +7,6 @@ module MarkdownHelper
 
   # converts Markdown to HTML to plain text
   def markdown_to_plain(markdown)
-    ActionController::Base.helpers.strip_tags(markdown_to_html(markdown))
+    ActionController::Base.helpers.strip_tags(markdown_to_html(markdown)).html_safe
   end
 end
