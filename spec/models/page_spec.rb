@@ -4,7 +4,8 @@ describe Page, type: :model do
 
   subject { FactoryGirl.build :page }
 
-  it_should_behave_like 'document'
+  it_should_behave_like 'markdown_writable'
+  it_should_behave_like 'slug_findable'
 
   context 'validations' do
     it { should_not allow_value('blog').for(:slug) }

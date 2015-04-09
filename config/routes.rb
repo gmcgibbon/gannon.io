@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/blog/search', to: 'articles#search', as: 'search_articles'
 
-  resources :articles, param: :slug, path: '/blog/', except: :index
-  resources :pages,    param: :slug, path: '/',      except: :index
+  resources :articles,   param: :slug, path: '/blog/',    except: :index
+  resources :pages,      param: :slug, path: '/',         except: :index
+  resources :categories, param: :slug, path: '/category'
 end
