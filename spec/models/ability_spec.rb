@@ -9,6 +9,7 @@ describe Ability do
     let(:user) { nil }
 
     it { should be_able_to :read, :all }
+    it { should be_able_to :search, Article }
     it { should_not be_able_to :manage, Article }
     it { should_not be_able_to :manage, :all }
     it { should_not be_able_to :access, :rails_admin }

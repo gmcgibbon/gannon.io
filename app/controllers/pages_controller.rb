@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
 
-  load_and_authorize_resource find_by: :slug,
-                              id_param: :slug
+  include SlugResourceAuthorizable
 
   def create
     @page = Page.new page_params

@@ -31,6 +31,7 @@ class Ability
 
     if user.nil?
       can :read, :all
+      can :search, Article
     elsif user.reader?
       can :read, :all
     elsif user.writer?

@@ -1,9 +1,6 @@
 class ArticlesController < ApplicationController
 
-  load_and_authorize_resource find_by: :slug,
-                              id_param: :slug,
-                              except: [:index, :search]
-
+  include SlugResourceAuthorizable
 
   def index
     @articles = Article
