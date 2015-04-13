@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'shoulda-matchers', require: false
+  gem 'shoulda-callback-matchers', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'fuubar'

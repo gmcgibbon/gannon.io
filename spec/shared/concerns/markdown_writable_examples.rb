@@ -5,7 +5,6 @@ shared_examples 'markdown_writable' do
   subject { FactoryGirl.build described_class }
 
   context 'validations' do
-    it { should validate_presence_of :title }
     it { should validate_presence_of :content }
   end
 

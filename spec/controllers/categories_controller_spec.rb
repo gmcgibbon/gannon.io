@@ -49,4 +49,20 @@ RSpec.describe CategoriesController, type: :controller do
     it { should route(:get, "/category/#{slug}").to 'categories#show', slug: slug }
   end
 
+  context 'unauthenticated' do
+
+    
+
+  end
+
+  context 'authenticated' do
+
+    context 'as admin' do
+
+
+
+    end
+
+  end
+
 end

@@ -4,7 +4,7 @@ module MarkdownWritable
   include MarkdownHelper
 
   included do
-    validates_presence_of :title, :content
+    validates_presence_of :content
   end
 
   class_methods { }
