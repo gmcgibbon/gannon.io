@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
 
+  describe '#index' do
+
+    subject { lambda { get :index } }
+
+    it { should raise_error ActionController::UrlGenerationError }
+  end
+
   describe '#show' do
 
     before do

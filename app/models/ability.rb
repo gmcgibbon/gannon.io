@@ -34,6 +34,7 @@ class Ability
       can :search, Article
     elsif user.reader?
       can :read, :all
+      can :search, Article
     elsif user.writer?
       can :manage, Article
       can :read, :all
