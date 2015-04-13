@@ -8,8 +8,14 @@ FactoryGirl.define do
       Faker::Lorem::paragraphs(rand(3..20)).join '\n'
     end
 
-    trait :with_category do
-      category
+    transient do
+      with_categories []
+    end
+
+    after(:create) do |article, evaluator|
+      evaluator.with_categories.each do |category|
+        article.categories << category
+      end
     end
 
     trait :with_user do

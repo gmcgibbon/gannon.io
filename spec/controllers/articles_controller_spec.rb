@@ -11,6 +11,13 @@ RSpec.describe ArticlesController, :type => :controller do
 
       it { should respond_with :success }
       it { should render_template :_paginated }
+
+      context '@articles' do
+
+        subject { assigns(:articles) }
+
+        it { should match_array @articles.reverse[0..9] }
+      end
     end
 
     context 'html' do
@@ -18,6 +25,13 @@ RSpec.describe ArticlesController, :type => :controller do
 
       it { should respond_with :success }
       it { should render_template :index }
+
+      context '@articles' do
+
+        subject { assigns(:articles) }
+
+        it { should match_array @articles.reverse[0..9] }
+      end
     end
 
     it { should route(:get, '/').to 'articles#index' }
@@ -25,15 +39,25 @@ RSpec.describe ArticlesController, :type => :controller do
 
   describe '#search' do
 
-    let(:term) { @articles.first.title.split(' ').first }
+    let(:term) { 'Unique Title 123' }
 
-    before { @articles = FactoryGirl.create_list :article, 20 }
+    before do
+      @articles = FactoryGirl.create_list :article, 20
+      @articles.first.update_attributes title: term
+    end
 
     context 'xhr' do
       before { xhr :get, :search, search: term }
 
       it { should respond_with :success }
       it { should render_template :_paginated }
+
+      context '@articles' do
+
+        subject { assigns(:articles) }
+
+        it { should match_array [@articles.first] }
+      end
     end
 
     context 'html' do
@@ -41,6 +65,13 @@ RSpec.describe ArticlesController, :type => :controller do
 
       it { should respond_with :success }
       it { should render_template :search }
+
+      context '@articles' do
+
+        subject { assigns(:articles) }
+
+        it { should match_array [@articles.first] }
+      end
     end
 
     it { should route(:get, '/blog/search').to 'articles#search' }

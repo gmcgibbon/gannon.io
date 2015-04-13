@@ -2,8 +2,11 @@ class ArticlesController < ApplicationController
 
   include SlugResourceAuthorizable
 
-  def index
-    @articles = Article
+  def search
+    query         = 'title LIKE :search OR content LIKE :search'
+    @search_term  = params[:search]
+    @articles     = Article
+      .where(query, search: "%#{@search_term}%")
       .paginate(page: params[:page], per_page: 10)
       .order('updated_at DESC')
 
@@ -12,11 +15,8 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def search
-    query         = 'title LIKE :search OR content LIKE :search'
-    @search_term  = params[:search]
-    @articles     = Article
-      .where(query, search: "%#{@search_term}%")
+  def index
+    @articles = Article
       .paginate(page: params[:page], per_page: 10)
       .order('updated_at DESC')
 
