@@ -34,6 +34,14 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    if @category.destroy
+      render json: @category.to_builder_json
+    else
+      render json: @category.to_builder_json, status: 422
+    end
+  end
+
   private
 
   def category_params

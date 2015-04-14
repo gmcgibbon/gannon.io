@@ -81,6 +81,21 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
 
+    describe '#destroy' do
+
+      before do
+        @category = FactoryGirl.create :category
+        delete :destroy, slug: @category.slug
+      end
+
+      it { should respond_with :redirect }
+      it { should redirect_to :root }
+
+      it 'should not destroy the article' do
+        expect(Category.count).to eq 1
+      end
+    end
+
   end
 
   context 'authenticated' do
@@ -177,6 +192,24 @@ RSpec.describe CategoriesController, type: :controller do
 
         it { should route(:put, "/category/#{@category.slug}").to 'categories#update', slug: @category.slug }
 
+      end
+
+      describe '#destroy' do
+
+        before do
+          @category = FactoryGirl.create :category
+          delete :destroy, slug: @category.slug
+        end
+
+        it { should respond_with :success }
+
+        it 'should equal expected json' do
+          expect(response.body).to eq @category.to_builder_json
+        end
+
+        it 'should destroy the article' do
+          expect(Category.count).to eq 0
+        end
       end
 
     end
