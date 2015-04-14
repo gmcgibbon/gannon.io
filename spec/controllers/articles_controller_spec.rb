@@ -256,7 +256,7 @@ RSpec.describe ArticlesController, :type => :controller do
         it { should render_template :edit }
 
         it 'should not change the article' do
-          expect(Article.find(@article.id).attributes.with_indifferent_access)
+          expect(Article.first.attributes.with_indifferent_access)
             .to_not include params
         end
       end

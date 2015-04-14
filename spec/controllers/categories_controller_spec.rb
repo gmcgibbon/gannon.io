@@ -66,6 +66,21 @@ RSpec.describe CategoriesController, type: :controller do
 
     end
 
+    describe '#update' do
+
+      before do
+        @category = FactoryGirl.create :category
+        put :update, slug: @category.slug, title: 'vvvvv'
+      end
+
+      it { should respond_with :redirect }
+      it { should redirect_to :root }
+
+      it 'should not update the category' do
+        expect(@category.title).to_not eq 'vvvvv'
+      end
+    end
+
   end
 
   context 'authenticated' do
@@ -116,6 +131,51 @@ RSpec.describe CategoriesController, type: :controller do
         end
 
         it { should route(:post, '/category').to 'categories#create' }
+
+      end
+
+      describe '#update' do
+
+        before { @category = FactoryGirl.create :category }
+
+        context 'with valid params' do
+
+          let(:params) { { title: 'Updated Title', slug: 'updated-slug' } }
+          let(:json)   { params.to_json }
+
+          before { put :update, { slug: @category.slug, category: params } }
+
+          it { should respond_with :success }
+
+          it 'should equal expected json' do
+            expect(response.body).to eq json
+          end
+
+          it 'should create the category' do
+            expect(Category.count).to eq 1
+          end
+        end
+
+        context 'with invalid params' do
+
+          let(:params) { { title: '', slug: '@@@' } }
+          let(:json)   { { error: 'Title can\'t be blank and Slug must consist of lowercase and hyphens only' }.to_json }
+
+          before { put :update, { slug: @category.slug, category: params } }
+
+          it { should respond_with 422 }
+
+          it 'should equal expected json' do
+            expect(response.body).to eq json
+          end
+
+          it 'should not change the article' do
+            expect(Category.first.attributes.with_indifferent_access)
+              .to_not include params
+          end
+        end
+
+        it { should route(:put, "/category/#{@category.slug}").to 'categories#update', slug: @category.slug }
 
       end
 

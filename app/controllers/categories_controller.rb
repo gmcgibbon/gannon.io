@@ -26,6 +26,14 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update
+    if @category.update_attributes category_params
+      render json: @category.to_builder_json
+    else
+      render json: @category.to_builder_json, status: 422
+    end
+  end
+
   private
 
   def category_params
