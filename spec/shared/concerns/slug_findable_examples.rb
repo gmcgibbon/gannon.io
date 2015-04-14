@@ -29,12 +29,26 @@ shared_examples 'slug_findable' do
       end
     end
 
-    context 'without slug' do
+    context 'nil slug' do
 
       let(:slug) { subject.title.parameterize }
 
       before do
         subject.slug = nil
+        subject.ensure_slug
+      end
+
+      it 'should assign parameterized title' do
+        expect(subject.slug).to eq slug
+      end
+    end
+
+    context 'empty slug' do
+
+      let(:slug) { subject.title.parameterize }
+
+      before do
+        subject.slug = ''
         subject.ensure_slug
       end
 

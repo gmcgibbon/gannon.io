@@ -17,22 +17,19 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @article      = Article.new article_params
-    @article.user = current_user
+    @category = Category.new category_params
 
-    if @article.save
-      flash[:success] = I18n.t('gannon.record.create.success', record: Article.name)
-      redirect_to @article
+    if @category.save
+      render json: @category.to_builder_json
     else
-      flash.now[:fail] = I18n.t('gannon.record.create.fail', record: Article.name)
-      render :new, status: 422
+      render json: @category.to_builder_json, status: 422
     end
   end
 
   private
 
   def category_params
-    params.require(:category).permit(:name, :slug)
+    params.require(:category).permit(:title, :slug)
   end
 
 end

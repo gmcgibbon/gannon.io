@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   resources :articles,   param: :slug, path: '/blog/',     except: :index
   resources :pages,      param: :slug, path: '/',          except: :index
-  resources :categories, param: :slug, path: '/category/', except: :index
+  resources :categories, param: :slug, path: '/category/', except: [:index, :new, :edit]
 end

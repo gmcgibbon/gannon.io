@@ -51,7 +51,20 @@ RSpec.describe CategoriesController, type: :controller do
 
   context 'unauthenticated' do
 
-    
+    describe '#create' do
+
+      let(:params) { { title: 'Test Cat', slug: 'test-cat' } }
+
+      before { post :create, { category: params }  }
+
+      it { should respond_with :redirect }
+      it { should redirect_to :root }
+
+      it 'should not create the category' do
+        expect(Category.count).to eq 0
+      end
+
+    end
 
   end
 
@@ -59,7 +72,52 @@ RSpec.describe CategoriesController, type: :controller do
 
     context 'as admin' do
 
+      before :each do
+        @admin = FactoryGirl.create :user, :admin
+        sign_in @admin
+      end
 
+      describe '#create' do
+
+        context 'with valid params' do
+
+          let(:params) { FactoryGirl.attributes_for :category }
+          let(:json)   { params.to_json }
+
+          before { post :create, { category: params } }
+
+          it { should respond_with :success }
+
+          it 'should equal expected json' do
+            expect(response.body).to eq json
+          end
+
+          it 'should create the category' do
+            expect(Category.count).to eq 1
+          end
+        end
+
+        context 'with invalid params' do
+
+          let(:params) { { title: '', slug: '@@@' } }
+          let(:json)   { { error: 'Title can\'t be blank and Slug must consist of lowercase and hyphens only' }.to_json }
+
+          before { post :create, { category: params } }
+
+          it { should respond_with 422 }
+
+          it 'should equal expected json' do
+            expect(response.body).to eq json
+          end
+
+          it 'should not create the category' do
+            expect(Category.count).to eq 0
+          end
+        end
+
+        it { should route(:post, '/category').to 'categories#create' }
+
+      end
 
     end
 

@@ -1,9 +1,9 @@
-- @page_title = @category.name
+- @page_title = @category.title + ' Articles'
 
 - content_for(:head)
   = javascript_include_tag 'article_paginate'
 
-h2 #{ @category.name } Articles
+h2 #{ @category.title } Articles
 
 #articles
   = render 'articles/paginated'

@@ -13,7 +13,9 @@ module SlugFindable
 
   # ensures a slug exists by using URL safe title
   def ensure_slug
-    self.slug ||= self.title.parameterize
+    if slug.nil? || slug.empty?
+      self.slug = self.title.parameterize
+    end
   end
 
   # use slug for parameter/url generation
