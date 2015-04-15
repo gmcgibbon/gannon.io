@@ -4,7 +4,10 @@ RSpec.describe ArticlesController, :type => :controller do
 
   describe '#index' do
 
-    before { @articles = FactoryGirl.create_list :article, 20 }
+    before do
+      @articles   = FactoryGirl.create_list :article, 20
+      @categories = FactoryGirl.create_list :category, 10
+    end
 
     context 'xhr' do
       before { xhr :get, :index }
@@ -12,11 +15,13 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should respond_with :success }
       it { should render_template :_paginated }
 
-      context '@articles' do
 
-        subject { assigns(:articles) }
+      it 'should assign @articles' do
+        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+      end
 
-        it { should match_array @articles.reverse[0..9] }
+      it 'should assign @categories' do
+        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 
