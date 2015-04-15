@@ -1,0 +1,24 @@
+div#other
+{
+
+  div#categories
+  {
+    height: 100%;
+    display:block;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(30, 30, 30, 0.2);
+
+    div.list
+    {
+      min-width: 400px;
+      padding: 10px;
+      background-color: #FFF;
+
+      a:hover, a:focus
+      {
+        color: #00FFFF;
+      }
+    }
+  }
+}

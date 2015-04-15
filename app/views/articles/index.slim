@@ -5,7 +5,9 @@
 
 h2 Articles
 
-#articles
-  = render 'articles/paginated'
-#categories
-  = render 'categories/list'
+.flex_container
+  #articles
+    = render 'articles/paginated'
+  #other
+    #categories
+      = render 'categories/list'

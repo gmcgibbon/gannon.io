@@ -1,6 +1,6 @@
 h3 Categories
-
-- if @categories.any?
-  ul
-  - @categories.each do |cat|
-    li= link_to cat.title, cat
+.list
+  - if @categories.any?
+    ul
+    - @categories.each do |cat|
+      li= link_to cat.title, cat

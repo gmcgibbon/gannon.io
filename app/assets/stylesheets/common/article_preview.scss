@@ -1,18 +1,12 @@
 div#articles
 {
-
-  > *
-  {
-    margin: 5px;
-  }
+  width: 60%;
 
   div.article
   {
-    margin-bottom: 30px;
     padding: 20px;
-    width: 70%;
-    height: 10%;
     background-color: rgba(30, 30, 30, 0.2);
+    margin-bottom: 20px;
 
     a:hover, a:focus
     {
