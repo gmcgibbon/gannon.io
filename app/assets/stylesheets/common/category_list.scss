@@ -1,5 +1,12 @@
 div#other
 {
+  width: 30%;
+
+  @media screen and (max-width: 800px)
+  {
+    width: 100%;
+  }
+
 
   div#categories
   {
@@ -11,7 +18,7 @@ div#other
 
     div.list
     {
-      min-width: 400px;
+      list-style-position: inside;
       padding: 10px;
       background-color: #FFF;
 

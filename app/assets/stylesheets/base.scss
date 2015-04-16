@@ -3,6 +3,11 @@
   margin:0px;
   padding:0px;
   text-decoration: none;
+
+  &, &:before, &:after
+  {
+    box-sizing: inherit;
+  }
 }
 
 html
@@ -11,6 +16,7 @@ html
   background-image: image-url('background/shattered.png');
   background-color: #DBDBDB;
   width:100%;
+  box-sizing: border-box;
 
   p, a, h1, h2, h3, h4, h5, h6
   {

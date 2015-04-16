@@ -8,7 +8,7 @@ RSpec.feature 'SpecificAssets', type: :feature do
 
       before { visit new_user_session_path }
 
-      scenario 'verify asset tags' do
+      scenario 'verify asset tags do not exist' do
 
         expect(page).to_not have_xpath("//link[contains(@href, 'sessions.css')]", visible: false)
         expect(page).to_not have_xpath("//script[contains(@src, 'sessions.js')]", visible: false)
@@ -20,7 +20,7 @@ RSpec.feature 'SpecificAssets', type: :feature do
 
       before { visit root_path }
 
-      scenario 'verify asset tags' do
+      scenario 'verify asset tags exist' do
 
         expect(page).to have_xpath("//link[contains(@href, 'articles.css')]", visible: false)
         expect(page).to have_xpath("//script[contains(@src, 'articles.js')]", visible: false)

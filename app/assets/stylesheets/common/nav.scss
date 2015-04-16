@@ -1,20 +1,48 @@
 nav.main
 {
-  float:left;
-  display:block;
+  height: 100%;
+
+  > *
+  {
+    position:relative;
+  }
+
+  a i.fa-bars
+  {
+    display:none;
+
+    @media screen and (max-width: 900px)
+    {
+      display:inline-block;
+      font-size: 2em;
+
+    }
+  }
+
+  @media screen and (max-width: 900px)
+  {
+    ul
+    {
+      display:none;
+    }
+
+    li
+    {
+      visibility: hidden;
+      display: block;
+    }
+  }
 
   ul
   {
     list-style: none;
-    position:relative;
-    height: 100%;
 
     li
     {
       position:relative;
       width:250px;
       display:inline;
-      padding-left: 15px;
+      padding-right: 10px;
 
       #current
       {

@@ -1,7 +1,7 @@
-header.main
-  = link_to image_tag(image_path('logo.png'), class: :logo), root_path
-  = render partial: 'layouts/nav'
-  = form_tag '/blog/search/', method: :get, id: 'article_search'
-    = text_field_tag :search, nil, required: true
-    button.btn
-      = fa_icon('search')
+header.main.flex_container_centered
+    = link_to image_tag(image_path('logo.png'), class: :logo), root_path
+    = render partial: 'layouts/nav'
+    = form_tag '/blog/search/', method: :get, id: 'article_search'
+      = text_field_tag :search, nil, required: true
+      button.btn
+        = fa_icon('search')
