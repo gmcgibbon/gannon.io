@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :init_view_defaults
 
+  helper :view
+
   # 404 not found
   def not_found
     respond_to do |f|
