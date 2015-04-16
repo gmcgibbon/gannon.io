@@ -1,8 +1,8 @@
 header.main
 {
-  padding: 10px;
   position: fixed;
   background-color: rgba(30, 30, 30, 0.8);
+  width: 100%;
 
   *
   {
@@ -30,6 +30,8 @@ header.main
   {
     width:  5%;
     height: 5%;
+    min-width: 50px;
+    max-width: 75px;
     float: left;
   }
 }
