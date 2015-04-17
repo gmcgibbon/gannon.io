@@ -1,5 +1,6 @@
 nav.main
-  = link_to '#'
+  input#nav-toggle type='checkbox' name='nav-toggle'
+  label for='nav-toggle'
     = fa_icon('bars')
   ul
     - for page in Page.all.order(:title)

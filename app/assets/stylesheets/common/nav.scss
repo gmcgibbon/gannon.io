@@ -1,53 +1,33 @@
 nav.main
 {
-  height: 100%;
 
   > *
   {
     position:relative;
   }
 
-  a i.fa-bars
+  #nav-toggle
   {
     display:none;
-
-    @media screen and (max-width: 900px)
-    {
-      display:inline-block;
-      font-size: 2em;
-
-    }
   }
 
-  @media screen and (max-width: 900px)
+  i.fa-bars
   {
-    ul
-    {
-      display:none;
-    }
-
-    li
-    {
-      visibility: hidden;
-      display: block;
-    }
+    font-size: 2em;
+    display:none;
   }
 
   ul
   {
+    transition: max-height .30s linear;
     list-style: none;
 
     li
     {
+      transition: display .30s linear;
       position:relative;
-      width:250px;
       display:inline;
       padding-right: 10px;
-
-      #current
-      {
-        color: #800080;
-      }
 
       a:hover, a:focus
       {
@@ -76,6 +56,51 @@ nav.main
           display:block;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 900px)
+{
+  nav.main
+  {
+    i.fa-bars
+    {
+      display: inline-block;
+    }
+
+    ul
+    {
+      max-height: 0;
+
+      li
+      {
+        display:none;
+      }
+    }
+
+    .article_search
+    {
+      display:none;
+    }
+  }
+
+  #nav-toggle:checked
+  {
+    ~ ul
+    {
+
+      max-height: 400px;
+
+      li
+      {
+        display:block;
+      }
+    }
+
+    ~ .article_search
+    {
+      display:block;
     }
   }
 }
