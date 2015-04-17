@@ -24,7 +24,7 @@ nav.main
 
     li
     {
-      transition: display .30s linear;
+      transition: visibility .30s linear;
       position:relative;
       display:inline;
       padding-right: 10px;
@@ -36,14 +36,26 @@ nav.main
 
       ul
       {
+        width: 100%;
         display:none;
         position:absolute;
         top:100%;
-	      left:0px;
+	      left:0;
+
+        @media screen and (max-width: 900px)
+        {
+          left:100%;
+        }
 
         li
         {
+          width: 200%;
           background-color: rgba(30, 30, 30, 0.8);
+
+          a
+          {
+            font-size: 0.8em;
+          }
         }
       }
 
@@ -75,13 +87,9 @@ nav.main
 
       li
       {
+        visibility: hidden;
         display:none;
       }
-    }
-
-    .article_search
-    {
-      display:none;
     }
   }
 
@@ -94,6 +102,7 @@ nav.main
 
       li
       {
+        visibility:visible;
         display:block;
       }
     }
