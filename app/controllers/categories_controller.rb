@@ -42,6 +42,14 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def create_relation
+    
+  end
+
+  def destroy_relation
+
+  end
+
   private
 
   def category_params
