@@ -3,30 +3,30 @@ class ArticlesController < ApplicationController
   include SlugResourceAuthorizable
 
   def search
-    if request.xhr?
-      render partial: 'articles/paginated'
-    else
-      @categories = Category.all.order('title')
-    end
-
     query         = 'title LIKE :search OR content LIKE :search'
     @search_term  = params[:search]
     @articles     = Article
       .where(query, search: "%#{@search_term}%")
       .paginate(page: params[:page], per_page: 10)
       .order('updated_at DESC')
-  end
 
-  def index
     if request.xhr?
       render partial: 'articles/paginated'
     else
       @categories = Category.all.order('title')
     end
+  end
 
+  def index
     @articles   = Article
       .paginate(page: params[:page], per_page: 10)
       .order('updated_at DESC')
+
+    if request.xhr?
+      render partial: 'articles/paginated'
+    else
+      @categories = Category.all.order('title')
+    end
   end
 
   def create

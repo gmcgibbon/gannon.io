@@ -49,6 +49,7 @@ RSpec.describe ArticlesController, :type => :controller do
 
     before do
       @articles = FactoryGirl.create_list :article, 20
+      @categories = FactoryGirl.create_list :category, 10
       @articles.first.update_attributes title: term
     end
 
@@ -59,7 +60,7 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should render_template :_paginated }
 
       it 'should assign @articles' do
-        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+        expect(assigns(:articles)).to match_array [@articles.first]
       end
 
       it 'should not assign @categories' do
@@ -74,7 +75,7 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should render_template :search }
 
       it 'should assign @articles' do
-        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+        expect(assigns(:articles)).to match_array [@articles.first]
       end
 
       it 'should assign @categories' do
