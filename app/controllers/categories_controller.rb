@@ -6,14 +6,15 @@ class CategoriesController < ApplicationController
   respond_to :json, only: [:create]
 
   def show
+    if request.xhr?
+      render partial: 'articles/paginated'
+    else
+      @categories = Category.all.order('title')
+    end
     @articles = @category
       .articles
       .paginate(page: params[:page], per_page: 10)
       .order('updated_at DESC')
-
-    if request.xhr?
-      render partial: 'articles/paginated'
-    end
   end
 
   def create
@@ -43,7 +44,7 @@ class CategoriesController < ApplicationController
   end
 
   def create_relation
-    
+
   end
 
   def destroy_relation

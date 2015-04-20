@@ -20,8 +20,8 @@ RSpec.describe ArticlesController, :type => :controller do
         expect(assigns(:articles)).to match_array @articles.reverse[0..9]
       end
 
-      it 'should assign @categories' do
-        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
+      it 'should not assign @categories' do
+        expect(assigns(:categories)).to be nil
       end
     end
 
@@ -31,11 +31,12 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should respond_with :success }
       it { should render_template :index }
 
-      context '@articles' do
+      it 'should assign @articles' do
+        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+      end
 
-        subject { assigns(:articles) }
-
-        it { should match_array @articles.reverse[0..9] }
+      it 'should assign @categories' do
+        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 
@@ -57,11 +58,12 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should respond_with :success }
       it { should render_template :_paginated }
 
-      context '@articles' do
+      it 'should assign @articles' do
+        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+      end
 
-        subject { assigns(:articles) }
-
-        it { should match_array [@articles.first] }
+      it 'should not assign @categories' do
+        expect(assigns(:categories)).to be nil
       end
     end
 
@@ -71,11 +73,12 @@ RSpec.describe ArticlesController, :type => :controller do
       it { should respond_with :success }
       it { should render_template :search }
 
-      context '@articles' do
+      it 'should assign @articles' do
+        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+      end
 
-        subject { assigns(:articles) }
-
-        it { should match_array [@articles.first] }
+      it 'should assign @categories' do
+        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 

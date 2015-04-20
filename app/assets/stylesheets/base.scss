@@ -35,53 +35,53 @@ html
       text-align: center;
     }
 
-    a, a:link, a:visited, a:hover, a:focus, a:active
+  }
+
+  a, a:link, a:visited, a:hover, a:focus, a:active
+  {
+    color: inherit;
+  }
+
+  div.subject
+  {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0.2);
+
+    > *
     {
-      color: inherit;
+      margin: auto;
     }
 
-    div.subject
+    a:hover, a:focus
     {
-      margin-bottom: 30px;
-      padding: 20px;
-      background-color: rgba(30, 30, 30, 0.2);
-
-      > *
-      {
-        margin: auto;
-      }
-
-      a:hover, a:focus
-      {
-        color: #00FFFF;
-      }
-
-      .created, .updated, .edit, .delete
-      {
-        color: #FFF;
-      }
-
-       > span
-      {
-        margin-right: 10px;
-      }
-
-      div.content
-      {
-        padding: 10px;
-        background-color: #FFF;
-
-        h1, h2, h3, h4, h5, h6
-        {
-          color: #800080;
-        }
-
-        a
-        {
-          border-bottom: 1px #000 dotted;
-        }
-      }
+      color: #00FFFF;
     }
 
+    .created, .updated, .edit, .delete
+    {
+      color: #FFF;
+    }
+
+     > span
+    {
+      margin-right: 10px;
+    }
+
+    div.content
+    {
+      padding: 10px;
+      background-color: #FFF;
+
+      h1, h2, h3, h4, h5, h6
+      {
+        color: #800080;
+      }
+
+      a
+      {
+        border-bottom: 1px #000 dotted;
+      }
+    }
   }
 }

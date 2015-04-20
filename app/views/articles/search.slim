@@ -8,3 +8,7 @@ h1 #{pluralize article_count, 'Result'} for "#{@search_term}"
 
 #articles
   = render 'articles/paginated'
+#other
+  #categories
+    h3 Categories
+    = render 'categories/list', categories: @categories

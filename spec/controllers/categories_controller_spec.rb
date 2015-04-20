@@ -12,8 +12,9 @@ RSpec.describe CategoriesController, type: :controller do
   describe '#show' do
 
     before do
-      @category = FactoryGirl.create :category
-      @articles = FactoryGirl.create_list :article, 20, with_categories: [@category]
+      @categories = FactoryGirl.create_list :category, 20
+      @category   = @categories.first
+      @articles   = FactoryGirl.create_list :article, 20, with_categories: [@category]
     end
 
     let(:slug) { @category.slug }
@@ -24,11 +25,12 @@ RSpec.describe CategoriesController, type: :controller do
       it { should respond_with :success }
       it { should render_template :_paginated }
 
-      context '@articles' do
+      it 'should assign @articles' do
+        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+      end
 
-        subject { assigns(:articles) }
-
-        it { should match_array @articles.reverse[0..9] }
+      it 'should not assign @categories' do
+        expect(assigns(:categories)).to be nil
       end
     end
 
@@ -38,11 +40,12 @@ RSpec.describe CategoriesController, type: :controller do
       it { should respond_with :success }
       it { should render_template :show }
 
-      context '@articles' do
+      it 'should assign @articles' do
+        expect(assigns(:articles)).to match_array @articles.reverse[0..9]
+      end
 
-        subject { assigns(:articles) }
-
-        it { should match_array @articles.reverse[0..9] }
+      it 'should assign @categories' do
+        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 
