@@ -2,10 +2,16 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin/', as: 'admin'
 
-  devise_for :users, controllers:
+  devise_for :users, skip: [:sessions], controllers:
   {
     registrations: 'devise/registrations_override'
   }
+
+  devise_scope :user do
+    get    '/user/signin'  => 'devise/sessions#new',     as: :new_user_session
+    post   '/user/signin'  => 'devise/sessions#create',  as: :user_session
+    delete '/user/signout' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
 
   root 'articles#index'
 

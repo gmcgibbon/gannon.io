@@ -10,6 +10,6 @@ describe Page, type: :model do
   context 'validations' do
     it { should_not allow_value('blog').for(:slug) }
     it { should_not allow_value('admin').for(:slug) }
-    it { should_not allow_value('users').for(:slug) }
+    it { should_not allow_value('user').for(:slug) }
   end
 end

@@ -4,7 +4,7 @@
 - content_for(:head)
   = javascript_include_tag 'article_paginate'
 
-h2 #{pluralize article_count, 'Result'} for "#{@search_term}"
+h1 #{pluralize article_count, 'Result'} for "#{@search_term}"
 
 #articles
   = render 'articles/paginated'
