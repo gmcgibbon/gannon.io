@@ -45,17 +45,33 @@ class CategoriesController < ApplicationController
   end
 
   def create_relation
+    article = Article.find_by_slug(article_relation_params[:slug])
 
+    if @category.articles << article
+      render json: @category.to_builder_json
+    else
+      render json: @category.to_builder_json, status: 422
+    end
   end
 
   def destroy_relation
+    article = Article.find_by_slug(article_relation_params[:slug])
 
+    if @category.articles.destroy(article)
+      render json: @category.to_builder_json
+    else
+      render json: @category.to_builder_json, status: 422
+    end
   end
 
   private
 
   def category_params
     params.require(:category).permit(:title, :slug)
+  end
+
+  def article_relation_params
+    params.require(:article).permit(:slug)
   end
 
 end

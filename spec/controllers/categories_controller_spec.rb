@@ -99,6 +99,45 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
 
+    describe '#create_relation' do
+
+      let(:slug) { @category.slug }
+      let(:article_params) { { slug: @article.slug } }
+
+      before do
+        @article  = FactoryGirl.create :article
+        @category = FactoryGirl.create :category
+        post :create_relation, { slug: slug, article: article_params }
+      end
+
+      it { should respond_with :redirect }
+      it { should redirect_to :root }
+
+      it 'should not create the category relation' do
+        expect(@category.articles.count).to eq 0
+      end
+
+    end
+
+    describe '#destroy_relation' do
+
+      let(:slug) { @category.slug }
+      let(:article_params) { { slug: @article.slug } }
+
+      before do
+        @article  = FactoryGirl.create :article
+        @category = FactoryGirl.create :category, with_articles: [@article]
+        delete :destroy_relation, { slug: slug, article: article_params }
+      end
+
+      it { should respond_with :redirect }
+      it { should redirect_to :root }
+
+      it 'should not destroy the category relation' do
+        expect(@category.articles.count).to eq 1
+      end
+    end
+
   end
 
   context 'authenticated' do
@@ -212,6 +251,51 @@ RSpec.describe CategoriesController, type: :controller do
 
         it 'should destroy the article' do
           expect(Category.count).to eq 0
+        end
+      end
+
+      describe '#create_relation' do
+
+        let(:slug) { @category.slug }
+        let(:article_params) { { slug: @article.slug } }
+
+        before do
+          @article  = FactoryGirl.create :article
+          @category = FactoryGirl.create :category
+          post :create_relation, { slug: slug, article: article_params }
+        end
+
+        it { should respond_with :success }
+
+        it 'should equal expected json' do
+          expect(response.body).to eq @category.to_builder_json
+        end
+
+        it 'should create the category relation' do
+          expect(@category.articles.count).to eq 1
+        end
+
+      end
+
+      describe '#destroy_relation' do
+
+        let(:slug) { @category.slug }
+        let(:article_params) { { slug: @article.slug } }
+
+        before do
+          @article  = FactoryGirl.create :article
+          @category = FactoryGirl.create :category, with_articles: [@article]
+          delete :destroy_relation, { slug: slug, article: article_params }
+        end
+
+        it { should respond_with :success }
+
+        it 'should equal expected json' do
+          expect(response.body).to eq @category.to_builder_json
+        end
+
+        it 'should destroy the category relation' do
+          expect(@category.articles.count).to eq 0
         end
       end
 

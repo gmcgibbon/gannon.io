@@ -18,9 +18,16 @@ Rails.application.routes.draw do
   get '/404', via: :all, to: 'application#not_found'
   get '/500', via: :all, to: 'application#internal_server_error'
 
-  get '/blog/search', to: 'articles#search', as: 'search_articles'
-
-  resources :articles,   param: :slug, path: '/blog/',     except: :index
-  resources :pages,      param: :slug, path: '/',          except: :index
-  resources :categories, param: :slug, path: '/category/', except: [:index, :new, :edit]
+  resources :articles, param: :slug, path: '/blog/', except: :index do
+    collection do
+      get 'search', to: 'articles#search'
+    end
+  end
+  resources :pages, param: :slug, path: '/', except: :index
+  resources :categories, param: :slug, path: '/category/', except: [:index, :new, :edit] do
+    member do
+      post   'relation', to: 'categories#create_relation'
+      delete 'relation', to: 'categories#destroy_relation'
+    end
+  end
 end
