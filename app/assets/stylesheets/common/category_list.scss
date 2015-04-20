@@ -21,6 +21,11 @@ div#other
       padding: 10px;
       background-color: #FFF;
 
+      .edit, .destroy
+      {
+        padding-left: 10px;
+      }
+
       a:hover, a:focus
       {
         color: #00FFFF;

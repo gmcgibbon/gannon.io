@@ -10,4 +10,5 @@ h2 Articles
     = render 'articles/paginated'
   #other
     #categories
-      = render 'categories/list'
+      h3 Categories
+      = render 'categories/list', categories: @categories

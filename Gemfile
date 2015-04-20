@@ -14,7 +14,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'cancancan'
-gem 'js-routes'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'rails_admin'

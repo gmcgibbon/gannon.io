@@ -1,0 +1,6 @@
+.category data-slug=category.slug
+  = link_to category.title, category
+  - if can? :edit, category
+    span.edit= link_to 'Edit', '#'
+  - if can? :destroy, category
+    span.destroy= link_to 'Delete', '#'

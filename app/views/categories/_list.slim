@@ -1,6 +1,6 @@
-h3 Categories
 .list
-  - if @categories.any?
-    ul
-      - @categories.each do |cat|
-        li= link_to cat.title, cat
+  - if can? :create, Category
+    span.category_new= link_to 'New', '#'
+  ul
+    - for category in categories
+      = render partial: category
