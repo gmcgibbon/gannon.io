@@ -5,7 +5,7 @@ $ ->
 
     if next_page_url && $(window).scrollTop() > $(document).height() - $(window).height() - 100
 
-      $('.pagination').empty()
+      $('.pagination').remove()
 
       $.ajax
         url: next_page_url
@@ -14,6 +14,6 @@ $ ->
 
     else if ! next_page_url
 
-      $('.pagination').empty()
+      $('.pagination').remove()
 
     return

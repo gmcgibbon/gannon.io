@@ -51,7 +51,7 @@ $ ->
         method: 'DELETE'
         url:  "/category/#{slug}"
         success: (data) ->
-          $cat.empty()
+          $cat.parent().remove()
 
   $('.category .add a, .category .remove a').on 'click', ->
     $this   = $(this)

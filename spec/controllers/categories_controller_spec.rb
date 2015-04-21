@@ -9,6 +9,20 @@ RSpec.describe CategoriesController, type: :controller do
     it { should raise_error ActionController::UrlGenerationError }
   end
 
+  describe '#new' do
+
+    subject { lambda { get :new } }
+
+    it { should raise_error ActionController::UrlGenerationError }
+  end
+
+  describe '#edit' do
+
+    subject { lambda { get :edit } }
+
+    it { should raise_error ActionController::UrlGenerationError }
+  end
+
   describe '#show' do
 
     before do
@@ -278,6 +292,8 @@ RSpec.describe CategoriesController, type: :controller do
         it 'should not create a category' do
           expect(Category.count).to_not eq 2
         end
+
+        it { should route(:post, "/category/#{slug}/relate").to 'categories#create_relation', slug: slug }
       end
 
       describe '#destroy_relation' do
@@ -304,6 +320,8 @@ RSpec.describe CategoriesController, type: :controller do
         it 'should not destroy a category' do
           expect(Category.count).to_not eq 0
         end
+
+        it { should route(:delete, "/category/#{slug}/relate").to 'categories#destroy_relation', slug: slug }
       end
 
     end

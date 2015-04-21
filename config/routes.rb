@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get    '/user/signin'  => 'devise/sessions#new',     as: :new_user_session
-    post   '/user/signin'  => 'devise/sessions#create',  as: :user_session
-    delete '/user/signout' => 'devise/sessions#destroy', as: :destroy_user_session
+    get    '/user/sign_in',  to: 'devise/sessions#new',     as: :new_user_session
+    post   '/user/sign_in',  to: 'devise/sessions#create',  as: :user_session
+    delete '/user/sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
   root 'articles#index'
