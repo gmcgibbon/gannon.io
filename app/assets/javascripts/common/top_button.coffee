@@ -19,8 +19,6 @@ $ ->
       fade_in()
     else if $document.scrollTop() == 0
       fade_out()
-    else if $window.scrollTop() + $window.height() == $document.height()
-      fade_out()
 
   $button.on 'click', ->
     $body.animate({ scrollTop: 0 }, 'slow')
