@@ -19,4 +19,13 @@ RSpec.describe ViewHelper, type: :helper do
     end
   end
 
+  describe '#all_pages_by_title' do
+
+    before { FactoryGirl.create_list :page, 15 }
+
+    it 'should have all pages organized by title' do
+      expect(all_pages_by_title).to eq Page.all.order('title')
+    end
+  end
+
 end

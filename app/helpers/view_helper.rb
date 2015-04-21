@@ -13,4 +13,9 @@ module ViewHelper
     Category.all.order('title')
   end
 
+  # All pages ordered by title
+  def all_pages_by_title
+    Page.all.order('title')
+  end
+
 end
