@@ -1,0 +1,20 @@
+h1 Sitemap
+
+#sitemap.flex_container_top
+  .resource
+    h3 Pages
+    ul
+      - for page in all_pages_by_title
+        li= link_to page.title, page
+
+  .resource
+    h3 Articles
+    ul
+      - for article in all_articles_by_title
+        li= link_to article.title, article
+
+  .resource
+    h3 Categories
+    ul
+      - for category in all_categories_by_title
+        li= link_to category.title, category

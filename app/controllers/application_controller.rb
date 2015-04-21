@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
 
   helper :view
 
+  # Website map
+  def sitemap
+    respond_to do |f|
+      f.html { render }
+      f.xml  { render layout: false }
+    end
+  end
+
   # 404 not found
   def not_found
     respond_to do |f|

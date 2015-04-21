@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   root 'articles#index'
+  get '/sitemap', to: 'application#sitemap'
 
   get '/404', via: :all, to: 'application#not_found'
   get '/500', via: :all, to: 'application#internal_server_error'

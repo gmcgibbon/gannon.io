@@ -1,3 +1,6 @@
 footer.main
-  = render partial: 'layouts/contact'
+  ul.icon-links
+    - footer_icon_links.each do |icon, link|
+      li=link_to link
+        = fa_icon icon
   strong.copy &copy; #{ Time.now.year } Gannon McGibbon

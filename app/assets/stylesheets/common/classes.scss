@@ -13,3 +13,11 @@
   align-items: center;
   justify-content: space-around;
 }
+
+.flex_container_top
+{
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: space-around;
+}
