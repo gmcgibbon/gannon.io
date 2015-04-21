@@ -10,4 +10,13 @@ RSpec.describe ViewHelper, type: :helper do
 
   end
 
+  describe '#all_categories_by_title' do
+
+    before { FactoryGirl.create_list :category, 15 }
+
+    it 'should have all categories organized by title' do
+      expect(all_categories_by_title).to eq Category.all.order('title')
+    end
+  end
+
 end

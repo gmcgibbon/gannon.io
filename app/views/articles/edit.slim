@@ -7,4 +7,4 @@ h1= @page_title
   = f.button :submit
 = button_to 'Delete Article', @article, method: :delete, data: { confirm: t('gannon.confirm.delete') }
 
-= render partial: 'categories/list', locals: { categories: @article.categories }
+= render partial: 'categories/list', locals: { article: @article }

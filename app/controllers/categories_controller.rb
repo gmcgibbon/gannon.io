@@ -13,8 +13,6 @@ class CategoriesController < ApplicationController
 
     if request.xhr?
       render partial: 'articles/paginated'
-    else
-      @categories = Category.all.order('title')
     end
   end
 

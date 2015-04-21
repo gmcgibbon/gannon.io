@@ -7,7 +7,8 @@ describe Category, type: :model do
   it_should_behave_like 'slug_findable'
 
   context 'associations' do
-    it { should have_and_belong_to_many :articles }
+    it { should have_many(:articles).through :articles_categories }
+    it { should have_many :articles_categories }
   end
 
   describe '#to_builder_json' do

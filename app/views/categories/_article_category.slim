@@ -1,0 +1,7 @@
+.category data-slug=category.slug data-article=article.slug
+  = link_to category.title, category
+  - if can?(:create, category) && can?(:destroy, category)
+    - if article.categories.exists? category
+      span.remove= link_to 'Remove', '#'
+    - else
+      span.add= link_to 'Add', '#'

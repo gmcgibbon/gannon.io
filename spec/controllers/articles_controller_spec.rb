@@ -19,10 +19,6 @@ RSpec.describe ArticlesController, :type => :controller do
       it 'should assign @articles' do
         expect(assigns(:articles)).to match_array @articles.reverse[0..9]
       end
-
-      it 'should not assign @categories' do
-        expect(assigns(:categories)).to be nil
-      end
     end
 
     context 'html' do
@@ -33,10 +29,6 @@ RSpec.describe ArticlesController, :type => :controller do
 
       it 'should assign @articles' do
         expect(assigns(:articles)).to match_array @articles.reverse[0..9]
-      end
-
-      it 'should assign @categories' do
-        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 
@@ -62,10 +54,6 @@ RSpec.describe ArticlesController, :type => :controller do
       it 'should assign @articles' do
         expect(assigns(:articles)).to match_array [@articles.first]
       end
-
-      it 'should not assign @categories' do
-        expect(assigns(:categories)).to be nil
-      end
     end
 
     context 'html' do
@@ -76,10 +64,6 @@ RSpec.describe ArticlesController, :type => :controller do
 
       it 'should assign @articles' do
         expect(assigns(:articles)).to match_array [@articles.first]
-      end
-
-      it 'should assign @categories' do
-        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 

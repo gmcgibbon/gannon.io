@@ -4,5 +4,7 @@ class Article < ActiveRecord::Base
   include SlugFindable
 
   belongs_to :user
-  has_and_belongs_to_many :categories
+
+  has_many :categories, through: :articles_categories
+  has_many :articles_categories
 end

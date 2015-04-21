@@ -8,6 +8,8 @@ describe Article, type: :model do
   it_should_behave_like 'slug_findable'
 
   context 'associations' do
-    it { should have_and_belong_to_many :categories }
+    it { should have_many(:categories).through :articles_categories }
+    it { should have_many :articles_categories }
+    it { should belong_to :user }
   end
 end

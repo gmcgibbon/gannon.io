@@ -8,4 +8,9 @@ module ViewHelper
       .none? { |f| f.starts_with? controller_name }
   end
 
+  # All categories ordered by title
+  def all_categories_by_title
+    Category.all.order('title')
+  end
+
 end

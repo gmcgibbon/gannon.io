@@ -2,7 +2,8 @@ class Category < ActiveRecord::Base
 
   include SlugFindable
 
-  has_and_belongs_to_many :articles
+  has_many :articles, through: :articles_categories
+  has_many :articles_categories
 
   # Converts to Jbuilder JSON
   def to_builder_json

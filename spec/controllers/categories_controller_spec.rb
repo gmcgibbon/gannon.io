@@ -28,10 +28,6 @@ RSpec.describe CategoriesController, type: :controller do
       it 'should assign @articles' do
         expect(assigns(:articles)).to match_array @articles.reverse[0..9]
       end
-
-      it 'should not assign @categories' do
-        expect(assigns(:categories)).to be nil
-      end
     end
 
     context 'html' do
@@ -42,10 +38,6 @@ RSpec.describe CategoriesController, type: :controller do
 
       it 'should assign @articles' do
         expect(assigns(:articles)).to match_array @articles.reverse[0..9]
-      end
-
-      it 'should assign @categories' do
-        expect(assigns(:categories)).to match_array @categories.sort_by(&:title)
       end
     end
 
@@ -117,6 +109,10 @@ RSpec.describe CategoriesController, type: :controller do
         expect(@category.articles.count).to eq 0
       end
 
+      it 'should not create a category' do
+        expect(Category.count).to_not eq 2
+      end
+
     end
 
     describe '#destroy_relation' do
@@ -135,6 +131,10 @@ RSpec.describe CategoriesController, type: :controller do
 
       it 'should not destroy the category relation' do
         expect(@category.articles.count).to eq 1
+      end
+
+      it 'should not destroy a category' do
+        expect(Category.count).to_not eq 0
       end
     end
 
@@ -275,6 +275,9 @@ RSpec.describe CategoriesController, type: :controller do
           expect(@category.articles.count).to eq 1
         end
 
+        it 'should not create a category' do
+          expect(Category.count).to_not eq 2
+        end
       end
 
       describe '#destroy_relation' do
@@ -296,6 +299,10 @@ RSpec.describe CategoriesController, type: :controller do
 
         it 'should destroy the category relation' do
           expect(@category.articles.count).to eq 0
+        end
+
+        it 'should not destroy a category' do
+          expect(Category.count).to_not eq 0
         end
       end
 

@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   resources :pages, param: :slug, path: '/', except: :index
   resources :categories, param: :slug, path: '/category/', except: [:index, :new, :edit] do
     member do
-      post   'relation', to: 'categories#create_relation'
-      delete 'relation', to: 'categories#destroy_relation'
+      post   'relate', to: 'categories#create_relation'
+      delete 'relate', to: 'categories#destroy_relation'
     end
   end
 end

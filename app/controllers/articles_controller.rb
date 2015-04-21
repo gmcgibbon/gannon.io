@@ -12,8 +12,6 @@ class ArticlesController < ApplicationController
 
     if request.xhr?
       render partial: 'articles/paginated'
-    else
-      @categories = Category.all.order('title')
     end
   end
 
@@ -24,8 +22,6 @@ class ArticlesController < ApplicationController
 
     if request.xhr?
       render partial: 'articles/paginated'
-    else
-      @categories = Category.all.order('title')
     end
   end
 
