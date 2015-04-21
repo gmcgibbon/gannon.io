@@ -1,9 +1,11 @@
-.list
-  - if can? :create, Category
-    span.category_new= link_to 'New', '#'
-  ul
-    - for category in all_categories_by_title
-      - if defined? article
-        li= render partial: 'categories/article_category', locals: { article: article, category: category }
-      - else
-        li= render partial: category
+#categories
+  h3 Categories
+  .list
+    - if can? :create, Category
+      span.category_new= link_to 'New', '#'
+    ul
+      - for category in all_categories_by_title
+        - if defined? article
+          li= render partial: 'categories/article_category', locals: { article: article, category: category }
+        - else
+          li= render partial: category

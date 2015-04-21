@@ -7,29 +7,38 @@ div#other
     width: 100%;
   }
 
-  div#categories
+  a:hover, a:focus
   {
-    height: 100%;
-    display:block;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: rgba(30, 30, 30, 0.2);
+    color: #00FFFF;
+  }
 
-    div.list
+  h3 a:hover, h3 a:focus
+  {
+    color: #800080;
+  }
+}
+
+div#categories
+{
+  height: 100%;
+  display:block;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(30, 30, 30, 0.2);
+
+  div.list
+  {
+    padding: 10px;
+    background-color: #FFF;
+
+    .edit, .destroy, .add, .remove
     {
-      list-style-position: inside;
-      padding: 10px;
-      background-color: #FFF;
+      padding-left: 10px;
+    }
 
-      .edit, .destroy
-      {
-        padding-left: 10px;
-      }
-
-      a:hover, a:focus
-      {
-        color: #00FFFF;
-      }
+    a:hover, a:focus
+    {
+      color: #00FFFF;
     }
   }
 }
