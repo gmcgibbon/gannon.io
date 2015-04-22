@@ -23,12 +23,17 @@ module ViewHelper
     Page.all.order('title')
   end
 
+  # All category titles unordered
+  def all_category_titles
+    Category.all.map(&:title)
+  end
+
   # Builds FontAwesome footer icon link hash
   def footer_icon_links
     links = {}
-    links[:envelope] = 'mailto:gannon.mcgibbon@gmail.com'
-    links[:github]   = 'https://github.com/gmcgibbon'
-    links[:linkedin] = 'https://www.linkedin.com/in/gannonmcgibbon'
+    links[:envelope] = 'mailto:' << I18n.t('gannon.meta.email')
+    links[:github]   = 'https://github.com/' << I18n.t('gannon.meta.github')
+    links[:linkedin] = 'https://www.linkedin.com/in/' << I18n.t('gannon.meta.linkedin')
     links[:sitemap]  = sitemap_url
 
     links

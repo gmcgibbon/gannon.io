@@ -37,6 +37,15 @@ RSpec.describe ViewHelper, type: :helper do
     end
   end
 
+  describe '#all_category_titles' do
+
+    before { FactoryGirl.create_list :category, 5 }
+
+    it 'should have all category titles' do
+      expect(all_category_titles).to eq Category.all.map(&:title)
+    end
+  end
+
   describe '#footer_icon_links' do
 
     let(:expected_links) do

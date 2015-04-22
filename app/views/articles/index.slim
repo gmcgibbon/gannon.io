@@ -1,6 +1,9 @@
 - @page_title = 'Home'
 
 - content_for(:head)
+  meta name='keywords' content=all_category_titles.join(', ')
+  meta name='description' content=t('gannon.meta.description')
+
   = javascript_include_tag 'article_paginate'
 
 h1 Articles

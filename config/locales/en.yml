@@ -21,6 +21,11 @@
 
 en:
   gannon:
+    meta:
+      description: 'An information technology blog featuring articles on C#, Ruby, PHP, JavaScript, and more!'
+      linkedin: 'gannonmcgibbon'
+      github: 'gmcgibbon'
+      email: 'gannon.mcgibbon@gmail.com'
     record:
       create:
         success: '%{record} was successfully created!'
