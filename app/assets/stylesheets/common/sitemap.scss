@@ -1,5 +1,12 @@
 #sitemap
 {
+  padding-bottom: 30px;
+
+  a:hover, a:focus
+  {
+    color: #00FFFF;
+  }
+
   .resource
   {
     display: inline-block;

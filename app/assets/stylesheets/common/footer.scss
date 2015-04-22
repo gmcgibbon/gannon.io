@@ -22,12 +22,17 @@ footer.main
 
   .icon-links
   {
+    float:left;
+
     li
     {
       display:inline;
       padding-right: 0.5em;
-    }
 
-    float:left;
+      a i:hover, a i:focus
+      {
+        color: #00FFFF;
+      }
+    }
   }
 }

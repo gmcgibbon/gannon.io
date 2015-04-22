@@ -2,7 +2,7 @@
   h3 Categories
   .list
     - if can? :create, Category
-      span.category_new= link_to 'New', '#'
+      span.category_new= link_to 'New Category', '#'
     ul
       - for category in all_categories_by_title
         - if defined? article
