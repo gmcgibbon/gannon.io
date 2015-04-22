@@ -16,6 +16,12 @@ module FeatureMacros
     end
   end
 
+  def create_category(title:)
+    click_link('New Category')
+
+    #TODO: Revisit when refactored js window prompts
+  end
+
   def create_article(title:, content:, slug:)
     click_link('New Article')
 

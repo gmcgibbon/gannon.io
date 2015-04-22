@@ -1,49 +1,45 @@
 require 'rails_helper'
 
-RSpec.feature 'CreateArticles', type: :feature do
+RSpec.feature 'CreateCategories', type: :feature, js: true do
 
   before { visit '/' }
 
   context 'as admin' do
 
     let!(:user) { FactoryGirl.create(:user, :admin) }
+    let!(:categories) { FactoryGirl.create_list(:category, 5) }
 
     before { login_as(user) }
 
-    scenario 'create article form' do
+    context 'create valid category' do
 
-      click_link('New Article')
+      scenario 'from main page' do
 
-      within(:css, '#document') do
-        expect(page.title).to have_content 'New Article'
+        create_category(
+          title:   'Test Article!'
+        )
+
+        # Does not work with prompts
+        # within(:css, '#categories .list ul') do
+        #   expect(page).to have_selector 'li', categories.count +1
+        # end
       end
 
     end
 
-    scenario 'create valid article' do
+    context 'create invalid category' do
 
-      create_article(
-        title:   'Test Article!',
-        content: 'This is test content!',
-        slug:    'test-article'
-      )
+      scenario 'from main page' do
 
-      expect(page.status_code).to eq 200
-      expect(page).to have_content 'Article was successfully created!'
-    end
+        create_category(
+          title:   ''
+        )
 
-    scenario 'create invalid article' do
+        within(:css, '#categories .list ul') do
+          expect(page).to have_selector 'li', categories.count
+        end
+      end
 
-      create_article(
-        title:   'Test Article!',
-        content: '',
-        slug:    'test!article'
-      )
-
-      expect(page.status_code).to eq 422
-      expect(page).to have_content 'Article could not be created!'
-      expect(page).to have_content 'can\'t be blank'
-      expect(page).to have_content 'must consist of lowercase and hyphens only'
     end
 
   end
