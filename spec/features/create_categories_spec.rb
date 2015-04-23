@@ -20,7 +20,7 @@ RSpec.feature 'CreateCategories', type: :feature, js: true do
           title:   'Test Category 1!'
         )
 
-        # Does not work with prompts
+        # TODO: Assert change
         # within(:css, '#categories .list ul') do
         #   expect(page).to have_selector 'li', categories.count +1
         # end
@@ -35,11 +35,10 @@ RSpec.feature 'CreateCategories', type: :feature, js: true do
           title:   'Test Category 2!'
         )
 
-        # Does not work with prompts
+        # TODO: Assert change
         # within(:css, '#categories .list ul') do
         #   expect(page).to have_selector 'li', categories.count +1
         # end
-
       end
 
     end
