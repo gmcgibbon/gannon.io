@@ -1,5 +1,9 @@
 module FeatureMacros
 
+  def click_root_link
+    click_link('to_root')
+  end
+
   def login_as(user)
     click_link('Log in')
 
