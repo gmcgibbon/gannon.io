@@ -23,6 +23,8 @@ RSpec.feature 'CreateCategories', type: :feature, js: true do
           title:   'Test Category 1!'
         )
 
+        wait_for_ajax
+
         # TODO: Assert change
         # within(:css, '#categories .list ul') do
         #   expect(page).to have_selector 'li', categories.count +1
@@ -37,6 +39,8 @@ RSpec.feature 'CreateCategories', type: :feature, js: true do
         create_category(
           title:   'Test Category 2!'
         )
+
+        wait_for_ajax
 
         # TODO: Assert change
         # within(:css, '#categories .list ul') do
@@ -56,6 +60,8 @@ RSpec.feature 'CreateCategories', type: :feature, js: true do
           title:   ''
         )
 
+        wait_for_ajax
+
         within(:css, '#categories .list ul') do
           expect(page).to have_selector 'li', categories.count
         end
@@ -69,6 +75,8 @@ RSpec.feature 'CreateCategories', type: :feature, js: true do
         create_category(
           title:   ''
         )
+
+        wait_for_ajax
 
         within(:css, '#categories .list ul') do
           expect(page).to have_selector 'li', categories.count

@@ -20,9 +20,9 @@ RSpec.feature 'DestroyCategories', type: :feature, js: true do
 
         within(:css, ".category[data-slug=\"#{category.slug}\"]") do
           click_link('Delete')
-
-          wait_for_ajax()
         end
+
+        wait_for_ajax
 
         expect(page).to_not have_content category.title
       end

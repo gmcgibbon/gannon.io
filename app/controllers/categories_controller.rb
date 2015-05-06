@@ -3,7 +3,10 @@ class CategoriesController < ApplicationController
   include SlugResourceAuthorizable
 
   respond_to :html, only: [:show]
-  respond_to :json, only: [:create]
+  respond_to :json, only: [
+                            :create, :update, :destroy,
+                            :create_relation, :destroy_relation
+                          ]
 
   def show
     @articles = @category

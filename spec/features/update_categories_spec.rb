@@ -29,7 +29,7 @@ RSpec.feature 'UpdateCategories', type: :feature, js: true do
           # fill_in('Slug', with: 'updated-slug-x')
           # click_button('Update Category')
 
-          # wait_for_ajax()
+          wait_for_ajax()
 
           # expect(page).to have_content 'Updated Category'
         end
