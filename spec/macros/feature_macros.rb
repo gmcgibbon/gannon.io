@@ -15,7 +15,7 @@ module FeatureMacros
 
   def search_for_article(with:)
     within(:css, '.article_search') do
-      fill_in('search', with: with)
+      fill_in('term', with: with)
       find(:css, '.btn').click
     end
   end

@@ -46,7 +46,7 @@ RSpec.describe ArticlesController, :type => :controller do
     end
 
     context 'xhr' do
-      before { xhr :get, :search, search: term }
+      before { xhr :get, :search, term: term }
 
       it { should respond_with :success }
       it { should render_template :_paginated }
@@ -57,7 +57,7 @@ RSpec.describe ArticlesController, :type => :controller do
     end
 
     context 'html' do
-      before { get :search, search: term }
+      before { get :search, term: term }
 
       it { should respond_with :success }
       it { should render_template :search }
@@ -66,6 +66,7 @@ RSpec.describe ArticlesController, :type => :controller do
         expect(assigns(:articles)).to match_array [@articles.first]
       end
     end
+
 
     it { should route(:get, '/blog/search').to 'articles#search' }
   end

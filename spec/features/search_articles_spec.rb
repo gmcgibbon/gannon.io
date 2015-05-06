@@ -72,7 +72,7 @@ RSpec.feature 'SearchArticles', type: :feature, js: true do
         search_for_article with: term
 
         expect(page.status_code).to eq 200
-        expect(find_field('search')[:required]).to be_present
+        expect(find_field('term')[:required]).to be_present
         expect(page).to_not have_content '0 Results for ' << "\"#{term}\""
       end
 
