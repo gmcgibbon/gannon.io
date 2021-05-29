@@ -1,60 +1,56 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '4.2.0'
-gem 'sqlite3'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+ruby '3.0.1'
 
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jquery-turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', '~> 1.4'
+# Use Puma as the app server
+gem 'puma', '~> 5.0'
+# Use SCSS for stylesheets
+gem 'sass-rails', '>= 6'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 5.0'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 
-gem 'devise'
-gem 'cancancan'
-gem 'simple_form'
-gem 'slim-rails'
-gem 'rails_admin'
-gem 'will_paginate'
-gem 'normalize-rails'
-gem 'bourbon'
-gem 'font-awesome-rails'
-gem 'github-markdown'
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
 
-# if on Windows
-if RUBY_PLATFORM =~ /i386-mingw32/
-  gem 'thin'
-  gem 'tzinfo-data'
-# else on UNIX-like
-else
-  gem 'unicorn-rails'
-end
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'capybara-screenshot'
-  gem 'shoulda-matchers', require: false
-  gem 'shoulda-callback-matchers', require: false
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'fuubar'
-  gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  gem 'poltergeist'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
-  gem 'guard'
-  gem 'guard-rspec'
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 4.1.0'
+  # Display performance information such as SQL time and flame graphs for each request in your browser.
+  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'listen', '~> 3.3'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-commands-rspec'
 end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 3.26'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

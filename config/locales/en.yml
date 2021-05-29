@@ -16,38 +16,18 @@
 #
 # This would use the information in config/locales/es.yml.
 #
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  gannon:
-    meta:
-      description: 'An information technology blog featuring articles on C#, Ruby, PHP, JavaScript, and more!'
-      linkedin: 'gannonmcgibbon'
-      github: 'gmcgibbon'
-      email: 'gannon.mcgibbon@gmail.com'
-    record:
-      create:
-        success: '%{record} was successfully created!'
-        fail:    '%{record} could not be created!'
-      update:
-        success: '%{record} was successfully updated!'
-        fail:    '%{record} could not be updated!'
-      destroy:
-        success: '%{record} was successfully deleted!'
-        fail:    '%{record} could not be deleted!'
-    slug:
-      validation:
-        format: 'must consist of lowercase and hyphens only'
-        route:  'conflicts with existing route'
-    confirm:
-      delete: 'Are you sure?'
-    error:
-      http:
-        status404: 'Not found!'
-        status500: 'Internal server error!'
-  time:
-    formats:
-      date_only: '%B %d, %Y'
-      time_only: '%I:%M%p'
-      default: '%B %d, %Y at %I:%M%p'
+  hello: "Hello world"
