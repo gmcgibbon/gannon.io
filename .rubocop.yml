@@ -3,3 +3,5 @@ inherit_from:
 
 AllCops:
   TargetRubyVersion: 3.0.1
+  Exclude:
+    - bin/bundle

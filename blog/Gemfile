@@ -1,10 +1,12 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Specify your gem's dependencies in blog.gemspec.
 gemspec
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'listen', '~> 3.3'
-gem 'bootsnap', '>= 1.4.4', require: false
-gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+gem "bootsnap", ">= 1.4.4", require: false
+gem "byebug", platforms: %i(mri mingw x64_mingw)
+gem "listen", "~> 3.3"
