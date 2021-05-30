@@ -9,7 +9,9 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
-    self.file_fixture_path = "#{Rails.root}/test/fixtures/files"
+    self.file_fixture_path = "#{Blog::Engine.root}/test/fixtures/files"
+
+    Blog.article_path = Pathname("#{file_fixture_path}/articles")
 
     private
 
