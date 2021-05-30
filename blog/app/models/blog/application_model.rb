@@ -12,9 +12,14 @@ module Blog
 
       def attributes(*keys)
         attr_accessor(*keys)
+
         self._attribute_definitions ||= Set.new
         self._attribute_definitions.merge(keys)
       end
+    end
+
+    def persisted?
+      true
     end
 
     def ==(other)

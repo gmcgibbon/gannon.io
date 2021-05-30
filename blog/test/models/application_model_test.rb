@@ -11,6 +11,7 @@ module Blog
     test "after_initialize" do
       model_class = new_model_class do
         attr_accessor(:initialized)
+
         after_initialize { self.initialized = true }
       end
 
@@ -37,6 +38,12 @@ module Blog
       model.status = "active"
 
       assert_equal("active", model.status)
+    end
+
+    test "#persisted?" do
+      model = new_model_class.new
+
+      assert_predicate(model, :persisted?)
     end
 
     test "#attributes" do
