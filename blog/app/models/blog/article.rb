@@ -8,20 +8,25 @@ module Blog
 
     class << self
       def all
-        @records ||= Blog.article_path.glob("*").map { |file| Article.new(file: file) }
+        @all ||= Blog.article_path.glob("*").map { |file| Article.new(file: file) }
       end
 
       def find(id)
         all.find { |record| record.id == id } || raise(
           ApplicationModel::NotFoundError,
-          "Couldn't find #{self} with id of \"#{id}\".",
+          "Couldn't find #{self} with id of \"#{id}\"."
         )
       end
     end
 
+    def render_in(context)
+      _, *extensions = yaml_document.name.split(".")
+      DocumentRenderer.render(content, extensions: extensions.reverse, context: context)
+    end
+
     private
 
-    def load_file
+    def load_file # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
       return unless file
 
       self.id     ||= yaml_document.name.split(".").first
