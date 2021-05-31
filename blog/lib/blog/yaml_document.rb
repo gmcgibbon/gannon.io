@@ -24,7 +24,7 @@ module Blog
 
     def read(io)
       content_buffer = +""
-      
+
       while (line = io.readline)
         if line == YAML_SECTION
           read_yaml(io)
@@ -40,7 +40,7 @@ module Blog
 
     def read_yaml(io)
       yaml_buffer = +""
-      
+
       until (line = io.readline) == YAML_SECTION
         yaml_buffer << line
       end

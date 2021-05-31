@@ -4,7 +4,7 @@ require "test_helper"
 
 module Blog
   class YamlDocumentTest < ActiveSupport::TestCase
-    class FakeFile < Struct.new(:string)
+    FakeFile = Struct.new(:string) do
       def open
         yield(StringIO.new(string)) if block_given?
       end

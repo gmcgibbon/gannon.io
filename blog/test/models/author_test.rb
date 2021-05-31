@@ -4,7 +4,6 @@ require "test_helper"
 
 module Blog
   class AuthorTest < ActiveSupport::TestCase
-
     test "attributes" do
       assert_attributes(Author.new, :id, :name, :avatar, :url)
     end

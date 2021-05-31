@@ -29,7 +29,7 @@ module Blog
 
     test ".render renders md" do
       document = DocumentRenderer.render(
-        md_document, extensions: %w(md), context: nil
+        md_document, extensions: %w(md), context: nil,
       )
 
       assert_equal(<<~HTML, document)
@@ -53,21 +53,21 @@ module Blog
       )
 
       assert_equal(<<~HTML, document)
-      <h1 id="heading">Heading</h1>
+        <h1 id="heading">Heading</h1>
 
-      <p>Grocery list</p>
+        <p>Grocery list</p>
 
-      <ul>
-        <li>
-          <p>apples</p>
-        </li>
-        <li>
-          <p>oranges</p>
-        </li>
-        <li>
-          <p>bananas</p>
-        </li>
-      </ul>
+        <ul>
+          <li>
+            <p>apples</p>
+          </li>
+          <li>
+            <p>oranges</p>
+          </li>
+          <li>
+            <p>bananas</p>
+          </li>
+        </ul>
 
       HTML
     end

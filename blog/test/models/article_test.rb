@@ -12,9 +12,9 @@ module Blog
       assert_equal(
         [
           Article.new(file: file_fixture("articles/test-1-plain.md.erb")),
-          Article.new(file: file_fixture("articles/test-2-erb.md.erb")),
+          Article.new(file: file_fixture("articles/test-2-erb.md.erb"))
         ],
-        Article.all
+        Article.all,
       )
     end
 

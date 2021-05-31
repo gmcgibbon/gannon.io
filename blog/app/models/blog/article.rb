@@ -14,7 +14,7 @@ module Blog
       def find(id)
         all.find { |record| record.id == id } || raise(
           ApplicationModel::NotFoundError,
-          "Couldn't find #{self} with id of \"#{id}\"."
+          "Couldn't find #{self} with id of \"#{id}\".",
         )
       end
     end

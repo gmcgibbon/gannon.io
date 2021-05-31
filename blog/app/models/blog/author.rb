@@ -7,15 +7,15 @@ module Blog
         name: "Gannon McGibbon",
         avatar: "/authors/avatars/me.jpg",
         url: "https://gannon.io/about",
-      }
-    }
+      },
+    }.freeze
     private_constant(:RECORDS)
 
     attributes(:id, :name, :avatar, :url)
 
     class << self
       def all
-        @records ||= RECORDS.map { |id, attributes| Author.new(id: id.to_s, **attributes) }
+        @all ||= RECORDS.map { |id, attributes| Author.new(id: id.to_s, **attributes) }
       end
 
       def find(id)
