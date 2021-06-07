@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require "active_model"
 require "yaml"
+require "active_model"
 require "kramdown"
+require "view_component"
 
 require "blog/version"
 require "blog/engine"

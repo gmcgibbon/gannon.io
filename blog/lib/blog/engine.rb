@@ -8,7 +8,7 @@ module Blog
 
     initializer("blog.set_configs") do |app|
       config.after_initialize do
-        Blog.article_path = app.config.blog.article_path || Blog::Engine.root.join("app/views/articles")
+        Blog.article_path = app.config.blog.article_path || Blog::Engine.root.join("app/views/blog/articles/markdown")
       end
     end
   end
