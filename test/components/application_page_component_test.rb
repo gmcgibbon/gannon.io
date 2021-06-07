@@ -2,7 +2,10 @@ require "test_helper"
 
 class ApplicationPageComponentTest < ViewComponent::TestCase
   test "renders page" do
-    render_inline(ApplicationPageComponent.new { "Hello world" })
+    render_inline(ApplicationPageComponent.new) do |page|
+      page.title { "Test" }
+      page.body { "Hello world" }
+    end
 
     assert_selector("html") do
       assert_selector("body") do
