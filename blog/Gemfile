@@ -10,3 +10,7 @@ gemspec
 gem "bootsnap", ">= 1.4.4", require: false
 gem "byebug", platforms: %i(mri mingw x64_mingw)
 gem "listen", "~> 3.3"
+
+# View component rendering and testing
+gem "capybara"
+gem "webpacker"
