@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root(to: redirect("/blog/articles"))
+  root(to: redirect("/blog"))
 
   mount(Blog::Engine, at: :blog)
+
+  resources(:talks, only: %i(index))
+  resource(:about, only: %i(show))
 end
