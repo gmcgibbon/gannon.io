@@ -30,6 +30,7 @@ module Blog
       article = Article.new(file: file_fixture("articles/test-1-plain.md.erb"))
 
       assert_equal("test-1-plain", article.id)
+      assert_equal(["erb", "md"], article.extensions)
       assert_equal("Plain Test", article.title)
       assert_equal(Author.find("gannon"), article.author)
       assert_equal(<<~CONTENT, article.content)
@@ -55,7 +56,25 @@ module Blog
       HTML
     end
 
+    test "#render_in reloads file when changed" do
+      today = Date.today.strftime("%A")
+
+      context = time_context(day: today)
+
+      article = Article.find("test-2-erb")
+
+      compiled_content = article.render_in(context)
+
+      article.file = file_fixture("articles/test-1-plain.md.erb")
+
+      assert_not_equal(compiled_content, article.render_in(context))
+    end
+
     private
+
+    def plain_context
+      Struct.new.new
+    end
 
     def time_context(day:)
       Struct.new(:day).new(day)

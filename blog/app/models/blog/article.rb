@@ -2,7 +2,7 @@
 
 module Blog
   class Article < ApplicationModel
-    attributes(:file, :id, :title, :author, :content, :created_at, :updated_at)
+    attributes(:file, :id, :extensions, :title, :author, :content, :created_at, :updated_at)
 
     after_initialize(:load_file)
 
@@ -20,25 +20,32 @@ module Blog
     end
 
     def render_in(context)
-      _, *extensions = yaml_document.name.split(".")
-      DocumentRenderer.render(content, extensions: extensions.reverse, context: context)
+      load_file
+
+      DocumentRenderer.render(content, extensions: extensions, context: context)
     end
 
     private
 
-    def load_file # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
-      return unless file
+    attr_accessor(:mtime)
 
-      self.id     ||= yaml_document.name.split(".").first
-      self.title  ||= yaml_document.yaml.fetch(:title)
-      self.author ||= Author.find(yaml_document.yaml.fetch(:author))
-      self.content    ||= yaml_document.content
-      self.created_at ||= yaml_document.yaml.fetch(:created_at)
-      self.updated_at ||= yaml_document.yaml.fetch(:updated_at)
+    def file_changed?
+      file && file.mtime != mtime
     end
 
-    def yaml_document
-      @yaml_document ||= YamlDocument.read(file, name: file.basename)
+    def load_file # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+      return unless file_changed?
+
+      YamlDocument.read(file).tap do |document|
+        self.mtime      = file.mtime
+        self.id         = document.name
+        self.extensions = document.extensions
+        self.title      = document.yaml.fetch(:title)
+        self.author     = Author.find(document.yaml.fetch(:author))
+        self.content    = document.content
+        self.created_at = document.yaml.fetch(:created_at)
+        self.updated_at = document.yaml.fetch(:updated_at)
+      end
     end
   end
 end

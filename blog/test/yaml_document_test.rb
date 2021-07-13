@@ -8,6 +8,10 @@ module Blog
       def open
         yield(StringIO.new(string)) if block_given?
       end
+
+      def basename
+        "file.md.erb"
+      end
     end
 
     test ".read parses yaml header" do
@@ -46,15 +50,14 @@ module Blog
     test ".read without name default to blank string" do
       document = YamlDocument.read(blank_file)
 
-      assert_equal("", document.name)
       assert_equal("", document.content)
     end
 
-    test ".read with name" do
-      document = YamlDocument.read(blank_file, name: "some-identifier")
+    test ".read parses basename" do
+      document = YamlDocument.read(blank_file)
 
-      assert_equal("some-identifier", document.name)
-      assert_equal("", document.content)
+      assert_equal("file", document.name)
+      assert_equal(["erb", "md"], document.extensions)
     end
 
     private

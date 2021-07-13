@@ -5,18 +5,20 @@ module Blog
     YAML_SECTION = "---\n"
     private_constant(:YAML_SECTION)
 
-    attr_reader(:name, :yaml, :content)
+    attr_reader(:name, :extensions, :yaml, :content)
 
-    def self.read(file, name: nil)
+    def self.read(file)
+      name, *extensions = file.basename.to_s.split(".")
       file.open do |io|
-        new(name: name.to_s, io: io)
+        new(name: name, extensions: extensions.reverse, io: io)
       end
     end
 
     private
 
-    def initialize(name:, io:)
+    def initialize(name:, extensions:, io:)
       @name = name
+      @extensions = extensions
       @yaml = {}
       @content = ""
       read(io) unless io.eof?
