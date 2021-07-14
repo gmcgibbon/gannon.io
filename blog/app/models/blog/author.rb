@@ -6,7 +6,7 @@ module Blog
       gannon: {
         name: "Gannon McGibbon",
         avatar: "/authors/avatars/me.jpg",
-        url: "https://gannon.io/about",
+        url: "https://gannon.io",
       },
     }.freeze
     private_constant(:RECORDS)
