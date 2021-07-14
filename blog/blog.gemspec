@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "kramdown", ">= 2.3.1"
   spec.add_dependency "view_component", ">= 2.33.0"
   spec.add_dependency "rails", ">= 6.1.3"
+  spec.add_dependency "sass-rails", ">= 6"
 end
