@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   mount(Blog::Engine, at: :blog)
 
   resources(:talks, only: %i(index))
-  resource(:about, only: %i(show))
 end
