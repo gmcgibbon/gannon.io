@@ -57,7 +57,7 @@ module Blog
       document = YamlDocument.read(blank_file)
 
       assert_equal("file", document.name)
-      assert_equal(["erb", "md"], document.extensions)
+      assert_equal(%w(erb md), document.extensions)
     end
 
     private

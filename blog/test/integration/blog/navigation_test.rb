@@ -5,7 +5,7 @@ require "test_helper"
 module Blog
   class NavigationTest < ActionDispatch::IntegrationTest
     include Engine.routes.url_helpers
-    
+
     test "redirects to article index" do
       get("/blog")
 

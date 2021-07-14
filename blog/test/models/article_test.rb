@@ -30,7 +30,7 @@ module Blog
       article = Article.new(file: file_fixture("articles/test-1-plain.md.erb"))
 
       assert_equal("test-1-plain", article.id)
-      assert_equal(["erb", "md"], article.extensions)
+      assert_equal(%w(erb md), article.extensions)
       assert_equal("Plain Test", article.title)
       assert_equal(Author.find("gannon"), article.author)
       assert_equal(<<~CONTENT, article.content)

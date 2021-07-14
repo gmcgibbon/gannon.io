@@ -33,7 +33,7 @@ module Blog
       file && file.mtime != mtime
     end
 
-    def load_file # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+    def load_file # rubocop:disable Metrics/AbcSize
       return unless file_changed?
 
       YamlDocument.read(file).tap do |document|
