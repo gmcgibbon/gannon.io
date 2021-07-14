@@ -9,6 +9,7 @@ module Blog
     test "index lists articles" do
       get("/blog/articles")
 
+      assert_select("title", text: "Blog 📝")
       Article.all.each do |article|
         assert_select("li", article.title)
       end
@@ -19,6 +20,7 @@ module Blog
 
       get("/blog/articles/#{article.id}")
 
+      assert_select("title", text: "Plain Test")
       assert_select("h1", "Hello world")
       assert_select("p", "This is an article.")
     end

@@ -1,5 +1,3 @@
-<% content_for(:title, "Talks") %>
-
 <ul>
   <% @talks.each do |talk| %>
     <li><%= link_to(talk.title, talk.url) %></li>
