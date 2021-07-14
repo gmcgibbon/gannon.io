@@ -3,9 +3,6 @@
 class Talk
   include ActiveModel::Model
 
-  class NotFoundError < StandardError
-  end
-
   RECORDS = {
     railsconf2021: {
       title: "Profiling to make your Rails app faster",
