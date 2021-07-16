@@ -1,5 +1,11 @@
-<header>
-  <%= link_to("Home", main_app.root_path) %>
-  <%= link_to("Blog", main_app.blog_path) %>
-  <%= link_to("Talks", main_app.talks_path) %>
+<header class="flex justify-between m-1 pb-6">
+  <div class="flex justify-start">
+    <h1><%= content_for(:title) %></h1>
+  </div>
+  <nav class="flex justify-end items-center space-x-5">
+    <%= link_to("🏠", main_app.root_path) %>
+    <%= link_to("📝", main_app.blog_path) %>
+    <%= link_to("📣", main_app.talks_path) %>
+    <%= link_to("🌙", "#", id: "dark-toggle") %>
+  </nav>
 </header>

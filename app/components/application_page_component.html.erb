@@ -10,10 +10,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render(HeaderComponent.new) %>
-    <section>
-      <%= body %>
-    </section>
-    <%= render(FooterComponent.new) %>
+    <div id="app" class="p-6 container mx-auto max-w-4xl">
+      <%= render(HeaderComponent.new) %>
+      <section class="m-1">
+        <%= body %>
+      </section>
+      <%= render(FooterComponent.new) %>
+    </div>
   </body>
 </html>
