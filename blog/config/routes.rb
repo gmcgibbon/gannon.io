@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Blog::Engine.routes.draw do
-  root(to: redirect("/blog/articles"))
+  root(to: "articles#index", as: :articles)
 
-  resources(:articles, only: %i(index show))
+  resources(:articles, only: %i(show))
 end

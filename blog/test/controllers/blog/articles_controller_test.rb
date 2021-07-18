@@ -7,7 +7,7 @@ module Blog
     include Engine.routes.url_helpers
 
     test "index lists articles" do
-      get("/blog/articles")
+      get("/blog")
 
       assert_select("title", text: "Gannon's Blog")
       assert_select("h1", text: "Gannon's Blog")
