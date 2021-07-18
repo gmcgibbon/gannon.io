@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   mount(Blog::Engine, at: :blog)
 
   resources(:talks, only: %i(index))
+
+  direct(:github) do
+    "https://github.com/gmcgibbon"
+  end
 end

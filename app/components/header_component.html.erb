@@ -12,6 +12,9 @@
     <%= link_to(main_app.talks_path) do %>
       <%= render("teeny/play_circle_icon") %>
     <% end %>
+    <%= link_to(main_app.github_url) do %>
+      <%= render("teeny/git_fork_icon") %>
+    <% end %>
     <%= link_to("#", id: "dark-toggle") do %>
       <%= render("teeny/moon_icon") %>
     <% end %>
