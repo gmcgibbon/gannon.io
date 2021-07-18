@@ -2,28 +2,48 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer utilities {
+  .fill-white {
+    fill: --white;
+  }
+  
+  @variants dark {
+    .fill-black {
+      fill: --black;
+    }
+  }
+}
+
 body {
   @apply bg-white dark:bg-black;
 }
 
 #app {
-  ::selection, a:hover {
+  ::selection, a:hover, a:hover * {
     @apply text-white bg-black dark:text-black dark:bg-white;
   }
 
   * {
-    @apply font-mono text-xl text-black dark:text-white pb-1;
+    @apply font-mono text-xl text-black dark:text-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply pb-3;
-  }
-
-  h1 {
-    @apply text-3xl text-gray-900 dark:text-gray-300;
+  p {
+    @apply mb-4;
   }
 
   h2, h3, h4, h5, h6 {
-    @apply text-2xl;
+    @apply mb-6;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2, h3, h4, h5, h6 {
+    @apply text-3xl;
+  }
+
+  nav svg {
+    @apply w-8 h-8;
   }
 }

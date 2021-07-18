@@ -1,11 +1,19 @@
-<header class="flex justify-between m-1 pb-6">
+<header class="flex justify-between m-1 pb-5 pt-1">
   <div class="flex justify-start">
     <h1><%= content_for(:title) %></h1>
   </div>
-  <nav class="flex justify-end items-center space-x-5">
-    <%= link_to("🏠", main_app.root_path) %>
-    <%= link_to("📝", main_app.blog_path) %>
-    <%= link_to("📣", main_app.talks_path) %>
-    <%= link_to("🌙", "#", id: "dark-toggle") %>
+  <nav class="flex justify-end items-center space-x-6">
+    <%= link_to(main_app.root_path) do %>
+      <%= render("teeny/home_icon") %>
+    <% end %>
+    <%= link_to(main_app.blog_path) do %>
+      <%= render("teeny/book_icon") %>
+    <% end %>
+    <%= link_to(main_app.talks_path) do %>
+      <%= render("teeny/play_circle_icon") %>
+    <% end %>
+    <%= link_to("#", id: "dark-toggle") do %>
+      <%= render("teeny/moon_icon") %>
+    <% end %>
   </nav>
 </header>
