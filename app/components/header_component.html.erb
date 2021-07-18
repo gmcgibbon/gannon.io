@@ -3,16 +3,16 @@
     <h1><%= content_for(:title) %></h1>
   </div>
   <nav class="flex justify-end items-center space-x-6">
-    <%= link_to(main_app.root_path) do %>
+    <%= link_to(main_app.root_path, id: "home") do %>
       <%= render("teeny/home_icon") %>
     <% end %>
-    <%= link_to(main_app.blog_path) do %>
+    <%= link_to(main_app.blog_path, id: "blog") do %>
       <%= render("teeny/book_icon") %>
     <% end %>
-    <%= link_to(main_app.talks_path) do %>
+    <%= link_to(main_app.talks_path, id: "talks") do %>
       <%= render("teeny/play_circle_icon") %>
     <% end %>
-    <%= link_to(main_app.github_url) do %>
+    <%= link_to(main_app.github_url, id: "github") do %>
       <%= render("teeny/git_fork_icon") %>
     <% end %>
     <%= link_to("#", id: "dark-toggle") do %>

@@ -7,14 +7,20 @@ class HeaderComponentTest < ViewComponent::TestCase
     render_inline(HeaderComponent.new)
 
     assert_selector("header") do
-      assert_selector("a", text: "Home") do |element|
+      assert_selector("#home") do |element|
         assert_equal("/", element["href"])
       end
-      assert_selector("a", text: "Blog") do |element|
+      assert_selector("#blog") do |element|
         assert_equal("/blog", element["href"])
       end
-      assert_selector("a", text: "Talks") do |element|
+      assert_selector("#talks") do |element|
         assert_equal("/talks", element["href"])
+      end
+      assert_selector("#github") do |element|
+        assert_equal("https://github.com/gmcgibbon", element["href"])
+      end
+      assert_selector("#dark-toggle") do |element|
+        assert_equal("#", element["href"])
       end
     end
   end
