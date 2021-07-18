@@ -22,8 +22,9 @@ module Blog
       get("/blog/articles/#{article.id}")
 
       assert_select("title", text: "Plain Test")
-      assert_select("h1", "Hello world")
-      assert_select("p", "This is an article.")
+      assert_select("h1", text: "Plain Test")
+      assert_select("h2", text: "Hello world")
+      assert_select("p", text: "This is an article.")
     end
   end
 end
