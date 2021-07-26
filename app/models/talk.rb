@@ -4,7 +4,7 @@ class Talk
   include ActiveModel::Model
 
   RECORDS = {
-    railsconf2021: {
+    railsconf_2021: {
       title: "Profiling to make your Rails app faster",
       description: <<~DESCRIPTION.squish,
         As you grow your Rails app, is it starting to slow down?
@@ -22,5 +22,9 @@ class Talk
     def all
       @all ||= RECORDS.map { |id, attributes| Talk.new(id: id.to_s, **attributes) }
     end
+  end
+
+  def conference
+    id.titleize
   end
 end

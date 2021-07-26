@@ -9,7 +9,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_select("title", text: "Gannon's Talks")
     assert_select("h1", text: "Gannon's Talks")
     Talk.all.each do |talk|
-      assert_select("li", talk.title)
+      assert_select("h2", text: "#{talk.title} (#{talk.conference})")
     end
   end
 end

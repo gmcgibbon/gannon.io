@@ -1,5 +1,10 @@
 <ul>
   <% @talks.each do |talk| %>
-    <li><%= link_to(talk.title, talk.url) %></li>
+    <li>
+      <%= link_to(talk.url) do %>
+        <h2><%= talk.title %> (<%= talk.conference %>)</h2>
+        <p><%= talk.description %></p>
+      <% end %>
+    </li>
   <% end %>
 <ul>
