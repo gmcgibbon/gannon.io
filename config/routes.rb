@@ -11,4 +11,24 @@ Rails.application.routes.draw do
   direct(:github) do
     "https://github.com/gmcgibbon"
   end
+
+  direct(:github_repo) do |repo|
+    "https://github.com/gmcgibbon/#{repo}"
+  end
+
+  direct(:shopify) do
+    "https://www.shopify.ca/"
+  end
+
+  direct(:rrc) do
+    "https://www.rrc.ca/"
+  end
+
+  direct(:rrc_bit) do
+    "https://www.rrc.ca/informationsystems/bit/"
+  end
+
+  direct(:rails) do
+    "https://rubyonrails.org/"
+  end
 end
