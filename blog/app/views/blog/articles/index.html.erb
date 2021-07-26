@@ -1,3 +1,5 @@
 <% content_for(:title, "Gannon's Blog") %>
 
+<p>Here's some articles I've written:</p>
+
 <%= render(Blog::ArticleListComponent.new(articles: @articles)) %>

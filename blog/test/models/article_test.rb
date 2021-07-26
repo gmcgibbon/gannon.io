@@ -34,7 +34,7 @@ module Blog
       assert_equal("Plain Test", article.title)
       assert_equal(Author.find("gannon"), article.author)
       assert_equal(<<~CONTENT, article.content)
-        # Hello world
+        ## Hello world
 
         This is an article.
       CONTENT
@@ -50,7 +50,7 @@ module Blog
       compiled_content = Article.find("test-2-erb").render_in(context)
 
       assert_equal(<<~HTML, compiled_content)
-        <h1 id="hello-world">Hello world</h1>
+        <h2 id="hello-world">Hello world</h2>
 
         <p>This is an article. Today is #{today}.</p>
       HTML

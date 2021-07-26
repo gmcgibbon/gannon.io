@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Gannon's Blog</title>
+  <link rel="self" href="<%= main_app.blog_url(format: :xml) %>" />
+  <updated><%= Blog::Article.all.map(&:updated_at).max.rfc3339 %></updated>
+  <author>
+    <name>Gannon McGibbon</name>
+  </author>
+  <id><%= main_app.root_url %></id>
+
+  <% @articles.each do |article| %>
+    <entry>
+      <title><%= article.title %></title>
+      <link href="<%= article_url(article) %>" />
+      <id><%= article_url(article) %></id>
+      <updated><%= article.updated_at.rfc3339 %></updated>
+    </entry>
+  <% end %>
+</feed>

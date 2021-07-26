@@ -11,7 +11,7 @@ module Blog
 
       assert_selector("ul") do
         articles.each do |article|
-          assert_selector("li", text: article.title)
+          assert_selector("li", text: "#{article.title} (#{article.created_at.to_s(:long)})")
         end
       end
     end
