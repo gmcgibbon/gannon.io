@@ -5,41 +5,35 @@ require "test_helper"
 module Blog
   class ArticleTest < ActiveSupport::TestCase
     test "attributes" do
-      assert_attributes(Article.new, :file, :id, :title, :author, :content, :created_at, :updated_at)
-    end
-
-    test ".all loads all articles" do
-      assert_equal(
-        [
-          Article.new(file: file_fixture("articles/test-1-plain.md.erb")),
-          Article.new(file: file_fixture("articles/test-2-erb.md.erb"))
-        ],
-        Article.all,
+      assert_attributes(
+        Article.first,
+        id: String,
+        title: String,
+        author_id: String,
+        content: String,
+        created_at: Date,
+        updated_at: Date,
       )
     end
 
-    test ".all is memoized" do
-      assert_same(Article.all, Article.all)
+    test ".backend" do
+      assert_equal(ArticleContext::Backend, Article.backend)
     end
 
-    test ".find finds by id" do
-      assert_instance_of(Article, Article.find("test-1-plain"))
+    test ".last_updated_at" do
+      assert_equal(Article.find("test-1-plain").updated_at, Article.last_updated_at)
     end
 
-    test "reads yaml document file" do
-      article = Article.new(file: file_fixture("articles/test-1-plain.md.erb"))
+    test ".file_changed?" do
+      assert_not_predicate(Article, :file_changed?)
 
-      assert_equal("test-1-plain", article.id)
-      assert_equal(%w(erb md), article.extensions)
-      assert_equal("Plain Test", article.title)
-      assert_equal(Author.find("gannon"), article.author)
-      assert_equal(<<~CONTENT, article.content)
-        ## Hello world
+      FileUtils.touch(file_fixture("blog/articles/test-1-plain.md.erb"))
 
-        This is an article.
-      CONTENT
-      assert_equal(Date.parse("2021-05-30"), article.created_at)
-      assert_equal(Date.parse("2021-05-30"), article.updated_at)
+      assert_predicate(Article, :file_changed?)
+    end
+
+    test "#author" do
+      assert_instance_of(Author, Article.find("test-1-plain").author)
     end
 
     test "#render_in" do
@@ -54,20 +48,6 @@ module Blog
 
         <p>This is an article. Today is #{today}.</p>
       HTML
-    end
-
-    test "#render_in reloads file when changed" do
-      today = Date.today.strftime("%A")
-
-      context = time_context(day: today)
-
-      article = Article.find("test-2-erb")
-
-      compiled_content = article.render_in(context)
-
-      article.file = file_fixture("articles/test-1-plain.md.erb")
-
-      assert_not_equal(compiled_content, article.render_in(context))
     end
 
     private

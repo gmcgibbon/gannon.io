@@ -5,11 +5,5 @@ module Blog
     isolate_namespace(Blog)
 
     config.blog = ActiveSupport::OrderedOptions.new
-
-    initializer("blog.set_configs") do |app|
-      config.after_initialize do
-        Blog.article_path = app.config.blog.article_path || Blog::Engine.root.join("app/views/blog/articles/source")
-      end
-    end
   end
 end

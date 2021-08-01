@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Gannon's Blog</title>
   <link rel="self" href="<%= main_app.blog_url(format: :xml) %>" />
-  <updated><%= Blog::Article.all.map(&:updated_at).max.rfc3339 %></updated>
+  <updated><%= Blog::Article.last_updated_at.rfc3339 %></updated>
   <author>
     <name>Gannon McGibbon</name>
   </author>

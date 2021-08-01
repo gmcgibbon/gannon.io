@@ -1,0 +1,7 @@
+- id: railsconf_2021
+  title: Profiling to make your Rails app faster
+  description: |
+    As you grow your Rails app, is it starting to slow down?
+    Let’s talk about how to identify slow code, speed it up, and verify positive change within your application.
+    In this talk, you’ll learn about rack-mini-profiler, benchmark/ips, and performance optimization best practices.
+  url: https://www.youtube.com/watch?v=AFpq1pDQagw

@@ -11,13 +11,14 @@ module ActiveSupport
 
     self.file_fixture_path = "#{Blog::Engine.root}/test/fixtures/files"
 
-    Blog.article_path = Pathname("#{file_fixture_path}/articles")
+    Blog::ApplicationRecord.base_path = Pathname.new(file_fixture_path)
 
     private
 
-    def assert_attributes(model, *attribute_keys)
-      attribute_keys.each do |attribute_key|
-        assert_operator(attribute_key, :in?, model.class._attribute_definitions)
+    def assert_attributes(model, **attribute_definitions)
+      attribute_definitions.each do |attribute_name, attribute_type|
+        assert_operator(model, :respond_to?, attribute_name)
+        assert_instance_of(attribute_type, model.public_send(attribute_name))
       end
     end
   end
