@@ -15,6 +15,7 @@ module Blog
           "extensions" => ["erb", "md"],
           "title"      => "Plain Test",
           "author_id"  => "some_author",
+          "url"        => nil,
           "content"    => <<~MARKDOWN,
             ## Hello world
             

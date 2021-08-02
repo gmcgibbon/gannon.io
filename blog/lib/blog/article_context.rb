@@ -10,6 +10,7 @@ module Blog
           "title" => yaml.fetch(:title),
           "author_id" => yaml.fetch(:author),
           "content" => content,
+          "url" => yaml.fetch(:url, nil),
           "created_at" => yaml.fetch(:created_at),
           "updated_at" => yaml.fetch(:updated_at),
         }

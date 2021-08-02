@@ -36,6 +36,10 @@ module Blog
       assert_instance_of(Author, Article.find("test-1-plain").author)
     end
 
+    test "#external?" do
+      assert_predicate(Article.find("test-3-external"), :external?)
+    end
+
     test "#render_in" do
       today = Date.today.strftime("%A")
 

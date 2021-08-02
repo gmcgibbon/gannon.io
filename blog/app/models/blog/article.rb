@@ -14,6 +14,10 @@ module Blog
       end
     end
 
+    def external?
+      url.present?
+    end
+
     def author
       Author.find(author_id)
     end
