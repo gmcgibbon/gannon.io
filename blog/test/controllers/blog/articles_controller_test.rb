@@ -38,5 +38,13 @@ module Blog
       assert_select("h2", text: "Hello world")
       assert_select("p", text: "This is an article.")
     end
+
+    test "show redirects to external article" do
+      article = Article.find("test-3-external")
+
+      get("/blog/articles/#{article.id}")
+
+      assert_redirected_to(article.url)
+    end
   end
 end

@@ -13,6 +13,8 @@ module Blog
 
     def show
       @article = Article.find(params[:id])
+
+      redirect_to(@article.url) if @article.external?
     end
   end
 end

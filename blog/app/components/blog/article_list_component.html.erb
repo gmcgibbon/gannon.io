@@ -1,7 +1,7 @@
 <ul>
   <% @articles.each do |article| %>
     <li>
-      <%= link_to_article(article) do %>
+      <%= link_to(article) do %>
         <h2><%= article.title %></h2>
         <br>
         <p><%= article.created_at.to_s(:long) %></p>
