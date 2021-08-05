@@ -48,7 +48,7 @@ module Blog
       compiled_content = Article.find("test-2-erb").render_in(context)
 
       assert_equal(<<~HTML, compiled_content)
-        <h2 id="hello-world">Hello world</h2>
+        <h2>Hello world</h2>
 
         <p>This is an article. Today is #{today}.</p>
       HTML

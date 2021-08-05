@@ -33,14 +33,14 @@ module Blog
       )
 
       assert_equal(<<~HTML, document)
-        <h1 id="heading">Heading</h1>
+        <h1>Heading</h1>
 
         <p>Grocery list</p>
 
         <ul>
-          <li>apples</li>
-          <li>oranges</li>
-          <li>bananas</li>
+        <li>apples</li>
+        <li>oranges</li>
+        <li>bananas</li>
         </ul>
       HTML
     end
@@ -53,22 +53,15 @@ module Blog
       )
 
       assert_equal(<<~HTML, document)
-        <h1 id="heading">Heading</h1>
+        <h1>Heading</h1>
 
         <p>Grocery list</p>
 
         <ul>
-          <li>
-            <p>apples</p>
-          </li>
-          <li>
-            <p>oranges</p>
-          </li>
-          <li>
-            <p>bananas</p>
-          </li>
+        <li><p>apples</p></li>
+        <li><p>oranges</p></li>
+        <li><p>bananas</p></li>
         </ul>
-
       HTML
     end
 

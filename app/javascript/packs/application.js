@@ -6,6 +6,8 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 
+import HighlightJS from "highlight.js";
+
 Rails.start()
 Turbolinks.start()
 
@@ -27,6 +29,8 @@ const setMode = (mode) => {
 }
 
 document.addEventListener("turbolinks:load", () => {
+  HighlightJS.highlightAll();
+
   document.documentElement.classList.add(getMode()); 
 
   document.querySelector("#dark-toggle").addEventListener("click", (event) => {

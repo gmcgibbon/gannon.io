@@ -2,7 +2,7 @@
 
 require "yaml"
 require "active_model"
-require "kramdown"
+require "redcarpet"
 require "view_component"
 require "frozen_record"
 

@@ -19,8 +19,13 @@ module Blog
       end
 
       def render_md(text, context:) # rubocop:disable Lint/UnusedMethodArgument
-        # TODO: Maybe find a safer way to escape here.
-        Kramdown::Document.new(text).to_html.html_safe
+        markdown_parser.render(text).html_safe
+      end
+
+      def markdown_parser
+        @markdown_parser ||= Redcarpet::Markdown.new(
+          Redcarpet::Render::HTML, fenced_code_blocks: true, tables: true,
+        )
       end
     end
   end
