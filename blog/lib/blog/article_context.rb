@@ -22,7 +22,7 @@ module Blog
         def filename(model_name)
           model_name.underscore.pluralize
         end
-      
+
         def load(file_path)
           Pathname.new(file_path).glob("*.md.erb").map do |file|
             Document.read(file).to_h

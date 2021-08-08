@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "redcarpet", ">= 3.5.1"
+  spec.add_dependency "frozen_record", ">= 0.22.2"
   spec.add_dependency "rails", ">= 6.1.3"
+  spec.add_dependency "redcarpet", ">= 3.5.1"
   spec.add_dependency "tailwindcss-rails", ">= 0.3.3"
   spec.add_dependency "view_component", ">= 2.33.0"
-  spec.add_dependency "frozen_record", ">= 0.22.2"
 end
