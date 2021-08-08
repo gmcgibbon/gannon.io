@@ -24,6 +24,10 @@ module Blog
       assert_equal(Article.find("test-1-plain").updated_at, Article.last_updated_at)
     end
 
+    test ".latest" do
+      assert_equal(Article.all.sort_by(&:created_at).reverse, Article.latest)
+    end
+
     test ".file_changed?" do
       assert_not_predicate(Article, :file_changed?)
 

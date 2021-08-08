@@ -3,7 +3,7 @@
 module Blog
   class ArticlesController < ApplicationController
     def index
-      @articles = Article.all
+      @articles = Article.latest
 
       respond_to do |format|
         format.html

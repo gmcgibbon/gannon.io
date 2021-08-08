@@ -5,6 +5,7 @@ module Blog
     self.backend = ArticleContext::Backend
 
     scope(:last_updated_at, -> { maximum(:updated_at) })
+    scope(:latest, -> { all.sort_by(&:created_at).reverse })
 
     class << self
       def file_changed?

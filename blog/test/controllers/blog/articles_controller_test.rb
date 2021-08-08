@@ -11,7 +11,7 @@ module Blog
 
       assert_select("title", text: "Gannon's Blog")
       assert_select("h1", text: "Gannon's Blog")
-      Article.all.each do |article|
+      Article.latest.each do |article|
         assert_select("li") do
           assert_select("h2", text: article.title)
           assert_select("p", text: article.created_at.to_s(:long))
@@ -23,7 +23,7 @@ module Blog
       get("/blog.xml")
 
       assert_select("title", text: "Gannon's Blog")
-      Article.all.each do |article|
+      Article.latest.each do |article|
         assert_select("entry title", article.title)
       end
     end
