@@ -11,6 +11,7 @@ module Blog
 
       assert_selector("article") do
         assert_selector("h2", text: "Hello world")
+        assert_selector("p", text: "May 30, 2021")
         assert_selector("p", text: "This is an article.")
       end
     end
