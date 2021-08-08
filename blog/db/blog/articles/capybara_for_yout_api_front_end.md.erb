@@ -1,0 +1,58 @@
+---
+title: Capybara for your API frontend
+author: gannon
+created_at: 2016-05-21
+updated_at: 2016-05-21
+---
+
+# The problem
+
+Recently, I was faced with the challenge of feature testing a [Rails-API](https://github.com/rails-api/rails-api)'s [AngularJS](https://github.com/angular/angular.js) front-end. 
+
+Immediately, I thought of using Angular's feature testing tool, [Protractor](https://github.com/angular/protractor). While Protractor is a completely valid solution, I found it to be less than convenient. I wanted something that integrated nicely into my existing Rails test suite.
+
+# Keeping your test suite DRY
+
+Protractor tests are written in JavaScript. I was already writing factories and tests for my API in Ruby. Committing to Protractor would mean rewriting every factory in JavaScript and maintaining a second test suite.
+
+Testing your code shouldn't be a pain. When your codebase grows to a certain point, tests are the best way to prove your app works. There had to be a better solution!
+
+# The solution
+
+After some research, I found that [Capybara](https://github.com/jnicklas/capybara) did exactly what I wanted. Capybara (like most e2e testing tools), can test any webpage regardless of its origin (localhost, on the web, etc.). Here's how:
+
+```ruby
+Capybara.javascript_driver = :poltergeist # or selenium
+
+Capybara.server_port = 3000        # API test server port
+Capybara.server_host = 'localhost' # API test server host
+Capybara.app_host    = 'http://localhost:4567' # Front-end location
+```
+
+Add the code snippet above to your `rails_helper.rb` and you're ready to start writing feature specs! 
+
+# Troubleshooting
+
+## Wait, where's all my data?
+
+Users of the `database_cleaner` gem may want to take note of this gotcha. If data created in your specs isn't being served to your app, you're likely using the `transaction` cleaning strategy for your feature specs. While wrapping your database calls in transactions is great for unit tests, your feature specs and test server manipulate the database with separate connections.
+
+Take a look at the `database_cleaner` README on GitHub for [a configuration that works](https://github.com/DatabaseCleaner/database_cleaner#rspec-with-capybara-example) with Capybara. Alternatively, there is also a [_hack_ for ActiveRecord](https://gist.github.com/josevalim/470808) that lets your share a single database connection between instances.
+
+## Capybara wont wait for my app!
+
+An unfortunate drawback to Capybara is its lack of awareness of asynchronous processes. This makes it incredibly difficult to effectively test apps that are dependent on asynchronous data. Fortunately, Capybara is flexible enough to fix this problem yourself (or with a gem or two).
+
+There are several workarounds for [jQuery](https://robots.thoughtbot.com/automatically-wait-for-ajax-with-capybara) and [Angular](https://github.com/wrozka/capybara-angular) that help with waiting on asynchronous data. Alternatively, you can use thread sleeps to pause test execution. Remember to use thread sleeps responsibly (ideally never).
+
+## My tests raise circular dependency errors
+
+This is probably the most interesting gotcha of the three mentioned. These dependency exceptions are raised when too many requests hit your test server at once. As you can imagine, this is a very common practice for API-oriented apps.
+
+Thoughtbot wrote [an article](https://robots.thoughtbot.com/how-to-fix-circular-dependency-errors-in-rails-integration-tests) talking about this issue in greater depth. Including the `Rack::Lock` middleware in your server's configuration fixes the problem. You can add `Rack::Lock` to your test environment with this line of code:
+
+```ruby
+# config/environments/test.rb
+
+config.allow_concurrency = false
+```

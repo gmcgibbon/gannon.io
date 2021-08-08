@@ -1,0 +1,78 @@
+---
+title: CI with Drone and Docker
+author: gannon
+created_at: 2015-08-04
+updated_at: 2015-08-04
+---
+
+### What is Drone?
+
+[Drone](https://github.com/drone/drone) is a flashy new [Continuous Integration (CI)](https://en.wikipedia.org/wiki/Continuous_integration) platform with a modern approach to environment management. Drone uses [Docker](https://github.com/docker/docker) to run isolated instances of application builds. While Drone is still relatively new to the CI scene, I think it shows a lot of potential.
+
+### Why use Drone?
+
+So, what exactly makes Drone different? There are a lot of [services out in the wild](https://en.wikipedia.org/wiki/Comparison_of_continuous_integration_software) that do what Drone does. I believe Drone's use of Docker and Open Source licensing makes it better than competing CI solutions. 
+
+Drone performs continuous integration within disposable Docker images. This segregates each test environment instead of attempting to build a project directly on the host server. This reduces quite a few potential headaches when dealing with projects that use different software stacks and configurations.
+
+While Drone has fair pricing options, its source code is open and available on GitHub. This means you can easily take Drone and run it on your own server (in fact, there's a [Digital Ocean Droplet](https://www.digitalocean.com/features/one-click-apps/drone/)). This makes setting up a CI solution for your private and public projects very simple.
+
+### How to setup Drone
+
+First and foremost, read the [install instructions](http://readme.drone.io/setup/overview/) and [documentation](http://docs.drone.io/). If you are using Digital Ocean (and even if you aren't), the [step by step guide](https://www.digitalocean.com/community/tutorials/how-to-use-the-drone-one-click-application-image) is an excellent reference. Once you've integrated with your source control provider, its time to setup Drone at the project level.
+
+### How to setup your projects
+
+Once you've logged into Drone's front end, find the `Repositories` section. This lists all git repositories from your source control provider. Click a repository and select `Activate Now` to allow Drone to test new commits. Now you've enabled Drone on a project, great! Now we can get to the fun part.
+
+### How to trigger builds
+
+Now that Drone knows your repository wants to be tested, you need to tell Drone *how* to run tests. This is accomplished by creating a `.drone.yml` file in the root of the repository. For those familiar with other CI solutions, Drone config files are similar to the ones used by [Travis](https://travis-ci.org/) or [Circle](https://circleci.com/).
+
+### The config file
+
+Here's an example config file for a Ruby on Rails project. Let's examine each YAML attribute to gain a better understanding of our configuration. For more information and examples, check out Drone's [user guide](http://readme.drone.io/usage/overview/) and [tutorials](http://readme.drone.io/tutorials/overview/).
+
+```yaml
+image: 'ruby'
+script:
+  - bundle install
+  - bundle exec rake db:create db:migrate
+  - bundle exec rspec
+notify:
+  email:
+    recipients: 
+      - [EMAIL HERE]
+    on_success: false
+    on_failure: true
+```
+
+#### Image
+
+The `image` attribute is used to specify what Docker image to use. The chosen image will serve as this repository's testing environment. The image string value should match Docker's **user/image:version** syntax with some caveats. If you are new to Docker, you should read the [getting started guide](https://docs.docker.com/userguide/dockerimages/) before going any further.
+
+#### Script
+
+The `script` attribute is used to specify the commands to use to test your build. Most Drone config files use a [YAML array](http://yaml.org/YAML_for_ruby.html#collections) to run multiple commands. Keep in mind that you can also run your test script from an external file as long as it exists within the repository. 
+
+#### Notify
+
+The `notify` attribute is where you specify your event hooks for build feedback. Instead of just emails, you can integrate notifications with Slack, Hipchat, Gitter, and others. Additionally, you can specify whether to notify on build start, success, and failure.
+
+#### Others
+
+Other attributes are available such as `services` and `publish`. For a full list of build configuration options, refer to [Drone's build readme](https://github.com/drone/drone/blob/v0.2.1/README.md) on GitHub.
+
+### A note on Custom Images
+
+Depending on the technical requirements of your project, you may find that Drone doesn't support your language or platform out of the box. Custom images may be used to fill in the support gaps of the [default Drone image library](https://github.com/drone/images). When building a custom Docker image with Drone, there are several gotchas you should know about:
+
+1. Drone [runs custom images differently](https://github.com/drone/drone/blob/678e4ddea76a47004cc30139f3c2467c049198b3/pkg/build/build.go#L376). Images that aren't prefixed with `bradrydzewski/` or `drone/` are ran as root (instead of ubuntu).
+2. When building a Dockerfile off of the official Drone images, ensure dependencies are available to the root user ([Here's an example for Ruby](https://github.com/BitSpaceDevelopment/images/tree/master/builder/ruby/ruby_2.2.2)).
+3. Because of Drone's overrides to pulling images, you will have to explicitly define library images (`library/ruby`, not `ruby`).
+
+Additionally, if you are wondering *where* to host Docker images, the [Docker Hub](https://hub.docker.com/account/signup/) is the default choice (you may be able to use something like [Tutum](https://www.tutum.co/) too). Drone overrides regular Docker behavior by [prioritizing Drone optimized Docker images](https://github.com/drone/drone/blob/90de72aacc9502d1fe454c00f9e7d18124b1705a/shared/build/images.go#L20). This way, you can use an image that is guaranteed to work properly with Drone with less complexity in the name. 
+
+### Your first build
+
+It looks like everything is ready to go! All that's left to do is commit and push your Drone configuration file. Navigate back to the repository you enabled on Drone's front end and you should see a box with information about your latest commit. Click the box to observe the live terminal instance that spins up your image and runs your test script. 

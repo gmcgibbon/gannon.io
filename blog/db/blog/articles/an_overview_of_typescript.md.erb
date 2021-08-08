@@ -1,0 +1,222 @@
+---
+title: An Overview of TypeScript
+author: gannon
+created_at: 2015-11-18
+updated_at: 2015-11-18
+---
+
+My [last post](<%= article_path("write_javascript_like_a_boss") %>) about JavaScript transpilers inspired me to start using [TypeScript](http://www.typescriptlang.org/). I decided the most practical way to learn more about TypeScript would be to write a simple game. After reading over Microsoft's excellent [documentation](http://www.typescriptlang.org/Handbook) I was ready to get to work.
+
+### The Integrated Development Environment (IDE)
+
+Normally the IDE you choose doesn't really matter (I am reminded of an [xkcd comic on the subject](https://xkcd.com/378/)). However, it is worth mentioning that [Visual Studio Code](https://code.visualstudio.com/) is the best free solution for TypeScript development (and is also [written in TypeScript](https://github.com/Microsoft/vscode)!). Being a .NET developer in the past life, I was impressed with the Intellisense and code snippet support.
+
+### The build process
+
+The first problem to tackle is build tasks (transpiling, testing, minifying, etc.). These days, it is much easier to automate these tasks as opposed to manually running a set of commands. I use [Gulp](http://gulpjs.com/) as my build tool although [other solutions](http://www.walkercoderanger.com/blog/2015/06/state-of-js-build-tools-2015/) are available. 
+
+Since writing the first iteration of my project, I have learned that TypeScript is typically transpiled with the use of `tsconfig.json` files. According to the [TypeScript wiki on GitHub](https://github.com/Microsoft/typescript/wiki/tsconfig.json), this JSON file serves as a project level configuration for source file mapping and compiler instructions. TypeScript config files can then be consumed by your IDE of choice (via native support or plugin).
+
+As you can see, there are many different ways to achieve source-to-source compiling. Gulp is still a valid choice for TypeScript as custom build tasks give far more flexibility than config files. Here is the `gulpfile.js` from my project:
+
+```javascript
+var gulp      = require('gulp'),
+    gutil     = require('gulp-util'),
+    concat    = require('gulp-concat'),
+    ts        = require('gulp-typescript'),
+    minifyJs  = require('gulp-uglify'),
+    path      = require('path'),
+    karma     = require('karma'),
+    rename    = require('gulp-rename'),
+    sh        = require('shelljs');
+
+var paths = {
+  src:  ['./src/**/*.+(ts|d.ts|tsx)'],
+  spec: ['./spec/support/**/*.+(ts|d.ts|tsx)', './spec/**/*Spec.+(ts|d.ts|tsx)']
+},  pkg = {
+  name: 'game'
+};
+
+gulp.task('default', ['ts', 'spec']);
+
+gulp.task('ts', function(done) {
+  gulp.src(paths.src)
+    .pipe(ts({ noImplicitAny: true }))
+    .on('error', function (err) {
+        gutil.log(err.stack);
+        this.emit('end');
+    })
+    .pipe(concat(pkg.name + '.js'))
+    .pipe(gulp.dest('./dist'))
+    .pipe(minifyJs(/*{ mangle: false }*/))
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('./dist'))
+    .on('end', done);
+});
+
+gulp.task('spec', function(done) {
+  gulp.src(paths.spec)
+    .pipe(ts({ noImplicitAny: true }))
+    .on('error', function (err) {
+        gutil.log(err.stack);
+        this.emit('end');
+    })
+    .pipe(concat('ts_spec.js'))
+    .pipe(gulp.dest('./spec/tmp'))
+    .on('end', function() {
+      new karma.Server({
+        configFile: path.resolve('./spec/karma.conf.js'),
+        singleRun: true
+      }, function() {
+        sh.rm('-rf', './spec/tmp');
+        done();
+      }).start();
+    });
+});
+
+gulp.task('watch', function() {
+  gulp.watch(paths.src, ['ts']);
+});
+```
+
+### The source code
+
+Don't let TypeScript's name fool you. It brings far more than just [strong typing](https://en.wikipedia.org/wiki/Strong_and_weak_typing) to JavaScript. TypeScript adds language constructs for classes, interfaces, enums, modules, and more. Let's take a look at a simple example.
+
+A Car class in TypeScript:
+
+```typescript
+module garage {
+    export module auto {
+        export abstract class Automobile {
+            private engine : part.Engine;
+            
+            constructor(engine : part.Engine) {
+                this.engine = engine;
+            }
+            public abstract move() : void;
+        }
+        export class Car extends Automobile {
+            public  brand  : Brand;
+            public  color  : String;
+            
+            constructor(config : ICarConfig) {
+                super(config.engine);
+                this.brand  = config.brand;
+                this.color  = config.color || 'Black';
+            }
+            
+            public move() : void {
+                alert(`${this.brand} is moving!`);
+            }
+            public hasColor() : boolean {
+                return 'color' in this;
+            }
+            public static with(brand : Brand) : Car {
+				
+                return new Car({ 
+                    engine: new part.Engine(), brand: brand 
+                });
+            }
+        }
+        export enum Brand {
+            Ford, Toyota, Saturn, Nissan // etc...
+        }
+        export interface ICarConfig {
+            brand  : Brand;
+            color? : String; // prop with ? = optional
+            engine : part.Engine;
+        }
+        export module part {
+            export class Engine { /* ... */ }
+        }
+    }
+}
+```
+
+The Car in JavaScript:
+
+```javascript
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var garage;
+(function (garage) {
+    var auto;
+    (function (auto) {
+        var Automobile = (function () {
+            function Automobile(engine) {
+                this.engine = engine;
+            }
+            return Automobile;
+        })();
+        auto.Automobile = Automobile;
+        var Car = (function (_super) {
+            __extends(Car, _super);
+            function Car(config) {
+                _super.call(this, config.engine);
+                this.brand = config.brand;
+                this.color = config.color || 'Black';
+            }
+            Car.prototype.move = function () {
+                alert(this.brand + " is moving!");
+            };
+            Car.prototype.hasColor = function () {
+                return 'color' in this;
+            };
+            Car.with = function (brand) {
+                return new Car({
+                    engine: new part.Engine(), brand: brand
+                });
+            };
+            return Car;
+        })(Automobile);
+        auto.Car = Car;
+        (function (Brand) {
+            Brand[Brand["Ford"] = 0] = "Ford";
+            Brand[Brand["Toyota"] = 1] = "Toyota";
+            Brand[Brand["Saturn"] = 2] = "Saturn";
+            Brand[Brand["Nissan"] = 3] = "Nissan"; // etc...
+        })(auto.Brand || (auto.Brand = {}));
+        var Brand = auto.Brand;
+        var part;
+        (function (part) {
+            var Engine = (function () {
+                function Engine() {
+                }
+                return Engine;
+            })();
+            part.Engine = Engine;
+        })(part = auto.part || (auto.part = {}));
+    })(auto = garage.auto || (garage.auto = {}));
+})(garage || (garage = {}));
+```
+
+The above code illustrates some of the features I used while building my library. Namespacing code with modules, interfacing constructor parameters, abstract classing, and string interpolation are useful tools for any TypeScript developer. Some other more advanced features include generic typing, mixins, and hybrid types.
+
+TypeScript feels like a Microsoft language (in a good way). The language is very reminiscent of [C#](https://msdn.microsoft.com/en-us/library/kx37x362.aspx), [Go](https://golang.org/), and of course JavaScript. It is also worth noting that TypeScript is very actively developed with [version 1.6](https://github.com/Microsoft/TypeScript/releases) released about a month ago.
+
+### Third party support
+
+A critical aspect of any transpiled language is its method of interacting with third party libraries. How can TypeScript compete with other JavaScript transpilers if its strong typing doesn't play nice with plain JavaScript code? It needs an efficient way to transcend the typing barrier it has built between itself and regular JavaScript.
+
+Thankfully, Microsoft has considered this pain point and included support for [definition files](http://www.typescriptlang.org/Handbook#writing-dts-files). Essentially, all you need to do is write commonly used method signatures of your library using definition syntax inside a `*.d.ts` file. [This repository](https://github.com/DefinitelyTyped/DefinitelyTyped) contains definition files for most widely used JavaScript libraries. Here's a portion of the [Jasmine defintion file](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/785c18f0c897c44ea7fa1a47f3bcb48110658520/jasmine/jasmine.d.ts):
+
+```typescript
+declare function describe(description: string, specDefinitions: () => void): void;
+declare function fdescribe(description: string, specDefinitions: () => void): void;
+declare function xdescribe(description: string, specDefinitions: () => void): void;
+
+declare function it(expectation: string, assertion?: () => void, timeout?: number): void;
+declare function it(expectation: string, assertion?: (done: () => void) => void, timeout?: number): void;
+declare function fit(expectation: string, assertion?: () => void, timeout?: number): void;
+declare function fit(expectation: string, assertion?: (done: () => void) => void, timeout?: number): void;
+declare function xit(expectation: string, assertion?: () => void, timeout?: number): void;
+declare function xit(expectation: string, assertion?: (done: () => void) => void, timeout?: number): void;
+```
+
+### Conclusion
+
+While TypeScript is currently one of the most popular ways to write JavaScript, I still prefer CoffeeScript. Even though TypeScript is a great language and arguably easier to understand, it feels overly restrictive and less organic. In my mind, I prefer the simplicity of CoffeeScript over strongly typed complexity in most cases.

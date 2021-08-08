@@ -1,0 +1,97 @@
+---
+title: Write JavaScript like a boss
+author: gannon
+created_at: 2015-10-04
+updated_at: 2015-10-04
+---
+
+### JavaScript, with less JavaScript
+
+The secret to writing effective JavaScript is to not write JavaScript. Most developers today use another language that [transpiles](https://en.wikipedia.org/wiki/Source-to-source_compiler) to JavaScript that allows you to write more code in less time. There are [many languages to choose from](https://github.com/jashkenas/coffeescript/wiki/list-of-languages-that-compile-to-JS), some more popular than others.
+
+### Options widely used today
+
+If you have ever used a modern web application framework with an [asset pipeline](http://coderberry.me/blog/2012/04/24/asset-pipeline-for-dummies/), you should be no stranger to transpiled languages. [CoffeeScript](http://coffeescript.org/), [TypeScript](http://www.typescriptlang.org/), and [ES6](https://github.com/lukehoban/es6features) are three popular choices used in place of plain old JavaScript. Reasons as to why you would use one over the other often boils down to programmer preference and project.
+
+### Why I use CoffeeScript
+
+[CoffeeScript](http://coffeescript.org/) can be described as JavaScript for Ruby and Python developers. It brings several familiar features to JavaScript like splats, if and unless conditionals, semicolonless code (without resorting to [ASI](http://stackoverflow.com/questions/7651231/what-does-asi-mean)), and more. CoffeeScript also borrows from Python with its use of indentation.
+
+Let's look at CoffeeScript in action. Here is an identical Widget in both CoffeeScript and JavaScript:
+```coffeescript
+# My super rad widget class
+class Widget
+  @MFG: 'WidgetCo'
+  
+  constructor: (@name, @color, @price) ->
+  
+  buy: (user) => 
+    user.purchaseWidget(@) if user.canAfford(@price)
+  
+  toString: => "#{@color} #{@name}: $#{@price}"
+
+# Create a new widget
+new Widget 'Rocket Shoes', 'Red', 49.99
+```
+An equivalent Widget in JavaScript:
+```javascript
+// My super rad widget class
+var Widget,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+Widget = (function() {
+  Widget.MFG = 'WidgetCo';
+
+  function Widget(name, color, price) {
+    this.name = name;
+    this.color = color;
+    this.price = price;
+    this.toString = bind(this.toString, this);
+    this.buy = bind(this.buy, this);
+  }
+
+  Widget.prototype.buy = function(user) {
+    if (user.canAfford(this.price)) {
+      return user.purchaseWidget(this);
+    }
+  };
+
+  Widget.prototype.toString = function() {
+    return this.color + " " + this.name + ": $" + this.price;
+  };
+
+  return Widget;
+
+})();
+
+// Create a new widget
+new Widget('Rocket Shoes', 'Red', 49.99);
+```
+
+As you can see, CoffeeScript removes a lot of the busywork in JavaScript. The first example is far more clean, concise, and readable. CoffeeScript also helps mask [prototypal inheritance](https://en.wikipedia.org/wiki/Prototype-based_programming) which is not always clear for developers used to the [class based inheritance](https://en.wikipedia.org/wiki/Class-based_programming) model.
+
+Although CoffeeScript borrows from other languages, it still feels like a unique language itself. When first learning CoffeeScript, I especially had trouble differentiating [when to use the fat or thin arrow](http://michaeljosephkramer.com/2013/03/12/the-simplified-fat-arrow-guide-for-coffeescript/). If you want to learn more about CoffeeScript, [read this](https://arcturo.github.io/library/coffeescript/)!
+
+### Why I might use TypeScript in the future
+
+[TypeScript](http://www.typescriptlang.org/), a **Microsoft** project has been gaining a lot of traction in the open source community. This is especially true for [AngularJS](https://angularjs.org/) developers as Angular's second iteration is written in TypeScript. TypeScript makes JavaScript feels more like C# with support for static typing and interfaces. 
+
+TypeScript is a strict [superset](http://encyclopedia2.thefreedictionary.com/superset) of vanilla JavaScript. This means that the TypeScript compiler recognizes JavaScript as valid TypeScript (similar to [SCSS and CSS](http://sass-lang.com/documentation/)). Although it helps enhance compatibility between the two languages, this feels like mostly a bragging right to me. If you want to learn more about TypeScript, [read this](http://www.typescriptlang.org/Handbook)!
+
+### Why we will all eventually use ES6
+
+As much as I love CoffeeScript and find TypeScript intriguing, using ES6 is inevitable. Much like JavaScript as we know it (ES5) was once new, ES6 will eventually become fully supported by all major browsers (in fact, [its already happening](https://kangax.github.io/compat-table/es6/)!). ES6 is also the newest of of the three languages  mentioned with its final draft approved June 2015.
+
+We know ES6 is the future, but how can we start using it now? Transpilers like [Babel](https://babeljs.io/) transform your ES6 code to regular JavaScript. Until the mass adoption of ES6, Babel can help future proof JavaScript on your next project.
+
+### Remember, *its just JavaScript*
+
+Developers who are new to transpiled languages (especially CoffeeScript) often get lost in the syntactic differences. Thinking about your code in the context of JavaScript helps keep development on track. Examining outputted JavaScript can also demystify how your code is transpiled.
+
+### Static page development
+
+For those who find themselves developing with bare bones HTML, CSS, and JavaScript (no web framework), transpiled languages are still available to use. A practical example would be developing a [Cordova app](https://cordova.apache.org/) or [Ghost theme](http://themes.ghost.org/). Build tools are available (often via [Node packages](https://www.npmjs.com/)) to automatically transpile your source code to JavaScript.
+
+### What to use and when to use it
+
+I mentioned earlier that usage depends on what a programmer prefers and the project they are working on. When building a Rails app I would use CoffeeScript whereas with ASP.NET I would lean toward TypeScript. Ultimately, take some time to learn CoffeeScript, TypeSctipt, and ES6 and see which ones best suites you. 

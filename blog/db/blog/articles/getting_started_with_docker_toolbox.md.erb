@@ -1,0 +1,44 @@
+---
+title: Getting started with Docket Toolbox
+author: gannon
+created_at: 2015-08-17
+updated_at: 2015-08-17
+---
+
+### The Docker Hype
+
+The past year I've heard quite a lot about [Docker](https://www.docker.com/). If you dabble in the subject of configuration management, you've probably heard of it too.
+
+For those unaware, Docker is a software tool that allows you to break up software packages into modular pieces (see this [article](https://labs.ctl.io/what-is-docker-and-when-to-use-it/)). There are many uses for Docker ranging from contained development environments to continuous integration (see this [article](http://blog.flux7.com/blogs/docker/8-ways-to-use-docker-in-the-real-world)).
+
+It is also important to note that Docker depends on Linux. If you want to start using Docker but are limited to a different platform (Windows or OSX), you should look into into a full virtualization solution instead. For most modern web applications, this isn't a problem.
+
+### My Docker Experience
+
+As mentioned before, a big restriction of Docker is it only works on Linux. Thankfully, projects like [Boot2docker](https://github.com/boot2docker/boot2docker) remedy this issue by running Docker in a minimal Linux virtual machine. However, I can say that my experience with b2d has not been a pleasant one (full of [TLS issues](https://github.com/boot2docker/boot2docker/issues?utf8=%E2%9C%93&q=is%3Aissue+TLS), [provider problems](https://github.com/boot2docker/boot2docker/issues?utf8=%E2%9C%93&q=is%3Aissue+provider), [etc](https://github.com/boot2docker/boot2docker/issues).).
+
+Fortunately, the release of [Docker 1.8](http://blog.docker.com/2015/08/docker-1-8-content-trust-toolbox-registry-orchestration/) included the introduction of [Docker Toolbox](https://www.docker.com/toolbox). Docker Toolbox includes a collection of several community tools that assist in working with virtualized Docker host. Toolbox is still very new (released less than a week ago as of writing this) but is an excellent edition to the Docker tools suite.
+
+### Why use Toolbox over Boot2docker
+
+When switching to Toolbox, you'll still use the Boot2docker virtual machine as your Docker host. However, the way you interact with your virtualized host changes. The primary advantage of making the switch is to use the standardized tools recognized and supported by Docker (b2d's [Windows installer](https://github.com/boot2docker/windows-installer/releases) has already been deprecated).
+
+Docker Toolbox works on both OSX and Windows (although currently more tailed to OSX). Later iterations of Toolbox plan to support Linux desktops and a more streamlined experience on all platform (see the [support table on GitHub](https://github.com/docker/toolbox#docker-toolbox)). If you already use boot2docker, you can use the automated migration tool during installation to make the switch mostly painless.
+
+### What's in the [Tool]box?
+
+So we've established why you want to switch, now let's discuss what you are switching to. Taking a closer look at what's included should make it clear as to why Toolbox is such a welcomed change. 
+
+[Docker Client](https://github.com/docker/docker/tree/master/api/client): The tools your computer needs to communicate with your virtualized Docker host. Take a look at [this architecture diagram](https://docs.docker.com/introduction/understanding-docker/#what-is-docker-s-architecture) to see the Docker client server process in action. 
+
+[Docker Machine](https://github.com/docker/machine): The replacement for Boot2docker's Command Line Interface (CLI). Although similar to b2d's CLI, there are [a few notable differences](https://docs.docker.com/machine/migrate-to-machine/#subcommand-comparison).
+
+[Docker Compose](https://github.com/docker/compose) (currently only on OSX): Multiple container management for your Docker setups. Chances are, existing Docker users already use this (or its earlier implementation, Fig).
+
+[Kitematic](https://github.com/kitematic/kitematic): Have you ever wanted a desktop application for Docker container management? Kitematic provides a fast and easy Graphical User Interface (GUI) to manage your containers. Kitematic is currently in Alpha on Windows and Beta on OSX (although I haven't found any discrepancies between the two).
+
+[VirtualBox](https://www.virtualbox.org/): Most developers will already have VirtualBox on their systems for one reason or another. Much like [Vagrant](https://www.vagrantup.com/), Toolbox uses VirtualBox as a virtualization [provider](http://docs.vagrantup.com/v2/providers/). This means VirtualBox can be switched out for another provider (eg. VMWare).
+
+### In Conclusion
+
+My experience (so far) with Toolbox has been far more pleasant in comparison to barebones Boot2docker. Any developer familiar or unfamiliar with Docker should start using it. I believe Toolbox will help Docker gain even more traction in the development world with better multiplatform support and a convenient GUI.
