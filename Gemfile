@@ -67,3 +67,5 @@ gem "rubocop-rails", require: false
 gem "tailwindcss-rails", "~> 0.3.3"
 
 gem "frozen_record", "~> 0.22.2"
+
+gem "actionpack-action_caching"
