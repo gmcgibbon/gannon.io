@@ -3,7 +3,7 @@
 module Blog
   module ArticleContext
     class Document < YamlDocument
-      def to_h
+      def to_h # rubocop:disable Metrics/MethodLength
         {
           "id" => name,
           "extensions" => extensions,

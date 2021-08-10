@@ -3,6 +3,7 @@
 module Blog
   class ArticleListComponent < ApplicationComponent
     def initialize(articles:)
+      super()
       @articles = articles
     end
   end

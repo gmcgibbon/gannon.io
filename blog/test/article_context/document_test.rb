@@ -18,9 +18,9 @@ module Blog
           "author_id" => "some_author",
           "url" => nil,
           "content" => <<~MARKDOWN,
-                        ## Hello world
+            ## Hello world
 
-                        This is an article.
+            This is an article.
           MARKDOWN
           "created_at" => Date.parse("2021-05-30"),
           "updated_at" => Date.parse("2021-06-30"),
