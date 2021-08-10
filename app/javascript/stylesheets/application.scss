@@ -26,36 +26,36 @@ body {
   }
 
   p, h1, h2, h3, h4, h5, h6, li, svg {
-    @apply font-mono text-xl text-black dark:text-white;
+    @apply font-mono md:text-xl sm:text-lg text-base text-black dark:text-white;
   }
 
   code {
-    @apply font-mono text-lg;
+    @apply font-mono md:text-lg sm:text-base text-sm;
   }
 
   p {
-    @apply mb-4;
+    @apply md:mb-4 sm:mb-3 mb-2;
   }
 
   h2, h3, h4, h5, h6, code {
-    @apply mb-6;
+    @apply md:mb-6 sm:mb-5 mb-4;
   }
 
   h1 {
-    @apply text-4xl;
+    @apply md:text-4xl sm:text-3xl text-2xl;
   }
 
   h2, h3, h4, h5, h6 {
-    @apply text-2xl;
+    @apply md:text-2xl sm:text-xl text-lg;
   }
 
   nav svg {
-    @apply w-8 h-8;
+    @apply md:w-8 md:h-8 sm:w-6 sm:h-6 h-4 w-4;
   }
 
   ul  {
     li {
-      @apply list-disc ml-6 mb-4;
+      @apply list-disc ml-6 md:mb-4 sm:mb-3 mb-2;
     }
 
     li * {
