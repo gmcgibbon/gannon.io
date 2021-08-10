@@ -9,6 +9,7 @@ module Blog
         Article.first,
         id: String,
         title: String,
+        description: String,
         author_id: String,
         content: String,
         created_at: Date,

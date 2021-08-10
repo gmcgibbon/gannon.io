@@ -1,3 +1,4 @@
 <% content_for(:title, @article.title) %>
+<% content_for(:description, @article.description) %>
 
 <%= render(Blog::ArticleComponent.new(article: @article)) %>

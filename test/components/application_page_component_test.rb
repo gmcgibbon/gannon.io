@@ -6,6 +6,7 @@ class ApplicationPageComponentTest < ViewComponent::TestCase
   test "renders page" do
     render_inline(ApplicationPageComponent.new) do |page|
       page.title { "Test" }
+      page.title { "Description Text" }
       page.body { "Hello world" }
     end
 

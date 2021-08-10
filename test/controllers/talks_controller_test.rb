@@ -7,6 +7,9 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     get("/talks")
 
     assert_select("title", text: "Gannon's Talks")
+    assert_select("meta[name=description]") do |(element)|
+      assert_equal("Conference talks and podcasts with Gannon McGibbon.", element[:content])
+    end
     assert_select("h1", text: "Gannon's Talks")
     Talk.all.each do |talk|
       assert_select("h2", text: "#{talk.title} (#{talk.conference})")

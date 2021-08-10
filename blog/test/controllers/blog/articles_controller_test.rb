@@ -10,6 +10,9 @@ module Blog
       get("/blog")
 
       assert_select("title", text: "Gannon's Blog")
+      assert_select("meta[name=description]") do |(element)|
+        assert_equal("Articles written by Gannon McGibbon.", element[:content])
+      end
       assert_select("h1", text: "Gannon's Blog")
       Article.latest.each do |article|
         assert_select("li") do
@@ -34,6 +37,9 @@ module Blog
       get("/blog/articles/#{article.id}")
 
       assert_select("title", text: "Plain Test")
+      assert_select("meta[name=description]") do |(element)|
+        assert_equal("This is a description.", element[:content])
+      end
       assert_select("h1", text: "Plain Test")
       assert_select("h2", text: "Hello world")
       assert_select("p", text: "May 30, 2021")

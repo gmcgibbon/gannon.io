@@ -14,3 +14,5 @@ gem "listen", "~> 3.3"
 # View component rendering and testing
 gem "capybara"
 gem "webpacker"
+
+gem "actionpack-action_caching"

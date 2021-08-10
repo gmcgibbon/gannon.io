@@ -8,6 +8,7 @@ module Blog
           "id" => name,
           "extensions" => extensions,
           "title" => yaml.fetch(:title),
+          "description" => yaml.fetch(:description),
           "author_id" => yaml.fetch(:author),
           "content" => content,
           "url" => yaml.fetch(:url, nil),

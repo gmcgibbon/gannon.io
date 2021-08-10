@@ -14,6 +14,7 @@ module Blog
           "id" => "test-1-plain",
           "extensions" => %w(erb md),
           "title" => "Plain Test",
+          "description" => "This is a description.",
           "author_id" => "some_author",
           "url" => nil,
           "content" => <<~MARKDOWN,

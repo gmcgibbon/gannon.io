@@ -2,6 +2,7 @@
 
 class ApplicationPageComponent < ApplicationComponent
   renders_one(:title)
+  renders_one(:description)
   renders_one(:body)
 
   private
