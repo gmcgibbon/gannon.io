@@ -2,6 +2,9 @@
   "name": "gannon",
   "private": true,
   "version": "0.1.0",
+  "engines": {
+    "node": "16.6.1"
+  },
   "dependencies": {
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.0",
