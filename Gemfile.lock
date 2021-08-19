@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/gmcgibbon/tailwindcss-rails.git
-  revision: caef40f80276818580bcbcd7d6171c8f6ccae8b1
-  branch: sprockets_fix
-  specs:
-    tailwindcss-rails (0.3.3)
-      rails (>= 6.0.0)
-
-GIT
   remote: https://github.com/rails/rails.git
   revision: 4f53cb3b8752f0c39c6766a07fb98fe030ebe467
   specs:
@@ -213,6 +205,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tailwindcss-rails (0.3.3)
+      rails (>= 6.0.0)
     thor (1.1.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -264,7 +258,7 @@ DEPENDENCIES
   rubocop-rails
   selenium-webdriver (= 4.0.0.beta3)
   spring
-  tailwindcss-rails (~> 0.3.3)!
+  tailwindcss-rails (~> 0.3.3)
   turbolinks (~> 5)
   tzinfo-data
   view_component
