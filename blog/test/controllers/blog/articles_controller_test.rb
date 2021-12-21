@@ -17,7 +17,7 @@ module Blog
       Article.latest.each do |article|
         assert_select("li") do
           assert_select("h2", text: article.title)
-          assert_select("p", text: article.created_at.to_s(:long))
+          assert_select("p", text: article.created_at.to_fs(:long))
         end
       end
     end
