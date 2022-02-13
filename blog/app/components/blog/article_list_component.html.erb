@@ -4,7 +4,7 @@
       <%= link_to(article) do %>
         <h2><%= article.title %></h2>
         <br>
-        <p><%= article.created_at.to_s(:long) %></p>
+        <p><%= article.created_at.to_fs(:long) %></p>
       <% end %>
     </li>
   <% end %>

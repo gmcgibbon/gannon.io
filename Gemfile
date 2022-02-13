@@ -3,8 +3,6 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.1"
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", github: "rails/rails"
 # Use Puma as the app server
@@ -53,6 +51,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 
+gem "sprockets-rails"
 gem "view_component"
 
 # Blog engine
@@ -62,7 +61,7 @@ gem "blog", path: "blog"
 gem "rubocop", require: false
 gem "rubocop-rails", require: false
 
-gem "tailwindcss-rails", "~> 0.3.3"
+gem "tailwindcss-rails"
 
 gem "frozen_record", "~> 0.22.2"
 
