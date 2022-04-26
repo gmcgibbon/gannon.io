@@ -10,7 +10,7 @@ module Blog
     def self.read(file)
       name, *extensions = file.basename.to_s.split(".")
       file.open do |io|
-        new(name: name, extensions: extensions.reverse, io: io)
+        new(name:, extensions: extensions.reverse, io:)
       end
     end
 

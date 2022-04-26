@@ -7,7 +7,7 @@ module Blog
     test "renders article" do
       article = Article.all.first
 
-      render_inline(ArticleComponent.new(article: article))
+      render_inline(ArticleComponent.new(article:))
 
       assert_selector("article") do
         assert_selector("h2", text: "Hello world")

@@ -5,7 +5,7 @@ module Blog
     class << self
       def render(text, extensions:, context:)
         extensions.reduce(text) do |result, extension|
-          send(:"render_#{extension}", result, context: context)
+          send(:"render_#{extension}", result, context:)
         end
       end
 

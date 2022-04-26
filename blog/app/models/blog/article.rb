@@ -24,7 +24,7 @@ module Blog
     end
 
     def render_in(context)
-      DocumentRenderer.render(content, extensions: extensions, context: context)
+      DocumentRenderer.render(content, extensions:, context:)
     end
   end
 end

@@ -6,7 +6,7 @@ class TalkListComponentTest < ViewComponent::TestCase
   test "renders talks list" do
     talks = Talk.all
 
-    render_inline(TalkListComponent.new(talks: talks))
+    render_inline(TalkListComponent.new(talks:))
 
     assert_selector("ul") do
       talks.each do |talk|

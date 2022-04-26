@@ -7,7 +7,7 @@ class ApplicationComponentTest < ViewComponent::TestCase
   test "delegates main_app to view_context" do
     main_app = Object.new
     application_component = ApplicationComponent.new
-    application_component.instance_variable_set(:@view_context, mock(main_app: main_app))
+    application_component.instance_variable_set(:@view_context, mock(main_app:))
 
     assert_same(main_app, application_component.main_app)
   end

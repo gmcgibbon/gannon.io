@@ -6,7 +6,7 @@ module Blog
   class ArticleListComponentTest < ViewComponent::TestCase
     test "renders articles" do
       articles  = Article.all
-      component = ArticleListComponent.new(articles: articles)
+      component = ArticleListComponent.new(articles:)
 
       render_inline(component)
 
