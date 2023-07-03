@@ -15,3 +15,4 @@ gem "capybara"
 gem "webpacker"
 
 gem "actionpack-action_caching"
+gem "rails", github: "rails/rails"
