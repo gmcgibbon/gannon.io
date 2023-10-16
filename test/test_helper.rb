@@ -9,7 +9,7 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
-    self.file_fixture_path = "#{Rails.root}/test/fixtures/files"
+    self.file_fixture_path = Rails.root.join("test/fixtures/files").to_s
 
     ApplicationRecord.base_path = Pathname.new(file_fixture_path)
 

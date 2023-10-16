@@ -39,7 +39,7 @@ module Blog
     test ".read works without yaml header" do
       document = YamlDocument.read(file)
 
-      assert_equal({}, document.yaml)
+      assert_empty(document.yaml)
       assert_equal(<<~CONTENT, document.content)
         # Helo world
 

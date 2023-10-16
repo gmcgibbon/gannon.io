@@ -5,3 +5,11 @@ AllCops:
   TargetRubyVersion: 3.2.2
   Exclude:
     - bin/bundle
+
+require:
+  - "./lib/cops/active_support_deprecation_usage"
+  - rubocop-rails
+  - rubocop-minitest
+
+Minitest/MultipleAssertions:
+  Enabled: false
