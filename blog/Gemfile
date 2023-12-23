@@ -12,7 +12,7 @@ gem "byebug", platforms: %i(mri mingw x64_mingw)
 
 # View component rendering and testing
 gem "capybara"
-gem "webpacker"
+gem "importmap-rails"
 
 gem "actionpack-action_caching"
 gem "rails", github: "rails/rails"

@@ -1,17 +1,6 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-
-import HighlightJS from "highlight.js";
-
-Rails.start()
-Turbolinks.start()
-
-import "stylesheets/application"
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import "@hotwired/turbo-rails"
+import HighlightJS from "highlight.js"
 
 const getMode = () => {
   if ("mode" in localStorage) {
@@ -28,9 +17,7 @@ const setMode = (mode) => {
   localStorage.mode = mode;
 }
 
-document.addEventListener("turbolinks:load", () => {
-  HighlightJS.highlightAll();
-
+document.addEventListener("turbo:load", () => {
   document.documentElement.classList.add(getMode()); 
 
   document.querySelector("#dark-toggle").addEventListener("click", (event) => {
@@ -41,4 +28,8 @@ document.addEventListener("turbolinks:load", () => {
     document.documentElement.classList.add(oppositeMode);
     setMode(oppositeMode);
   });
+});
+
+document.addEventListener("turbo:load", () => {
+  HighlightJS.highlightAll();
 });

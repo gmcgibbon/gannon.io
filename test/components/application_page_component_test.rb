@@ -5,9 +5,9 @@ require "test_helper"
 class ApplicationPageComponentTest < ViewComponent::TestCase
   test "renders page" do
     render_inline(ApplicationPageComponent.new) do |page|
-      page.title { "Test" }
-      page.title { "Description Text" }
-      page.body { "Hello world" }
+      page.with_title { "Test" }
+      page.with_title { "Description Text" }
+      page.with_body { "Hello world" }
     end
 
     assert_selector("html") do
