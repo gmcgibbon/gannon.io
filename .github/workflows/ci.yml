@@ -12,10 +12,6 @@ jobs:
         name: Setup Ruby
         with:
           ruby-version: 3.3.0-rc1
-      - uses: actions/setup-node@v2
-        name: Setup Node
-        with:
-          node-version: 16.6.1
       - name: 💅🏼 Lint
         run: |
           bundle install
@@ -23,11 +19,9 @@ jobs:
       - name: 🧪 Test App
         run: |
           bundle install
-          yarn install
           bin/rails test
       - name: 🧪 Test Blog
         run: |
           bundle install
-          yarn install
           bin/rails test
         working-directory: blog
