@@ -62,6 +62,7 @@ gem "blog", path: "blog"
 
 # Code linting
 gem "rubocop", require: false
+gem "rubocop-capybara"
 gem "rubocop-rails", require: false
 
 gem "tailwindcss-rails"
