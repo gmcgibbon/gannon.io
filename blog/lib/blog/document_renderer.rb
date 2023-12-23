@@ -19,7 +19,7 @@ module Blog
       end
 
       def render_md(text, context:) # rubocop:disable Lint/UnusedMethodArgument
-        markdown_parser.render(text).html_safe
+        markdown_parser.render(text).html_safe # rubocop:disable Rails/OutputSafety
       end
 
       def markdown_parser

@@ -46,7 +46,7 @@ module Blog
     end
 
     test "#render_in" do
-      today = Date.today.strftime("%A")
+      today = Time.zone.today.strftime("%A")
 
       context = time_context(day: today)
 

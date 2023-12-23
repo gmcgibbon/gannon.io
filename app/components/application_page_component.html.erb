@@ -9,8 +9,9 @@
     <%= csp_meta_tag %>
     <%= favicon_meta_tags %>
 
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://ga.jspm.io/npm:highlight.js@11.9.0/styles/monokai-sublime.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
   <body>
     <div id="app" class="p-6 container mx-auto max-w-4xl">

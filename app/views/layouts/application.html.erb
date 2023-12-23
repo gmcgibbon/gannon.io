@@ -1,7 +1,7 @@
 <%= render(ApplicationPageComponent.new) do |page| %>
-  <% page.title { yield(:title) } %>
-  <% page.description { yield(:description) } %>
-  <% page.body do %>
+  <% page.with_title { yield(:title) } %>
+  <% page.with_description { yield(:description) } %>
+  <% page.with_body do %>
     <%= yield %>
   <% end %>
 <% end %>

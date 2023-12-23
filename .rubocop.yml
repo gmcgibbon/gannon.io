@@ -1,7 +1,11 @@
 inherit_from:
   - https://raw.githubusercontent.com/gmcgibbon/dotfiles/main/rubocop.yml
 
+require:
+  - rubocop-rails
+  - rubocop-capybara
+
 AllCops:
-  TargetRubyVersion: 3.2.2
+  TargetRubyVersion: 3.3.0
   Exclude:
     - bin/bundle
