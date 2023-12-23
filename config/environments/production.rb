@@ -3,6 +3,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Turbo::Rails Hack to stop loading parts of Rails I don't use
+  Rails.autoloaders.once.do_not_eager_load("#{Turbo::Engine.root}/app/channels")
+  Rails.autoloaders.once.do_not_eager_load("#{Turbo::Engine.root}/app/jobs")
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
