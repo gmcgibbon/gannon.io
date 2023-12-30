@@ -10,6 +10,10 @@ body {
   @apply text-white bg-black dark:text-black dark:bg-white;
 }
 
+.dark ::selection {
+  @apply text-black bg-white;
+}
+
 p, h1, h2, h3, h4, h5, h6, li, svg {
   @apply font-mono md:text-xl sm:text-lg text-base text-black dark:text-white;
 }
