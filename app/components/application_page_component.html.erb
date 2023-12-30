@@ -11,6 +11,9 @@
 
     <%= stylesheet_link_tag "https://ga.jspm.io/npm:highlight.js@11.9.0/styles/monokai-sublime.css", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <script>
+      if ("mode" in localStorage) { document.documentElement.classList.add(localStorage.mode) }
+    </script>
     <%= javascript_importmap_tags %>
   </head>
   <body>
