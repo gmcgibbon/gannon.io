@@ -1,0 +1,22 @@
+# typed: true
+# frozen_string_literal: true
+
+require "action_controller/railtie"
+require "action_view/railtie"
+require "active_model"
+require "active_support/core_ext/integer/time"
+require "blog/article_context"
+require "blog/document_renderer"
+require "blog/engine"
+require "blog/version"
+require "blog/yaml_document"
+require "bundler/setup"
+require "frozen_record"
+require "minitest/mock"
+require "rails"
+require "rails/test_help"
+require "rails/test_unit/railtie"
+require "redcarpet"
+require "sprockets/railtie"
+require "view_component"
+require "yaml"

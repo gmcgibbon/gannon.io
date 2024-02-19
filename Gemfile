@@ -41,6 +41,15 @@ group :development do
   gem "rack-mini-profiler", "~> 2.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
+  # Ruby LSP features for Rails
+  gem "ruby-lsp-rails"
+  # Code linting
+  gem "rubocop", require: false
+  gem "rubocop-capybara"
+  gem "rubocop-rails", require: false
+  gem "rubocop-sorbet", require: false
+  gem "sorbet", require: false
+  gem "tapioca", require: false
 end
 
 group :test do
@@ -60,10 +69,7 @@ gem "view_component"
 # Blog engine
 gem "blog", path: "blog"
 
-# Code linting
-gem "rubocop", require: false
-gem "rubocop-capybara"
-gem "rubocop-rails", require: false
+gem "sorbet-runtime"
 
 gem "tailwindcss-rails"
 

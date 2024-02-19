@@ -1,10 +1,11 @@
+# typed: true
 # frozen_string_literal: true
 
 require "test_helper"
 
 module Blog
   class ArticlesControllerTest < ActionDispatch::IntegrationTest
-    include Engine.routes.url_helpers
+    T.unsafe(self).include Engine.routes.url_helpers
 
     test "index lists articles" do
       get("/blog")

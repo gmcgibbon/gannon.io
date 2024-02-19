@@ -4,8 +4,16 @@ inherit_from:
 require:
   - rubocop-rails
   - rubocop-capybara
+  - rubocop-sorbet
 
 AllCops:
   TargetRubyVersion: 3.3.0
   Exclude:
     - bin/bundle
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - sorbet
+
+Sorbet/TrueSigil:
+  Enabled: true

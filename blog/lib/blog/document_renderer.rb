@@ -1,3 +1,4 @@
+# typed: true
 # frozen_string_literal: true
 
 module Blog
@@ -13,7 +14,7 @@ module Blog
 
       def render_erb(text, context:)
         # HACK: What is the proper way to do this with a view context?
-        result = nil
+        result = T.let(nil, T.nilable(String))
         context.instance_eval { result = ERB.new(text).result(binding) }
         result
       end

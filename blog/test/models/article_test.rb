@@ -1,3 +1,4 @@
+# typed: true
 # frozen_string_literal: true
 
 require "test_helper"
@@ -62,7 +63,8 @@ module Blog
     private
 
     def plain_context
-      Struct.new.new
+      # TODO: Fix upstream
+      T.unsafe(Struct).new.new
     end
 
     def time_context(day:)

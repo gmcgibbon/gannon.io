@@ -16,3 +16,5 @@ gem "importmap-rails"
 
 gem "actionpack-action_caching"
 gem "rails", github: "rails/rails"
+
+gem "sorbet-runtime"
