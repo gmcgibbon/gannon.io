@@ -15,7 +15,7 @@ jobs:
       - name: 💅🏼 Lint
         run: |
           bundle install
-          bundle exec rubocop
+          bin/rubocop
       - name: 🧪 Test App
         run: |
           bundle install
