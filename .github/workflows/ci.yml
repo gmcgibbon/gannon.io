@@ -11,11 +11,11 @@ jobs:
       - uses: ruby/setup-ruby@v1
         name: Setup Ruby
         with:
-          ruby-version: 3.3.0
+          ruby-version: 3.4.1
       - name: 💅🏼 Lint
         run: |
           bundle install
-          bundle exec rubocop
+          bin/rubocop
       - name: 🧪 Test App
         run: |
           bundle install
