@@ -70,3 +70,5 @@ gem "tailwindcss-rails"
 gem "frozen_record", "~> 0.22.2"
 
 gem "actionpack-action_caching"
+
+gem "thruster"
