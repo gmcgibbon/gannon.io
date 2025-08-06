@@ -14,3 +14,11 @@
     Gannon regularly contributes to open source with commits on Rails, Ruby, and Rubocop.
     He joined Brittany to discuss his latest blog post, "How to Write Fast Ruby on Rails code".
   url: https://5by5.tv/rubyonrails/293
+
+- id: railsconf_2025
+  title: Development Speed Optimizations in Rails 8
+  description: |
+    The release of Rails 8 included several speed optimizations for development, especially for larger applications.
+    Let’s talk about what they are, and why they matter.
+    In this talk, you’ll learn about why the Rails boot process is so important, and the changes my team and I made to initializers, file watching, and route drawing.
+  url: https://www.youtube.com/watch?v=I4PqCz3P4tk
