@@ -3,12 +3,12 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.4.1"
+ruby "4.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", github: "rails/rails"
 # Use Puma as the app server
-gem "puma", "~> 5.6"
+gem "puma"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -30,7 +30,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i(mri mingw x64_mingw)
+  gem "debug", platforms: %i(mri windows)
 end
 
 group :development do
@@ -47,6 +47,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver", "4.0.0.beta3"
+  gem "minitest-mock"
   # Easy installation and use of web drivers to run system tests with browsers
   gem "webdrivers"
 end
@@ -56,7 +57,7 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
+gem "tzinfo-data", platforms: %i(windows jruby)
 
 gem "sprockets-rails"
 gem "view_component"

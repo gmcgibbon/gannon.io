@@ -6,6 +6,6 @@ require:
   - rubocop-capybara
 
 AllCops:
-  TargetRubyVersion: 3.4.1
+  TargetRubyVersion: 4.0.0
   Exclude:
     - bin/bundle
