@@ -18,7 +18,7 @@ const setMode = (mode) => {
 }
 
 document.addEventListener("turbo:load", () => {
-  document.documentElement.classList.add(getMode()); 
+  document.documentElement.classList.add(getMode());
 
   document.querySelector("#dark-toggle").addEventListener("click", (event) => {
     event.preventDefault();
