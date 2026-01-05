@@ -2,7 +2,9 @@
   <% @talks.each do |talk| %>
     <li>
       <%= link_to(talk.url) do %>
-        <h2><%= talk.title %> (<%= talk.conference %>)</h2>
+        <h2><%= talk.title %></h2>
+        <br>
+        <h3><%= talk.conference %></h3>
         <br>
         <p><%= talk.description %></p>
       <% end %>

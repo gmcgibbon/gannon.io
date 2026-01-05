@@ -5,6 +5,7 @@
     Let’s talk about how to identify slow code, speed it up, and verify positive change within your application.
     In this talk, you’ll learn about rack-mini-profiler, benchmark/ips, and performance optimization best practices.
   url: https://www.youtube.com/watch?v=AFpq1pDQagw
+  uploaded_at: 2021-05-18
 
 - id: 5by5_rails
   title: Speed as a Feature
@@ -13,7 +14,8 @@
     He primarily works on improving codebase health of Shopify's monolithic Rails app.
     Gannon regularly contributes to open source with commits on Rails, Ruby, and Rubocop.
     He joined Brittany to discuss his latest blog post, "How to Write Fast Ruby on Rails code".
-  url: https://5by5.tv/rubyonrails/293
+  url: https://www.therubyonrailspodcast.com/293
+  uploaded_at: 2019-10-29
 
 - id: railsconf_2025
   title: Development Speed Optimizations in Rails 8
@@ -22,3 +24,4 @@
     Let’s talk about what they are, and why they matter.
     In this talk, you’ll learn about why the Rails boot process is so important, and the changes my team and I made to initializers, file watching, and route drawing.
   url: https://www.youtube.com/watch?v=I4PqCz3P4tk
+  uploaded_at: 2025-07-24

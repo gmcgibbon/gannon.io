@@ -11,9 +11,12 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
       assert_equal("Conference talks and podcasts with Gannon McGibbon.", element[:content])
     end
     assert_select("h1", text: "Gannon's Talks")
-    Talk.all.each do |talk|
-      assert_select("h2", text: "#{talk.title} (#{talk.conference})")
-      assert_select("p", text: talk.description)
+    Talk.latest.each do |talk|
+      assert_select("li") do
+        assert_select("h2", text: talk.title)
+        assert_select("h3", text: talk.conference)
+        assert_select("p", text: talk.description)
+      end
     end
   end
 end
