@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "frozen_record", ">= 0.22.2"
-  spec.add_dependency "rails", ">= 7.1.alpha"
+  spec.add_dependency "rails", ">= 8"
   spec.add_dependency "redcarpet", ">= 3.5.1"
   spec.add_dependency "sprockets-rails", ">= 3.4.2"
   spec.add_dependency "tailwindcss-rails", ">= 0.3.3"
